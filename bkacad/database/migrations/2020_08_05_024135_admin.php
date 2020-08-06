@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KieuThi extends Migration
+class Admin extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class KieuThi extends Migration
      */
     public function up()
     {
-       
-       Schema::create('kieu_thi', function (Blueprint $table) {
-           $table->increments('ma');
-           $table->string('ten_kieu_thi',50);
-           //
-       });
-       
+        
+        Schema::create('admin', function (Blueprint $table) {
+            $table->increments('ma');
+            $table->string('ten_dang_nhap',50)->unique();
+            $table->string('mat_khau',50);
+            $table->string('ten',100);
+            $table->string('email',100)->nullable();
+            //
+        });
+        
     }
 
     /**

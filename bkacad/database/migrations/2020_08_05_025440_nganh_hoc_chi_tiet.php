@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MonHoc extends Migration
+class NganhHocChiTiet extends Migration
 {
     /**
      * Run the migrations.
@@ -14,17 +14,17 @@ class MonHoc extends Migration
     public function up()
     {
         
-        Schema::create('mon_hoc', function (Blueprint $table) {
-            $table->increments('ma');
-            $table->string('ten');
+        Schema::create('nganh_hoc_chi_tiet', function (Blueprint $table) {
             $table->integer('ma_nganh_hoc')->unsigned();
+            $table->integer('ma_mon_hoc')->unsigned();
             $table->foreign('ma_nganh_hoc')
-           ->references('ma')->on('nganh_hoc')
-           ->onDelete('cascade');
-           $table->integer('ma_kieu_diem')->unsigned();
-            $table->foreign('ma_kieu_diem')
-           ->references('ma')->on('kieu_diem')
-           ->onDelete('cascade');
+            ->references('ma')->on('nganh_hoc')
+            ->onDelete('cascade');
+            $table->foreign('ma_mon_hoc')
+            ->references('ma')->on('mon_hoc')
+            ->onDelete('cascade');
+            $table->primary(['ma_nganh_hoc','ma_mon_hoc']);
+
             //
         });
         

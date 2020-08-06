@@ -16,7 +16,7 @@ class NganhHoc extends Migration
        
        Schema::create('nganh_hoc', function (Blueprint $table) {
            $table->increments('ma');
-           $table->string('ten_nganh',100);
+           $table->string('ten',100);
            //
        });
        

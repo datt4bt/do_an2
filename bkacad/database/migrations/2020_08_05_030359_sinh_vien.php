@@ -16,7 +16,7 @@ class SinhVien extends Migration
         
         Schema::create('sinh_vien', function (Blueprint $table) {
             $table->increments('ma');
-            $table->string('ten_sinh_vien',100);
+            $table->string('ten',100);
             $table->boolean('gioi_tinh');
             $table->date('ngay_sinh');
             $table->string('sdt',15);

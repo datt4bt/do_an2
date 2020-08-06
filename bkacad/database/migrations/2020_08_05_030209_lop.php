@@ -16,7 +16,7 @@ class Lop extends Migration
         
         Schema::create('lop', function (Blueprint $table) {
             $table->increments('ma');
-            $table->string('ten_lop',100);
+            $table->string('ten',100);
             $table->integer('ma_nganh_hoc')->unsigned();
             $table->foreign('ma_nganh_hoc')
            ->references('ma')->on('nganh_hoc')

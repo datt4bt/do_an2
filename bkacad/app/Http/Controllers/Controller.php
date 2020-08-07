@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-class Controller{
-	public function tinh_tong($a,$b){
-		$tong=$a+$b;
-		$hieu=$a-$b;
-		$tich=$a*$b;
-		$thuong=$a/$b;
-		return view('tinh_tong',[
-				'tong'=>$tong,
-				'hieu'=>$hieu,
-				'tich'=>$tich,
-				'thuong'=>$thuong
-		]);	
-	} 
-	
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+class Controller extends BaseController
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

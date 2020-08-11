@@ -11,18 +11,61 @@
 |
 */
 
+use Illuminate\Routing\RouteGroup;
+
 Route::get('/', function () {return view('giao_dien.index');})->name('home');
+
+
+
 //Ngành học
-Route::get('nganh_hoc','Nganh_hocController@get_all')->name('get_all_nganh_hoc');
-Route::get('nganh_hoc/insert','Nganh_hocController@insert')->name('insert_nganh_hoc');
-Route::post('nganh_hoc/process_insert','Nganh_hocController@process_insert')->name('process_insert_nganh_hoc');
-Route::get('nganh_hoc/update/{ma}','Nganh_hocController@update')->name('update_nganh_hoc');
-Route::post('nganh_hoc/process_update/{ma}','Nganh_hocController@process_update')->name('process_update_nganh_hoc');
-Route::get('nganh_hoc/delete/{ma}','Nganh_hocController@delete')->name('delete_nganh_hoc');
+Route::group(['prefix' => 'nganh_hoc','as'=>'nganh_hoc.'], function() {
+    Route::get('','Nganh_HocController@get_all')->name('get_all');
+    Route::get('insert','Nganh_HocController@insert')->name('insert');
+    Route::post('process_insert','Nganh_HocController@process_insert')->name('process_insert');
+    Route::get('update/{ma}','Nganh_HocController@update')->name('update');
+    Route::post('process_update/{ma}','Nganh_HocController@process_update')->name('process_update');
+    Route::get('delete/{ma}','Nganh_HocController@delete')->name('delete');   //
+});
 //Kiểu điểm
-Route::get('kieu_diem','Kieu_diemController@get_all')->name('get_all_kieu_diem');
-Route::get('kieu_diem/insert','Kieu_diemController@insert')->name('insert_kieu_diem');
-Route::post('kieu_diem/process_insert','Kieu_diemController@process_insert')->name('process_insert_kieu_diem');
-Route::get('kieu_diem/update/{ma}','Kieu_diemController@update')->name('update_kieu_diem');
-Route::post('kieu_diem/process_update/{ma}','Kieu_diemController@process_update')->name('process_update_kieu_diem');
-Route::get('kieu_diem/delete/{ma}','Kieu_diemController@delete')->name('delete_kieu_diem');
+Route::group(['prefix' => 'kieu_diem','as'=>'kieu_diem.'], function() {
+    Route::get('','Kieu_DiemController@get_all')->name('get_all');
+    Route::get('insert','Kieu_DiemController@insert')->name('insert');
+    Route::post('process_insert','Kieu_DiemController@process_insert')->name('process_insert');
+    Route::get('update/{ma}','Kieu_DiemController@update')->name('update');
+    Route::post('process_update/{ma}','Kieu_DiemController@process_update')->name('process_update');
+    Route::get('delete/{ma}','Kieu_DiemController@delete')->name('delete');   //
+});
+//Môn học
+Route::group(['prefix' => 'mon_hoc','as'=>'mon_hoc.'], function() {
+    Route::get('','Mon_HocController@get_all')->name('get_all');
+    Route::get('insert','Mon_HocController@insert')->name('insert');
+    Route::post('process_insert','Mon_HocController@process_insert')->name('process_insert');
+    Route::get('update/{ma}','Mon_HocController@update')->name('update');
+    Route::post('process_update/{ma}','Mon_HocController@process_update')->name('process_update');
+    Route::get('delete/{ma}','Mon_HocController@delete')->name('delete');   //
+});
+//Ngành học chi tiết
+Route::group(['prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], function() {
+    Route::get('','Nganh_Hoc_Chi_TietController@get_all')->name('get_all');
+    Route::get('insert','Nganh_Hoc_Chi_TietController@insert')->name('insert');
+    Route::post('process_insert','Nganh_Hoc_Chi_TietController@process_insert')->name('process_insert');
+   
+});
+//Lớp
+Route::group(['prefix' => 'lop','as'=>'lop.'], function() {
+    Route::get('','LopController@get_all')->name('get_all');
+    Route::get('insert','LopController@insert')->name('insert');
+    Route::post('process_insert','LopController@process_insert')->name('process_insert');
+    Route::get('update/{ma}','LopController@update')->name('update');
+    Route::post('process_update/{ma}','LopController@process_update')->name('process_update');
+    Route::get('delete/{ma}','LopController@delete')->name('delete');   //
+});
+//Lớp
+Route::group(['prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
+    Route::get('','Sinh_VienController@get_all')->name('get_all');
+    Route::get('insert','Sinh_VienController@insert')->name('insert');
+    Route::post('process_insert','Sinh_VienController@process_insert')->name('process_insert');
+    Route::get('update/{ma}','Sinh_VienController@update')->name('update');
+    Route::post('process_update/{ma}','Sinh_VienController@process_update')->name('process_update');
+    Route::get('delete/{ma}','Sinh_VienController@delete')->name('delete');   //
+});

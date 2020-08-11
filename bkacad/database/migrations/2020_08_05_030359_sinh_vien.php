@@ -21,7 +21,7 @@ class SinhVien extends Migration
             $table->date('ngay_sinh');
             $table->string('sdt',15);
             $table->string('dia_chi',200);
-            $table->string('email',100);
+            $table->string('email',100)->nullable();
             $table->integer('ma_lop')->unsigned();
             $table->foreign('ma_lop')
            ->references('ma')->on('lop')

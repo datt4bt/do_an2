@@ -1,6 +1,6 @@
 @extends('giao_dien.index')
 @section('content')
-<button class="button"><a  href="{{ route('insert_nganh_hoc') }}">Thêm</a></button>
+<button class="button"><a  href="{{ route('nganh_hoc.insert') }}">Thêm</a></button>
 <table class="table">
 	<tr>
 		<td>Mã Ngành học</td>
@@ -13,8 +13,8 @@
 			<tr>
 				<td>{{$nganh_hoc->ma}}</td>
 				<td>{{$nganh_hoc->ten}}</td>
-				<td><a href="{{ route('update_nganh_hoc',['ma'=>$nganh_hoc->ma]) }}">Sửa</a></td>
-				<td><a href="{{ route('delete_nganh_hoc',['ma'=>$nganh_hoc->ma]) }}">Xóa</a></td>
+				<td><a href="{{ route('nganh_hoc.update',['ma'=>$nganh_hoc->ma]) }}">Sửa</a></td>
+				<td><a href="{{ route('nganh_hoc.delete',['ma'=>$nganh_hoc->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
 	

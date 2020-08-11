@@ -26,19 +26,51 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Chuyên Ngành</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('insert_nganh_hoc') }}">Thêm chuyên ngành</a></li>
-                                    <li><a href="{{ route('get_all_nganh_hoc') }}">Quản lí chuyên ngành</a></li>
+                                    <li><a href="{{ route('nganh_hoc.insert') }}">Thêm chuyên ngành</a></li>
+                                    <li><a href="{{ route('nganh_hoc.get_all') }}">Quản lí chuyên ngành</a></li>
                                    
                                 </ul>
                             </li>
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Hình thức thi</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('insert_kieu_diem') }}">Thêm Hình thức</a></li>
-                                    <li><a href="{{ route('get_all_kieu_diem') }}">Quản lí Hình thức</a></li>
+                                    <li><a href="{{ route('kieu_diem.insert') }}">Thêm Hình thức</a></li>
+                                    <li><a href="{{ route('kieu_diem.get_all') }}">Quản lí Hình thức</a></li>
                                    
                                 </ul>
-                            </li>                                                                                             
+                            </li> 
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Môn học</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('mon_hoc.insert') }}">Thêm Môn học</a></li>
+                                    <li><a href="{{ route('mon_hoc.get_all') }}">Quản lí Môn học</a></li>
+                                   
+                                </ul>
+                            </li>  
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Ngành học chi tiết</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('nganh_hoc_chi_tiet.get_all') }}">Quản lý ngành học chi tiết</a></li>
+                                    
+                                   
+                                </ul>
+                            </li>  
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Lớp</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('lop.insert') }}">Thêm Lớp</a></li>
+                                    <li><a href="{{ route('lop.get_all') }}">Quản lí Lớp</a></li>
+                                   
+                                </ul>
+                            </li> 
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Sinh viên</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('sinh_vien.insert') }}">Thêm Sinh viên</a></li>
+                                    <li><a href="{{ route('sinh_vien.get_all') }}">Quản lí Sinh viên</a></li>
+                                   
+                                </ul>
+                            </li>                                                                                               
                         </ul>
                     </div>
                     <div class="clearfix"></div>

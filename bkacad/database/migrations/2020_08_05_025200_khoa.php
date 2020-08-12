@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class NganhHoc extends Migration
+class Khoa extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class NganhHoc extends Migration
      */
     public function up()
     {
-       
-       Schema::create('nganh_hoc', function (Blueprint $table) {
-           $table->increments('ma');
-           $table->string('ten',100);
+        Schema::create('khoa', function (Blueprint $table) {
+            $table->increments('ma');
+            $table->string('ten',100);
            
-       });
-       
+        });
     }
 
     /**

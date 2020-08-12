@@ -22,6 +22,19 @@
 				</option>
 		  @endforeach
 		</select>
+		<label for="exampleInputEmail1">Ngành học</label>
+		<select class="form-control" name="ma_khoa_hoc">
+			@foreach ($array_khoa_hoc as $khoa_hoc)
+				<option value="{{ $nganh_hoc->ma }}"
+					@if ( $khoa_hoc->ma ==$lop->ma_khoa_hoc )
+						selected
+					@endif
+				  >
+				  {{ $khoa_hoc->ten }}
+				  
+				  </option>
+			@endforeach
+		  </select>
 	  <br>
 	  <button type="submit" class="btn btn-primary">Thêm</button>
 </form>

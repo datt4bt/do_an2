@@ -21,6 +21,7 @@ class MonHoc extends Migration
             $table->foreign('ma_kieu_diem')
            ->references('ma')->on('kieu_diem')
            ->onDelete('cascade');
+          
             //
         });
         

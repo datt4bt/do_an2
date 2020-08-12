@@ -4,7 +4,7 @@
 	{{csrf_field()}}
 	Tên 
 	<input type="text" name="ten">
-	<button>Them</button>
+	<button>Thêm</button>
 </form>
 
 @endsection

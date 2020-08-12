@@ -14,6 +14,12 @@
 			<option value="{{ $nganh_hoc->ma }}">{{ $nganh_hoc->ten }}</option>
 		@endforeach
 	  </select>
+	  <label for="exampleInputEmail1">Khóa học</label>
+	<select class="form-control" name="ma_khoa_hoc">
+		@foreach ($array_khoa_hoc as $khoa_hoc)
+			<option value="{{ $khoa_hoc->ma }}">{{ $khoa_hoc->ten }}</option>
+		@endforeach
+	  </select>
 	<br>
 	<button type="submit" class="btn btn-primary">Thêm</button>
   </form>

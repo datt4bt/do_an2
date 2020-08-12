@@ -13,8 +13,17 @@
 
 use Illuminate\Routing\RouteGroup;
 
-Route::get('/', function () {return view('giao_dien.index');})->name('home');
+Route::get('/','Controller@index')->name('home');
 
+//Khoa
+Route::group(['prefix' => 'khoa','as'=>'khoa.'], function() {
+    Route::get('','KhoaController@get_all')->name('get_all');
+    Route::get('insert','KhoaController@insert')->name('insert');
+    Route::post('process_insert','KhoaController@process_insert')->name('process_insert');
+    Route::get('update/{ma}','KhoaController@update')->name('update');
+    Route::post('process_update/{ma}','KhoaController@process_update')->name('process_update');
+    Route::get('delete/{ma}','KhoaController@delete')->name('delete');   //
+});
 
 
 //Ngành học
@@ -46,7 +55,7 @@ Route::group(['prefix' => 'mon_hoc','as'=>'mon_hoc.'], function() {
 });
 //Ngành học chi tiết
 Route::group(['prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], function() {
-    Route::get('','Nganh_Hoc_Chi_TietController@get_all')->name('get_all');
+    Route::get('/{ma}','Nganh_Hoc_Chi_TietController@get_all')->name('get_all');
     Route::get('insert','Nganh_Hoc_Chi_TietController@insert')->name('insert');
     Route::post('process_insert','Nganh_Hoc_Chi_TietController@process_insert')->name('process_insert');
    
@@ -60,7 +69,7 @@ Route::group(['prefix' => 'lop','as'=>'lop.'], function() {
     Route::post('process_update/{ma}','LopController@process_update')->name('process_update');
     Route::get('delete/{ma}','LopController@delete')->name('delete');   //
 });
-//Lớp
+//Sinh viên
 Route::group(['prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
     Route::get('','Sinh_VienController@get_all')->name('get_all');
     Route::get('insert','Sinh_VienController@insert')->name('insert');

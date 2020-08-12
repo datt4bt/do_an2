@@ -21,6 +21,10 @@ class Lop extends Migration
             $table->foreign('ma_nganh_hoc')
            ->references('ma')->on('nganh_hoc')
            ->onDelete('cascade');
+           $table->integer('ma_khoa_hoc')->unsigned();
+           $table->foreign('ma_khoa_hoc')
+          ->references('ma')->on('khoa')
+          ->onDelete('cascade');
             //
         });
         

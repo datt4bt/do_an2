@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mon_Hoc;
 use App\Models\Nganh_Hoc;
-
+use App\Nganh_Hoc_Chi_Tiet;
 
 class Nganh_Hoc_Chi_TietController
 {
-	public function get_all(){
-		$nganh_hoc=Nganh_Hoc::find(1);
-	   $nganh_hoc->array_nganh_hoc()->attach([2]);
-
+	public function get_all($ma){
+		$array_nganh_hoc_chi_tiet=Nganh_Hoc_Chi_Tiet::where('ma_nganh_hoc','=',$ma);
+		
+		//dd($array_nganh_hoc_chi_tiet);
    }
    public function insert(){
 	$array_nganh_hoc_chi_tiet=Nganh_Hoc::get();

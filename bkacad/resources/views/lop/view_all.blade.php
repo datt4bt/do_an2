@@ -6,6 +6,7 @@
 		<td>Mã </td>
 		<td>Tên </td>
 		<td>Hình thức thi</td>
+		<td>Khóa</td>
 		<td></td>
 	</tr>
 
@@ -13,7 +14,7 @@
 			<tr>
 				<td>{{$lop->ma}}</td>
 				<td>{{$lop->ten}}</td>
-				<td>{{$lop->nganh_hoc->ten}}</td>
+				<td>{{$lop->khoa->ten}}</td>
 				<td><a href="{{ route('lop.update',['ma'=>$lop->ma]) }}">Sửa</a></td>
 				<td><a href="{{ route('lop.delete',['ma'=>$lop->ma]) }}">Xóa</a></td>
 			</tr>

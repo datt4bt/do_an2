@@ -22,12 +22,20 @@
                                     <span> Trang Chủ <span class="badge badge-success badge-pill float-right"></span></span>
                                 </a>
                             </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Khóa học</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('khoa.insert') }}">Thêm Khóa học</a></li>
+                                    <li><a href="{{ route('khoa.get_all') }}">Quản lí Khóa học</a></li>
+                                   
+                                </ul>
+                            </li>
 
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Chuyên Ngành</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('nganh_hoc.insert') }}">Thêm chuyên ngành</a></li>
-                                    <li><a href="{{ route('nganh_hoc.get_all') }}">Quản lí chuyên ngành</a></li>
+                                    <li><a href="{{ route('nganh_hoc.insert') }}">Thêm Chuyên ngành</a></li>
+                                    <li><a href="{{ route('nganh_hoc.get_all') }}">Quản lí Chuyên ngành</a></li>
                                    
                                 </ul>
                             </li>
@@ -50,7 +58,10 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Ngành học chi tiết</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('nganh_hoc_chi_tiet.get_all') }}">Quản lý ngành học chi tiết</a></li>
+                                    @foreach($array_nganh as $nganh_hoc)
+                                    <li><a href="{{ route('nganh_hoc_chi_tiet.get_all',['ma'=>$nganh_hoc->ma]) }}">{{ $nganh_hoc->ten }}</a></li>
+                                    @endforeach
+                                   
                                     
                                    
                                 </ul>

@@ -55,7 +55,7 @@ Route::group(['prefix' => 'mon_hoc','as'=>'mon_hoc.'], function() {
 });
 //Ngành học chi tiết
 Route::group(['prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], function() {
-    Route::get('/{ma}','Nganh_Hoc_Chi_TietController@get_all')->name('get_all');
+    Route::get('','Nganh_Hoc_Chi_TietController@get_all')->name('get_all');
     Route::get('insert','Nganh_Hoc_Chi_TietController@insert')->name('insert');
     Route::post('process_insert','Nganh_Hoc_Chi_TietController@process_insert')->name('process_insert');
    
@@ -67,7 +67,7 @@ Route::group(['prefix' => 'lop','as'=>'lop.'], function() {
     Route::post('process_insert','LopController@process_insert')->name('process_insert');
     Route::get('update/{ma}','LopController@update')->name('update');
     Route::post('process_update/{ma}','LopController@process_update')->name('process_update');
-    Route::get('delete/{ma}','LopController@delete')->name('delete');   //
+    Route::get('delete/{ma}','LopController@delete')->name('delete');   
 });
 //Sinh viên
 Route::group(['prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
@@ -76,5 +76,16 @@ Route::group(['prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
     Route::post('process_insert','Sinh_VienController@process_insert')->name('process_insert');
     Route::get('update/{ma}','Sinh_VienController@update')->name('update');
     Route::post('process_update/{ma}','Sinh_VienController@process_update')->name('process_update');
-    Route::get('delete/{ma}','Sinh_VienController@delete')->name('delete');   //
+    Route::get('delete/{ma}','Sinh_VienController@delete')->name('delete');   
+});
+//Điểm
+Route::group(['prefix' => 'diem_thi','as'=>'diem_thi.'], function() {
+    Route::get('','Diem_ThiController@get_all')->name('get_all');
+    Route::get('get_lop','Diem_ThiController@get_lop')->name('get_lop');
+    Route::get('get_mon','Diem_ThiController@get_mon')->name('get_mon');
+    Route::get('insert','Diem_ThiController@insert')->name('insert');
+   
+   // Route::get('update/{ma}','Diem_ThiController@update')->name('update');
+    //Route::post('process_update/{ma}','Diem_ThiController@process_update')->name('process_update');
+   // Route::get('delete/{ma}','Diem_ThiController@delete')->name('delete');   
 });

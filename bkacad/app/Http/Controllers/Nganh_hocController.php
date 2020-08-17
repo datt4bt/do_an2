@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use App\Models\Nganh_Hoc;
 
@@ -14,8 +14,10 @@ class Nganh_HocController
 		return view('nganh_hoc.view_all',compact('array_nganh_hoc'));
 	}
 	 public function insert(){
+		$max_ma=Nganh_Hoc::max('ma');
+		$ma_moi=$max_ma+1;
 		
-		return view('nganh_hoc.view_insert');
+		return view('nganh_hoc.view_insert',compact('ma_moi'));
 	}
 	 public function process_insert(Request $rq){
 		

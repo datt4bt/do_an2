@@ -15,7 +15,7 @@ class SinhVien extends Migration
     {
         
         Schema::create('sinh_vien', function (Blueprint $table) {
-            $table->increments('ma');
+            $table->integer('ma')->unsigned();
             $table->string('ten',100);
             $table->boolean('gioi_tinh');
             $table->date('ngay_sinh');
@@ -26,7 +26,7 @@ class SinhVien extends Migration
             $table->foreign('ma_lop')
            ->references('ma')->on('lop')
            ->onDelete('cascade');
-            //
+           $table->primary(['ma']);
         });
         
     }

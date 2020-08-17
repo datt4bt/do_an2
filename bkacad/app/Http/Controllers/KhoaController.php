@@ -15,7 +15,10 @@ class KhoaController
 	}
 	 public function insert(){
 		
-		return view('khoa.view_insert');
+		$max_ma=Khoa::max('ma');
+		$ma_moi=$max_ma+1;
+		
+		return view('khoa.view_insert',compact('ma_moi'));
 	}
 	 public function process_insert(Request $rq){
 		

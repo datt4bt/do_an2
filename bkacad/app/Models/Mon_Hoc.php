@@ -8,6 +8,7 @@ class Mon_hoc extends Model
 {
     protected $table = 'mon_hoc';
     protected $fillable=[
+        'ma',
         'ten',
         'ma_kieu_diem'
     ];
@@ -17,4 +18,5 @@ class Mon_hoc extends Model
     {
     return $this->belongsTo('App\Models\Kieu_diem', 'ma_kieu_diem');
     }
+  
 }

@@ -3,6 +3,7 @@
 <h2 style="text-align: center">Thêm Sinh Viên</h2>
 <form action=" {{ route('sinh_vien.process_insert') }} " method="post">
 	{{csrf_field()}}
+	<input type="hidden" name="ma" value="{{$ma_moi}}">
 	<div class="form-group">
 	  <label for="col-sm-2 col-form-label">Tên Sinh viên</label>
 	  <input type="text" class="form-control" name="ten" aria-describedby="emailHelp">

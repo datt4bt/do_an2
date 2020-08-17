@@ -16,8 +16,10 @@ class Mon_HocController
 		return view('mon_hoc.view_all',compact('array_mon_hoc'));
 	}
 	 public function insert(){
+		$max_ma=Mon_Hoc::max('ma');
+		$ma_moi=$max_ma+1;
 		$array_kieu_diem=Kieu_Diem::get();
-		return view('mon_hoc.view_insert',compact('array_kieu_diem'));
+		return view('mon_hoc.view_insert',compact('array_kieu_diem','ma_moi'));
 	}
 	 public function process_insert(Request $rq){
 		

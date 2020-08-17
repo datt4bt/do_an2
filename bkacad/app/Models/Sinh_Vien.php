@@ -8,6 +8,7 @@ class Sinh_Vien extends Model
 {
     protected $table = 'sinh_vien';
     protected $fillable=[
+        'ma',
         'ten',
         'gioi_tinh',
         'ngay_sinh',
@@ -28,6 +29,7 @@ if($this->gioi_tinh==1) {
     return 'Nam';
 } else {
     return 'Nữ';
+    
 }
 
 }

@@ -3,6 +3,7 @@
 <h2 style="text-align: center">Thêm môn học</h2>
 <form action=" {{ route('lop.process_insert') }} " method="post">
 	{{csrf_field()}}
+	<input type="hidden" name="ma" value="{{$ma_moi}}">
 	<div class="form-group">
 	  <label for="exampleInputEmail1">Tên </label>
 	  <input type="text" class="form-control" name="ten" aria-describedby="emailHelp">

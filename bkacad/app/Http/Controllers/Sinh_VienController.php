@@ -16,8 +16,10 @@ class Sinh_VienController
 		return view('sinh_vien.view_all',compact('array_sinh_vien'));
 	}
 	 public function insert(){
+		$max_ma=Sinh_Vien::max('ma');
+		$ma_moi=$max_ma+1;
 		$array_lop=Lop::get();
-		return view('sinh_vien.view_insert',compact('array_lop'));
+		return view('sinh_vien.view_insert',compact('array_lop','ma_moi'));
 	}
 	 public function process_insert(Request $rq){
 		

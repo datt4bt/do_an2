@@ -15,7 +15,10 @@ class Kieu_DiemController
 	}
 	 public function insert(){
 		
-		return view('kieu_diem.view_insert');
+		$max_ma=Kieu_Diem::max('ma');
+		$ma_moi=$max_ma+1;
+		
+		return view('kieu_diem.view_insert',compact('ma_moi'));
 	}
 	 public function process_insert(Request $rq){
 		

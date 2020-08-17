@@ -5,8 +5,8 @@
 	<tr>
 		<td>Mã </td>
 		<td>Tên </td>
-		<td>Hình thức thi</td>
 		<td>Khóa</td>
+		<td></td>
 		<td></td>
 	</tr>
 

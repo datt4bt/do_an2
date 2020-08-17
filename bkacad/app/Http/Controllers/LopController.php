@@ -18,9 +18,11 @@ class LopController
 		return view('lop.view_all',compact('array_lop','array_khoa'));
 	}
 	 public function insert(){
+		$max_ma=Lop::max('ma');
+		$ma_moi=$max_ma+1;
 		$array_nganh_hoc=Nganh_Hoc::get();
 		$array_khoa_hoc=Khoa::get();
-		return view('lop.view_insert',compact('array_nganh_hoc','array_khoa_hoc'));
+		return view('lop.view_insert',compact('array_nganh_hoc','array_khoa_hoc','ma_moi'));
 	}
 	 public function process_insert(Request $rq){
 		

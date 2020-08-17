@@ -58,11 +58,8 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Ngành học chi tiết</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    @foreach($array_nganh as $nganh_hoc)
-                                    <li><a href="{{ route('nganh_hoc_chi_tiet.get_all',['ma'=>$nganh_hoc->ma]) }}">{{ $nganh_hoc->ten }}</a></li>
-                                    @endforeach
-                                   
-                                    
+                                    <li><a href="{{ route('nganh_hoc_chi_tiet.insert') }}">Thêm Ngành học chi tiết</a></li>
+                                    <li><a href="{{ route('nganh_hoc_chi_tiet.get_all') }}">Quản lí Ngành học chi tiết</a></li>
                                    
                                 </ul>
                             </li>  
@@ -81,7 +78,15 @@
                                     <li><a href="{{ route('sinh_vien.get_all') }}">Quản lí Sinh viên</a></li>
                                    
                                 </ul>
-                            </li>                                                                                               
+                            </li> 
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Điểm</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    
+                                    <li><a href="{{ route('diem_thi.get_all') }}">Quản lí Điểm</a></li>
+                                   
+                                </ul>
+                            </li>                                                                                                     
                         </ul>
                     </div>
                     <div class="clearfix"></div>

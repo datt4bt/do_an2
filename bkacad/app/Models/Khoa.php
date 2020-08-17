@@ -8,6 +8,7 @@ class Khoa extends Model
 {
     protected $table = 'khoa';
     protected $fillable=[
+        'ma',
     	'ten'
     ];
     public $timestamps=false;

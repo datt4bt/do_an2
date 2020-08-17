@@ -14,9 +14,9 @@ class KieuDiem extends Migration
     public function up()
     {
         Schema::create('kieu_diem', function (Blueprint $table) {
-            $table->increments('ma');
+            $table->integer('ma')->unsigned();
             $table->string('ten',100);
-            //
+            $table->primary(['ma']);
         });
     }
 

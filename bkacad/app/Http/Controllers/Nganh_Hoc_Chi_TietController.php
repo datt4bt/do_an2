@@ -29,7 +29,7 @@ public function process_insert(Request $rq){
 		
 	$ma_nganh_hoc=$rq->get('ma_nganh_hoc');
 	
-	$nganh_hoc=Nganh_Hoc::find($ma_nganh_hoc)->array_nganh_hoc()->sync($rq->get('mon_hoc_chi_tiet'));
+	$nganh_hoc=Nganh_Hoc::find($ma_nganh_hoc)->array_mon_hoc()->sync($rq->get('mon_hoc_chi_tiet'));
 	
 	
 	

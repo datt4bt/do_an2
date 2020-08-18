@@ -18,5 +18,8 @@ class Mon_hoc extends Model
     {
     return $this->belongsTo('App\Models\Kieu_diem', 'ma_kieu_diem');
     }
+    public function array_nganh_hoc(){
+        return $this->belongsToMany('App\Models\Mon_hoc','nganh_hoc_chi_tiet','ma_mon_hoc','ma_nganh_hoc');
+    }
   
 }

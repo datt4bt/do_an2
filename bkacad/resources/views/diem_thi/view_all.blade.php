@@ -47,17 +47,15 @@ $@push('js')
                         ${this.ten}
                     </option>`
                 );
-               })
+               });
+               $('#chon_lop').trigger('change');
               
            })
-           .fail(function() {
+            .fail(function() {
              alert("lỗi rồi");
              });
          
      });
- });
- //Chọn MÔn
- $(document).ready(function () {
      $("#chon_lop").change(function () {
          
            var ma_lop=$(this).val();
@@ -73,8 +71,8 @@ $@push('js')
                $(response).each(function () {
 
                 $('#chon_mon').append(
-                    `<option value='${this.ma_nganh_hoc}'>
-                        ${this.ma_mon_hoc}
+                    `<option value='${this.ma}'>
+                        ${this.ten}
                     </option>`
                 );
                })

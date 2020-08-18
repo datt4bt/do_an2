@@ -13,7 +13,7 @@ class Nganh_Hoc extends Model
     ];
     public $timestamps=false;
     protected $primaryKey='ma';
-    public function array_nganh_hoc(){
+    public function array_mon_hoc(){
         return $this->belongsToMany('App\Models\Mon_hoc','nganh_hoc_chi_tiet','ma_nganh_hoc','ma_mon_hoc');
     }
 }

@@ -29,12 +29,12 @@ class Diem_ThiController
 	}
 	public function get_mon(Request $rq){
 		$ma_lop=$rq->get('ma_lop');
-		$ma_nganh = Lop::where("ma",$ma_lop)->value('ma_nganh_hoc');
+		$ma_nganh_hoc = Lop::where("ma",$ma_lop)->value('ma_nganh_hoc');
 		
-		$mon_hoc=Nganh_Hoc::with('array_nganh_hoc')->where('nganh_hoc_chi_tiet.ma_nganh_hoc',$ma_nganh)->get();
+		$mon_hoc=Nganh_Hoc::with('array_mon_hoc')
+		->find($ma_nganh_hoc);
 		
-		//return $mon_hoc;
-		dd($mon_hoc);
+		return $mon_hoc->array_mon_hoc;
 	   
 	
 }

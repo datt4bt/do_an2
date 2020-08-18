@@ -14,6 +14,8 @@
 use Illuminate\Routing\RouteGroup;
 
 Route::get('/','Controller@index')->name('home');
+Route::get('login','Controller@login')->name('login');
+Route::post('process_admin','Controller@process_admin')->name('process_admin');
 
 //Khoa
 Route::group(['prefix' => 'khoa','as'=>'khoa.'], function() {

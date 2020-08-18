@@ -86,7 +86,8 @@ Route::group(['prefix' => 'diem_thi','as'=>'diem_thi.'], function() {
     Route::get('get_lop','Diem_ThiController@get_lop')->name('get_lop');
     Route::get('get_mon','Diem_ThiController@get_mon')->name('get_mon');
     Route::get('insert','Diem_ThiController@insert')->name('insert');
-   
+    Route::post('process_nhap_diem','Diem_ThiController@process_nhap_diem')->name('process_nhap_diem');
+    Route::post('luu_diem','Diem_ThiController@luu_diem')->name('luu_diem');
    // Route::get('update/{ma}','Diem_ThiController@update')->name('update');
     //Route::post('process_update/{ma}','Diem_ThiController@process_update')->name('process_update');
    // Route::get('delete/{ma}','Diem_ThiController@delete')->name('delete');   

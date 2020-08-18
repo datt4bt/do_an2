@@ -2,8 +2,9 @@
 
 @extends('giao_dien.index')
 @section('content')
-{{ csrf_field() }}
-<form action="">
+
+<form action="{{ route('diem_thi.process_nhap_diem')}}" method="POST">
+    {{ csrf_field() }}
 	<select class="custom-select" name="ma_khoa_hoc" id="chon_khoa_hoc" >
 		<option disabled selected >Mời bạn chọn Khóa</option>
 		@foreach ($array_khoa as $khoa)
@@ -12,17 +13,19 @@
        
         </select>
        
-        <select class="custom-select" name="lop" id="chon_lop">
+        <select class="custom-select" name="ma_lop" id="chon_lop">
             <option disabled selected >Mời bạn chọn Lớp</option>
         </select>
-        <select class="custom-select" name="lop" id="chon_mon">
+        <select class="custom-select" name="ma_mon" id="chon_mon">
             <option disabled selected >Mời bạn chọn Môn</option>
         </select>
+        <br>
+        <button type="submit" class="btn btn-primary">Chọn</button>
      
 	  
 </form>
 @endsection
-$@push('js')
+@push('js')
     
 
 <script type="text/javascript">

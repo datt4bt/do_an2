@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Diem_Thi;
+use App\Models\DiemThi;
 use App\Models\Khoa;
 use App\Models\Lop;
-use App\Models\Mon_Hoc;
-use App\Models\Nganh_Hoc;
-use App\Models\Nganh_Hoc_Chi_Tiet;
+use App\Models\MonHoc;
+use App\Models\NganhHoc;
+use App\Models\SinhVien;
+
 
 class Diem_ThiController
 {
@@ -31,34 +32,36 @@ class Diem_ThiController
 		$ma_lop=$rq->get('ma_lop');
 		$ma_nganh_hoc = Lop::where("ma",$ma_lop)->value('ma_nganh_hoc');
 		
-		$mon_hoc=Nganh_Hoc::with('array_mon_hoc')
+		$mon_hoc=NganhHoc::with('array_mon_hoc')
 		->find($ma_nganh_hoc);
 		
 		return $mon_hoc->array_mon_hoc;
 	   
 	
 }
-	 public function insert(){
-		
-		$max_ma=Diem_Thi::max('ma');
-		$ma_moi=$max_ma+1;
-		
-		return view('diem_thi.view_insert',compact('ma_moi'));
-	}
+public function process_nhap_diem(Request $rq){
+	$array_khoa=Khoa::get();
+	$ma_khoa_hoc=$rq->ma_khoa_hoc;
+	$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
+	$ma_lop=$rq->ma_lop;
+	$lop = Lop::where("ma",$ma_lop)->value('ten');
+	$ma_mon=$rq->ma_mon;
+	$mon = MonHoc::where("ma",$ma_mon)->value('ten');
 	
-	 public function update($ma){
-		//$diem_thi=Diem_Thi::where('ma','=',$ma)->first();
-		$diem_thi=Diem_Thi::find($ma);
-		return view('diem_thi.view_update',compact('diem_thi'));
-	}
-	 public function process_update($ma,Request $rq){
-		Diem_Thi::find($ma)->update($rq->all());
+	$array_sinh_vien = SinhVien::where("ma_lop",$ma_lop)->get();
+	$array_mon_hoc = MonHoc::where("ma",$ma_mon)->get();
+	
+
+	
+	return view('diem_thi.view_nhap_diem',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon'));
+   
+
+}
+public function luu_diem(Request $rq){
+
+		DiemThi::create($rq->all());
+	
 		
-		return redirect()->route('diem_thi.get_all');
-	}
-	 public function delete($ma){
-		
-		Diem_Thi::destroy($ma);
-		return redirect()->route('diem_thi.get_all');
-	}
+}
+	
 }

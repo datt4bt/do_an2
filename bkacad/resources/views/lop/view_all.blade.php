@@ -1,12 +1,12 @@
 @extends('giao_dien.index')
 @section('content')
-<button class="button"><a  href="{{ route('mon_hoc.insert') }}">Thêm</a></button>
+<button class="button"><a  href="{{ route('lop.insert') }}">Thêm</a></button>
 <table class="table table-striped">
 	<tr>
 		<td>Mã </td>
 		<td>Tên </td>
+		<td>Ngành Học</td>
 		<td>Khóa</td>
-		<td></td>
 		<td></td>
 	</tr>
 
@@ -14,6 +14,7 @@
 			<tr>
 				<td>{{$lop->ma}}</td>
 				<td>{{$lop->ten}}</td>
+				<td>{{$lop->nganh_hoc->ten}}</td>
 				<td>{{$lop->khoa->ten}}</td>
 				<td><a href="{{ route('lop.update',['ma'=>$lop->ma]) }}">Sửa</a></td>
 				<td><a href="{{ route('lop.delete',['ma'=>$lop->ma]) }}">Xóa</a></td>

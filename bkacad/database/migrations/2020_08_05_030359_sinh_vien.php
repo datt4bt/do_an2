@@ -19,7 +19,7 @@ class SinhVien extends Migration
             $table->string('ten',100);
             $table->boolean('gioi_tinh');
             $table->date('ngay_sinh');
-            $table->string('sdt',15);
+            $table->string('sdt',15)->nullable();
             $table->string('dia_chi',200);
             $table->string('email',100)->nullable()->unique();
             $table->integer('ma_lop')->unsigned();

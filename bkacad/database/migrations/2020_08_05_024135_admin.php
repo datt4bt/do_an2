@@ -16,10 +16,12 @@ class Admin extends Migration
         
         Schema::create('admin', function (Blueprint $table) {
             $table->integer('ma')->unsigned();
-            $table->string('ten_dang_nhap',50)->unique();
+            $table->string('ten',50)->unique();
             $table->string('mat_khau',50);
-            $table->string('ten',100);
+            $table->string('ten_admin',100);
+            $table->string('anh',200);
             $table->string('email',100)->nullable();
+            $table->boolean('cap_do');
             $table->primary(['ma']);
             //
         });

@@ -16,7 +16,7 @@ class MonHoc extends Migration
         
         Schema::create('mon_hoc', function (Blueprint $table) {
             $table->integer('ma')->unsigned();
-            $table->string('ten');
+            $table->string('ten')->unique();
             $table->integer('ma_kieu_diem')->unsigned();
             $table->foreign('ma_kieu_diem')
            ->references('ma')->on('kieu_diem')

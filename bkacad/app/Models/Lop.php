@@ -17,7 +17,7 @@ class Lop extends Model
     protected $primaryKey='ma';
     public function nganh_hoc()
     {
-    return $this->belongsTo('App\Models\Nganh_Hoc', 'ma_nganh_hoc');
+    return $this->belongsTo('App\Models\NganhHoc', 'ma_nganh_hoc');
     }
     public function khoa()
     {

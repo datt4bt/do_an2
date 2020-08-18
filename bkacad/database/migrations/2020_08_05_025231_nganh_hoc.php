@@ -16,7 +16,7 @@ class NganhHoc extends Migration
        
        Schema::create('nganh_hoc', function (Blueprint $table) {
            $table->integer('ma')->unsigned();
-           $table->string('ten',100);
+           $table->string('ten',100)->unique();
            $table->primary(['ma']);
        });
        

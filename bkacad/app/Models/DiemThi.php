@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Diem_Thi extends Model
+class DiemThi extends Model
 {
     protected $table = 'diem_thi';
     protected $fillable=[
@@ -15,5 +15,13 @@ class Diem_Thi extends Model
         'diem'
     ];
     public $timestamps=false;
+    public function sinh_vien()
+    {
+    return $this->belongsTo('App\Models\SinhVien', 'ma_sinh_vien');
+    }
+    public function mon_hoc()
+    {
+    return $this->belongsTo('App\Models\MonHoc', 'ma_mon_hoc');
+    }
     
 }

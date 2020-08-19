@@ -58,10 +58,9 @@ public function process_nhap_diem(Request $rq){
 
 }
 public function luu_diem(Request $rq){
-
-		DiemThi::create($rq->all());
+	DiemThi::create($rq->all());
 	
-		
+   
 }
 	
 }

@@ -58,19 +58,22 @@
              </tr>
              <tr>
               @foreach($array_sinh_vien as $sinh_vien )
-              <input  type="hidden"  id="ma_sinh_vien" value="{{$sinh_vien->ma}}">
+             
                 <td >{{$sinh_vien->ma}}</td>
                 <td>{{$sinh_vien->ten}}</td>
                 <td>{{$sinh_vien->ngay_sinh}}</td>
                 @foreach($array_mon_hoc as $mon_hoc )
-                <input  type="hidden"  id="ma_mon_hoc" value="{{$mon_hoc->ma}}">
-                <input type="hidden"  id="ma_kieu_diem" value="{{$mon_hoc->ma_kieu_diem}}">
-                <input type="hidden"  id="so_lan" value="1">
+               
                 
                 @if ($mon_hoc->ma_kieu_diem==1)
                 
                     <td scope=""> <div class="col-md-3 mb-3">
-                        <input style="width:70px" type="number" class="diem"  class="form-control" id="validationCustom05"  required>
+                        <input data-sinh_vien="{{$sinh_vien->ma}}"
+                         data-mon_hoc="{{$mon_hoc->ma}}" 
+                         data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
+                         data-so_lan="1"
+                         data-hinh_thuc="0" style="width:70px"  
+                         type="number" class="diem"  class="form-control" id="validationCustom05"  required>
                         <div class="invalid-feedback">
                           Vui lòng không để trống
                         </div>
@@ -80,24 +83,41 @@
                 @elseif($mon_hoc->ma_kieu_diem==2)
                 
                 <td scope=""> <div class="col-md-3 mb-3">
-                    <input type="number" style="width:70px" class="diem"  class="form-control" id="validationCustom05" required>
-                    <div class="invalid-feedback">
-                      Vui lòng không để trống
-                    </div>
+                  <input data-sinh_vien="{{$sinh_vien->ma}}"
+                   data-mon_hoc="{{$mon_hoc->ma}}" 
+                   data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
+                   data-so_lan="1" 
+                   data-hinh_thuc="1" style="width:70px" 
+                   type="number" class="diem"  class="form-control" id="validationCustom05"  required>
+                  <div class="invalid-feedback">
+                    Vui lòng không để trống
                   </div>
-                </td>       
+                </div>
+              </td>      
                 
                 @elseif($mon_hoc->ma_kieu_diem==3)
                 
                 <td scope=""> <div class="col-md-3 mb-3">
-                    <input type="number" style="width:70px" class="diem"  class="form-control" id="validationCustom05" required>
+                    <input type="number" 
+                    data-sinh_vien="{{$sinh_vien->ma}}"
+                   data-mon_hoc="{{$mon_hoc->ma}}" 
+                   data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
+                   data-so_lan="1" 
+                   data-hinh_thuc="0"
+                    style="width:70px" class="diem"  class="form-control" id="validationCustom05" required>
                     <div class="invalid-feedback">
                       Vui lòng không để trống
                     </div>
                   </div>
                 </td>   
                 <td scope=""> <div class="col-md-3 mb-3">
-                    <input type="number" style="width:70px" class="diem"  class="form-control" id="validationCustom05" required>
+                    <input type="number" 
+                    data-sinh_vien="{{$sinh_vien->ma}}"
+                   data-mon_hoc="{{$mon_hoc->ma}}" 
+                   data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
+                   data-so_lan="1" 
+                   data-hinh_thuc="1"
+                    style="width:70px" class="diem"  class="form-control" id="validationCustom05" required>
                     <div class="invalid-feedback">
                       Vui lòng không để trống
                     </div>
@@ -149,7 +169,7 @@
                });
                $('#chon_lop').trigger('change');
               
-           })
+               })
             .fail(function() {
              alert("lỗi rồi");
              });
@@ -186,12 +206,27 @@
      $(".diem").change(function () {
       
      
-      var ma_sinh_vien = $('#ma_sinh_vien').val();
-      var ma_mon_hoc = $('#ma_mon_hoc').val();
-      var ma_kieu_diem = $('#ma_kieu_diem').val();
-      var so_lan = $('#so_lan').val();
+      var ma_sinh_vien = $(this).data('sinh_vien');
+      var ma_mon_hoc = $(this).data('mon_hoc');
+      var ma_kieu_diem = $(this).data('kieu_diem');
+      var so_lan = $(this).data('so_lan');
+      var hinh_thuc = $(this).data('hinh_thuc');
       var diem =$(this).val();
-      alert (ma_sinh_vien);
+      $.ajax({
+        type: "GET",
+        url: "{{route('diem_thi.luu_diem')}}",
+        data: {
+          ma_sinh_vien:ma_sinh_vien,
+          ma_mon_hoc:ma_mon_hoc,
+          ma_kieu_diem:ma_kieu_diem,
+          so_lan:so_lan,
+          hinh_thuc:hinh_thuc,
+          diem:diem
+        
+        },
+        dataType: "json",
+       
+    });
     
 });
 //

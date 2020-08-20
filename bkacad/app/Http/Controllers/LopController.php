@@ -18,15 +18,30 @@ class LopController
 		return view('lop.view_all',compact('array_lop','array_khoa'));
 	}
 	 public function insert(){
-		$max_ma=Lop::max('ma');
-		$ma_moi=$max_ma+1;
 		$array_nganh_hoc=NganhHoc::get();
 		$array_khoa_hoc=Khoa::get();
-		return view('lop.view_insert',compact('array_nganh_hoc','array_khoa_hoc','ma_moi'));
+		return view('lop.view_insert',compact('array_nganh_hoc','array_khoa_hoc'));
 	}
 	 public function process_insert(Request $rq){
+		$so_lop=$rq->so_lop;
+		for ($i=1; $i <=$so_lop ; $i++) { 
+			$max_ma=Lop::max('ma');
 		
-		Lop::create($rq->all());
+			$lop = new Lop();
+			$lop->ma = $max_ma + 1 ;
+			if ($rq->ma_khoa_hoc==1) {
+				$lop->ten = "LT$i";
+			}
+			else{
+				$lop->ten = "QT$i";
+			}
+			
+			$lop->ma_nganh_hoc = $rq->ma_nganh_hoc;
+			$lop->ma_khoa_hoc = $rq->ma_khoa_hoc;
+			$lop->save();
+			
+		}
+		
 		return redirect()->route('lop.get_all');
 	}
 	 public function update($ma){

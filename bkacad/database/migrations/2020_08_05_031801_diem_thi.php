@@ -19,6 +19,7 @@ class DiemThi extends Migration
             $table->integer('ma_mon_hoc')->unsigned();
             $table->integer('ma_kieu_diem')->unsigned();
             $table->integer('so_lan');
+            $table->boolean('hinh_thuc');
             $table->float('diem');
             //
             $table->foreign('ma_mon_hoc')
@@ -32,7 +33,7 @@ class DiemThi extends Migration
            $table->foreign('ma_sinh_vien')
            ->references('ma')->on('sinh_vien')
            ->onDelete('cascade');
-           $table->primary(['ma_sinh_vien','ma_mon_hoc','ma_kieu_diem','so_lan']);
+           $table->primary(['ma_sinh_vien','ma_mon_hoc','ma_kieu_diem','so_lan','hinh_thuc'],'my_long_table_primary');
         });
         
     }

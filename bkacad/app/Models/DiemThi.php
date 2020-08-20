@@ -12,6 +12,7 @@ class DiemThi extends Model
         'ma_mon_hoc',
         'ma_kieu_diem',
         'so_lan',
+        'hinh_thuc',
         'diem'
     ];
     public $timestamps=false;

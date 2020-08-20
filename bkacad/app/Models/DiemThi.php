@@ -24,5 +24,9 @@ class DiemThi extends Model
     {
     return $this->belongsTo('App\Models\MonHoc', 'ma_mon_hoc');
     }
+    public function kieu_diem()
+    {
+    return $this->belongsTo('App\Models\KieuDiem', 'ma_kieu_diem');
+    }
     
 }

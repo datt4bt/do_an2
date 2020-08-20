@@ -14,11 +14,11 @@ use App\Models\SinhVien;
 class Diem_ThiController
 {
 	
-	 public function get_all(){
+	 public function get_all($ma){
 		$array_khoa=Khoa::get();
 	
 	
-		return view('diem_thi.view_all',compact('array_khoa'));
+		return view('diem_thi.view_all',compact('array_khoa','ma'));
 	}
 	public function get_lop(Request $rq){
 			$ma_khoa_hoc=$rq->get('ma_khoa_hoc');
@@ -39,7 +39,7 @@ class Diem_ThiController
 	   
 	
 }
-public function process_nhap_diem(Request $rq){
+public function process_insert(Request $rq){
 	$array_khoa=Khoa::get();
 	$ma_khoa_hoc=$rq->ma_khoa_hoc;
 	$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
@@ -61,6 +61,24 @@ public function luu_diem(Request $rq){
 	DiemThi::create($rq->all());
 	
    
+}
+public function process_thong_ke(Request $rq){
+	$array_khoa=Khoa::get();
+	$ma_khoa_hoc=$rq->ma_khoa_hoc;
+	$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
+	$ma_lop=$rq->ma_lop;
+	$lop = Lop::where("ma",$ma_lop)->value('ten');
+	$ma_mon=$rq->ma_mon;
+	$mon = MonHoc::where("ma",$ma_mon)->value('ten');
+	
+	$array_diem = DiemThi::with('sinh_vien')->with('kieu_diem')->with('mon_hoc')->where("ma_mon_hoc",$ma_mon)->groupBy('ma_sinh_vien')->get();
+	
+	
+
+	
+	return view('diem_thi.thong_ke',compact('array_khoa','array_diem','khoa_hoc','lop','mon'));
+   
+
 }
 	
 }

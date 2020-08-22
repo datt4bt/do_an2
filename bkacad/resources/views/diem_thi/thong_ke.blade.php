@@ -28,46 +28,39 @@
      
 	  
 </form>
-<table class="table">
+<table class="table table-striped">
+    <tr>
+        <th scope="row"></th>
+        <th scope="row"></th>
+        <th scope="row"></th>
+        
+        <th colspan="2" style="text-align: center">Lý thuyết</th>
+        <th colspan="2" style="text-align: center">Thực hành</th>
+        <td></td>
+       
+    </tr>
     <tr>
         <th scope="col">Mã</th>
         <th scope="col">Tên</th>
         <th scope="col">Ngày Sinh</th>
-        <th scope="col">Lần 1</th>
-        <th scope="col">Lần 2</th>
+        <td scope="col">Lần 1</td>
+        <td scope="col">Lần 2</td>
+        <td scope="col">Lần 1</td>
+        <td scope="col">Lần 2</td>
         <th scope="col">Ghi chú</th>
         
     </tr>
-    @foreach ($array_diem as $diem)
+  
+    @foreach ($array_sinh_vien as $sinh_vien)
     <tr>
-        <td>{{$diem->sinh_vien->ma}}</td>
-        <td>{{$diem->sinh_vien->ten}}</td>
-        <td>{{$diem->sinh_vien->ngay_sinh}}</td>
-        <td>
-            @if ($diem->so_lan==1)
-            {{$lan1=$diem->diem}}
-            @else
-                
-            @endif
-           
-        </td>
-        <td>
-            @if ($diem->so_lan==2)
-            {{$lan2=$diem->diem}}
-            @else
-               
-            @endif
-        </td>
-        <td>
-            @if ($diem->diem>=5 & $diem->so_lan==1) 
-           
-            @elseif($diem->diem<5 & $diem->so_lan==1)
-             Thi lần 2  
-             @elseif($diem->diem<5 & $diem->so_lan==2)
-                Học lại
-            @endif 
-        </td>
-    </tr> 
+        <td>{{$sinh_vien->ma}}</td>
+        <td>{{$sinh_vien->ten}}</td>
+        <td>{{$sinh_vien->ngay_sinh}}</td>
+       <td> {{ $diem_chi_tiet[$sinh_vien->ma][3][1][1] }}</td>
+     
+       
+       
+       
     @endforeach
     
 </table>

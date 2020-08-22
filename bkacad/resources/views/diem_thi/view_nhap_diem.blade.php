@@ -62,7 +62,7 @@
                 <td >{{$sinh_vien->ma}}</td>
                 <td>{{$sinh_vien->ten}}</td>
                 <td>{{$sinh_vien->ngay_sinh}}</td>
-                @foreach($array_mon_hoc as $mon_hoc )
+               
                
                 
                 @if ($mon_hoc->ma_kieu_diem==1)

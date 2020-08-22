@@ -41,6 +41,7 @@ class Diem_ThiController
 }
 public function process_insert(Request $rq){
 	$array_khoa=Khoa::get();
+
 	$ma_khoa_hoc=$rq->ma_khoa_hoc;
 	$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
 	$ma_lop=$rq->ma_lop;
@@ -71,13 +72,27 @@ public function process_thong_ke(Request $rq){
 	$ma_mon=$rq->ma_mon;
 	$mon = MonHoc::where("ma",$ma_mon)->value('ten');
 	
-	$array_diem = DiemThi::with('sinh_vien')->with('kieu_diem')->with('mon_hoc')->where("ma_mon_hoc",$ma_mon)->groupBy('ma_sinh_vien')->get();
-	
+	$array_diem = DiemThi::distinct()->select('ma_sinh_vien')->with('kieu_diem')->with('mon_hoc')->where("ma_mon_hoc",$ma_mon)->get();
+	$array_sinh_vien= SinhVien::where("ma_lop",$ma_lop)->get();
+	return $array_diem;
+	$diem_chi_tiet=[];
 	
 
+foreach($array_diem as $array)
+{
+
 	
-	return view('diem_thi.thong_ke',compact('array_khoa','array_diem','khoa_hoc','lop','mon'));
-   
+	$diem_chi_tiet[$array->ma_sinh_vien][$array->ma_kieu_diem][$array->so_lan][$array->hinh_thuc]=$array->diem;
+
+
+}
+ 
+	
+	
+	
+	
+	return view('diem_thi.thong_ke',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
+	//return view('diem_thi.test',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
 
 }
 	

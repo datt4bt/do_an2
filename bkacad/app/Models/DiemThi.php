@@ -15,6 +15,7 @@ class DiemThi extends Model
         'hinh_thuc',
         'diem'
     ];
+    protected $primaryKey=('ma_sinh_vien');
     public $timestamps=false;
     public function sinh_vien()
     {

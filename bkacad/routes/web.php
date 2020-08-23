@@ -13,11 +13,11 @@
 
 use Illuminate\Routing\RouteGroup;
 
-Route::get('/','Controller@index')->name('home');
-Route::get('login','Controller@login')->name('login');
-Route::post('process_admin','Controller@process_admin')->name('process_admin');
 
-//Khoa
+//middleware
+Route::group(['middleware' => ['CheckLogin']], function () {
+    Route::get('/','Controller@index')->name('home');
+    //Khoa
 Route::group(['prefix' => 'khoa','as'=>'khoa.'], function() {
     Route::get('','KhoaController@get_all')->name('get_all');
     Route::get('insert','KhoaController@insert')->name('insert');
@@ -60,6 +60,7 @@ Route::group(['prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], fun
     Route::get('','Nganh_Hoc_Chi_TietController@get_all')->name('get_all');
     Route::get('insert','Nganh_Hoc_Chi_TietController@insert')->name('insert');
     Route::post('process_insert','Nganh_Hoc_Chi_TietController@process_insert')->name('process_insert');
+    Route::get('select_nganh','Nganh_Hoc_Chi_TietController@select_nganh')->name('select_nganh');
    
 });
 //Lớp
@@ -94,3 +95,9 @@ Route::group(['prefix' => 'diem_thi','as'=>'diem_thi.'], function() {
     //Route::post('process_update/{ma}','Diem_ThiController@process_update')->name('process_update');
    // Route::get('delete/{ma}','Diem_ThiController@delete')->name('delete');   
 });
+
+});
+
+Route::get('login','Controller@login')->name('login');
+Route::post('process_login','Controller@process_login')->name('process_login');
+Route::get('logout','Controller@logout')->name('logout');

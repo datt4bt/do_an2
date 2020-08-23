@@ -52,14 +52,28 @@ public function process_insert(Request $rq){
 	$array_sinh_vien = SinhVien::where("ma_lop",$ma_lop)->get();
 	$array_mon_hoc = MonHoc::where("ma",$ma_mon)->get();
 	
-
+	$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->get();
 	
-	return view('diem_thi.view_nhap_diem',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon'));
+	return view('diem_thi.view_nhap_diem',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
    
 
 }
 public function luu_diem(Request $rq){
-	DiemThi::create($rq->all());
+	$check=DiemThi::where([
+		'ma_sinh_vien'=>$rq->ma_sinh_vien,
+		'ma_mon_hoc'=>$rq->ma_mon_hoc,
+		'ma_kieu_diem'=>$rq->ma_kieu_diem,
+		'so_lan'=>$rq->so_lan,
+		'hinh_thuc'=>$rq->hinh_thuc
+		
+		
+	])->first();
+
+	if ($check !== null) {
+    $check->update(['diem' => $rq->diem]);
+} else {
+    $check = DiemThi::create($rq->all());
+}
 	
    
 }
@@ -72,9 +86,9 @@ public function process_thong_ke(Request $rq){
 	$ma_mon=$rq->ma_mon;
 	$mon = MonHoc::where("ma",$ma_mon)->value('ten');
 	
-	$array_diem = DiemThi::distinct()->select('ma_sinh_vien')->with('kieu_diem')->with('mon_hoc')->where("ma_mon_hoc",$ma_mon)->get();
+	$array_diem = DiemThi::with('kieu_diem')->with('mon_hoc')->where("ma_mon_hoc",$ma_mon)->get();
 	$array_sinh_vien= SinhVien::where("ma_lop",$ma_lop)->get();
-	return $array_diem;
+	
 	$diem_chi_tiet=[];
 	
 
@@ -87,7 +101,7 @@ foreach($array_diem as $array)
 
 }
  
-	
+	return $diem_chi_tiet;
 	
 	
 	

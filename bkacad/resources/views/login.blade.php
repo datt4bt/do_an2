@@ -35,13 +35,16 @@
                             <div class="col-lg-5 col-md-8">
                                 <div class="card">
                                     <div class="card-body">
-                
+                                        @if (Session::has('error'))
+                                        {{Session::get('error')}}
+                                            
+                                        @endif
                 
                                         <h4 class="text-muted text-center font-18"><b>Đăng nhập</b></h4>
                                         <h5 class="text-muted text-center font-13" ><b>(chỉ giáo vụ và giáo viên)</b></h5>
                 
                                         <div class="p-2">
-                                            <form class="form-horizontal m-t-20" action="{{ route('process_admin') }}" method="POST">
+                                            <form class="form-horizontal m-t-20" action="{{ route('process_login') }}" method="POST">
                                                {{ csrf_field() }}
                                                   
     

@@ -64,7 +64,7 @@
                 <td>{{$sinh_vien->ngay_sinh}}</td>
                
                
-                
+               
                 @if ($mon_hoc->ma_kieu_diem==1)
                 
                     <td scope=""> <div class="col-md-3 mb-3">
@@ -72,8 +72,15 @@
                          data-mon_hoc="{{$mon_hoc->ma}}" 
                          data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
                          data-so_lan="1"
-                         data-hinh_thuc="0" style="width:70px"  
-                         type="number" class="diem"  class="form-control" id="validationCustom05"  required>
+                         data-hinh_thuc="1" style="width:70px"  
+                         type="number" class="diem"  
+                         @foreach($array_diem as $diem ) 
+                         @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien )
+                             value="{{$diem->diem}}"
+                        
+                         @endif
+                         @endforeach
+                         class="form-control" id="validationCustom05"  required>
                         <div class="invalid-feedback">
                           Vui lòng không để trống
                         </div>
@@ -87,7 +94,13 @@
                    data-mon_hoc="{{$mon_hoc->ma}}" 
                    data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
                    data-so_lan="1" 
-                   data-hinh_thuc="1" style="width:70px" 
+                   data-hinh_thuc="2" style="width:70px" 
+                   @foreach($array_diem as $diem ) 
+                   @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==2 && $sinh_vien->ma==$diem->ma_sinh_vien )
+                       value="{{$diem->diem}}"
+                  
+                   @endif
+                   @endforeach
                    type="number" class="diem"  class="form-control" id="validationCustom05"  required>
                   <div class="invalid-feedback">
                     Vui lòng không để trống
@@ -103,8 +116,14 @@
                    data-mon_hoc="{{$mon_hoc->ma}}" 
                    data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
                    data-so_lan="1" 
-                   data-hinh_thuc="0"
-                    style="width:70px" class="diem"  class="form-control" id="validationCustom05" required>
+                   data-hinh_thuc="1"
+                    style="width:70px" class="diem" 
+                    @foreach($array_diem as $diem ) 
+                    @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==1 )
+                        value="{{$diem->diem}}"
+                   
+                    @endif
+                    @endforeach class="form-control" id="validationCustom05" required>
                     <div class="invalid-feedback">
                       Vui lòng không để trống
                     </div>
@@ -116,7 +135,13 @@
                    data-mon_hoc="{{$mon_hoc->ma}}" 
                    data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
                    data-so_lan="1" 
-                   data-hinh_thuc="1"
+                   data-hinh_thuc="2"
+                   @foreach($array_diem as $diem ) 
+                   @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==2)
+                       value="{{$diem->diem}}"
+                  
+                   @endif
+                   @endforeach
                     style="width:70px" class="diem"  class="form-control" id="validationCustom05" required>
                     <div class="invalid-feedback">
                       Vui lòng không để trống
@@ -130,15 +155,16 @@
           
             </tr>
               @endforeach
+            
            
-              @endforeach
+             
           
       
         
               
       </table>
-      <hr>
-      <button type="submit" class="btn btn-danger ">Lưu Điểm</button>
+    
+     
 </form>
 @endsection
 @push('js')
@@ -212,7 +238,17 @@
       var so_lan = $(this).data('so_lan');
       var hinh_thuc = $(this).data('hinh_thuc');
       var diem =$(this).val();
-      $.ajax({
+      if(diem<0)
+      {
+        alert("Điểm phải nằm trong khoảng 0->10");
+       
+      }
+      else if(diem>10)
+      {
+        alert("Điểm phải nằm trong khoảng 0->10");
+      }
+      else{
+        $.ajax({
         type: "GET",
         url: "{{route('diem_thi.luu_diem')}}",
         data: {
@@ -227,6 +263,8 @@
         dataType: "json",
        
     });
+      }
+     
     
 });
 //

@@ -28,14 +28,33 @@ class Nganh_Hoc_Chi_TietController
    public function insert(){
 	$array_nganh_hoc_chi_tiet=NganhHoc::get();
 	$array_mon_hoc_chi_tiet=MonHoc::get();
-	return view('nganh_hoc_chi_tiet.view_insert',compact('array_nganh_hoc_chi_tiet','array_mon_hoc_chi_tiet'));
+	$ma=NganhHoc::min('ma');
+	$array=NganhHoc::get();
+	
+	
+	$mon_hoc=NganhHoc::with('array_mon_hoc')
+	->find($ma);
+	$mon=$mon_hoc->array_mon_hoc;
+	return view('nganh_hoc_chi_tiet.view_insert',compact('array_nganh_hoc_chi_tiet','array_mon_hoc_chi_tiet','ma','mon'));
+}
+public function nganh(Request $rq){
+	$array_nganh_hoc_chi_tiet=NganhHoc::get();
+	$array_mon_hoc_chi_tiet=MonHoc::get();
+	$ma=$rq->get('ma_nganh');
+	$array=NganhHoc::get();
+	
+	
+	$mon_hoc=NganhHoc::with('array_mon_hoc')
+	->find($ma);
+	$mon=$mon_hoc->array_mon_hoc;
+	return view('nganh_hoc_chi_tiet.view_insert',compact('array_nganh_hoc_chi_tiet','array_mon_hoc_chi_tiet','ma','mon'));
 }
 public function process_insert(Request $rq){
 		
 	$ma_nganh_hoc=$rq->get('ma_nganh_hoc');
 	
 	$nganh_hoc=NganhHoc::find($ma_nganh_hoc)->array_mon_hoc()->sync($rq->get('mon_hoc_chi_tiet'));
-	return;
+	return redirect()->route('nganh_hoc_chi_tiet.get_all');
 	
 	
 	
@@ -47,10 +66,9 @@ public function select_nganh(Request $rq){
 			->find($ma);
 			$mon=$mon_hoc->array_mon_hoc;
 		return view('nganh_hoc_chi_tiet.view_all',compact('mon','ma','array'));
-	
-	
-	
-	
-	
+}
+public function delete_nganh($ma_nganh,$ma_mon){
+	$nganh_hoc=NganhHoc::find($ma_nganh)->array_mon_hoc()->detach($ma_mon);
+	return redirect()->route('nganh_hoc_chi_tiet.get_all');
 }
 }

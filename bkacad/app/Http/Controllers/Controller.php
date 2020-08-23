@@ -22,7 +22,14 @@ class Controller extends BaseController
 	}
 	public function login(){
 	
-		return view('login');
+		if (Session::has('ma'))
+		{
+			return redirect()->route('home');
+		}
+		else{
+			return view('login');
+		}
+		
 	}
 	public function process_login(Request $rq){
 		try {

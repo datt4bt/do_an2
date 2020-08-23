@@ -88,7 +88,17 @@
                                     <li><a href="">Quản lí Điểm</a></li>
                                   
                                 </ul>
-                            </li>                                                                                                     
+                            </li>  
+                            @if (Session::get('cap_do')==0)
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Admin</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('admin.insert') }}">Thêm Admin</a></li>
+                                    <li><a href="{{ route('admin.get_all') }}">Quản lí Adimin</a></li>
+                                   
+                                </ul>
+                            </li>  
+                            @endif                                                                                                   
                         </ul>
                     </div>
                     <div class="clearfix"></div>

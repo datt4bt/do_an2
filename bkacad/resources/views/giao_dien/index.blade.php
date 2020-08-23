@@ -17,12 +17,19 @@
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/icons.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/pace-theme-flash.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css">
        @stack('css')
 
         
     </head>
 
-
+    @if (Session::has('error'))
+    <script>
+        alert("Bạn không có quyền truy cập");
+    </script>
+        
+    @endif
     <body class="fixed-left">
 
         <!-- Loader -->

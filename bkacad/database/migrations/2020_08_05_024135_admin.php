@@ -20,7 +20,7 @@ class Admin extends Migration
             $table->string('mat_khau',50);
             $table->string('ten_admin',100);
             $table->string('anh',200);
-            $table->string('email',100)->nullable();
+            $table->string('email',100)->unique()->nullable();
             $table->boolean('cap_do');
             $table->primary(['ma']);
             //

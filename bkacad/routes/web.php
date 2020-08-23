@@ -60,7 +60,9 @@ Route::group(['prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], fun
     Route::get('','Nganh_Hoc_Chi_TietController@get_all')->name('get_all');
     Route::get('insert','Nganh_Hoc_Chi_TietController@insert')->name('insert');
     Route::post('process_insert','Nganh_Hoc_Chi_TietController@process_insert')->name('process_insert');
-    Route::get('select_nganh','Nganh_Hoc_Chi_TietController@select_nganh')->name('select_nganh');
+    Route::post('select_nganh','Nganh_Hoc_Chi_TietController@select_nganh')->name('select_nganh');
+    Route::post('nganh','Nganh_Hoc_Chi_TietController@nganh')->name('nganh');
+    Route::get('delete_nganh/{ma_nganh}/{ma_mon}','Nganh_Hoc_Chi_TietController@delete_nganh')->name('delete_nganh');
    
 });
 //Lớp
@@ -93,9 +95,28 @@ Route::group(['prefix' => 'diem_thi','as'=>'diem_thi.'], function() {
     Route::post('process_thong_ke','Diem_ThiController@process_thong_ke')->name('process_thong_ke');
    // Route::get('update/{ma}','Diem_ThiController@update')->name('update');
     //Route::post('process_update/{ma}','Diem_ThiController@process_update')->name('process_update');
-   // Route::get('delete/{ma}','Diem_ThiController@delete')->name('delete');   
-});
+   // Route::get('delete/{ma}','Diem_ThiController@delete')->name('delete');  
+       
 
+});
+//Tài khoản
+Route::group(['prefix' => 'account','as'=>'account.'], function() {
+    Route::get('info_user','AccountController@info_user')->name('info_user');
+    Route::get('view_update_info','AccountController@view_update_info')->name('view_update_info');
+    Route::post('process_update_info','AccountController@process_update_info')->name('process_update_info');
+    Route::get('insert_anh','AccountController@insert_anh')->name('insert_anh');
+    Route::post('process_insert_anh','AccountController@process_insert_anh')->name('process_insert_anh');
+  
+}); 
+//Admin
+
+Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'admin','as'=>'admin.'], function() {
+    Route::get('','AdminController@get_all')->name('get_all');
+    Route::get('insert','AdminController@insert')->name('insert');
+    Route::post('process_insert','AdminController@process_insert')->name('process_insert');
+    Route::get('delete/{ma}','AdminController@delete')->name('delete');
+  
+}); 
 });
 
 Route::get('login','Controller@login')->name('login');

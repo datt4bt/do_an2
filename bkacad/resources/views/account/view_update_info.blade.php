@@ -48,8 +48,12 @@
                                         <td><input type="text" class="form-control" id="validationCustom01" value="{{ $info_detail->ten }}" name="ten"  required></td>
                                     </tr>
                                     <tr>
+                                        <td>Họ tên</td>
+                                        <td><input type="text" class="form-control" id="validationCustom01" value="{{ $info_detail->ten_admin }}" name="ten_admin"  required></td>
+                                    </tr>
+                                    <tr>
                                         <td>Email</td>
-                                        <td><input type="email"  value="{{ $info_detail->email }}" name="email"  ></td>
+                                        <td><input type="email"  class="form-control" value="{{ $info_detail->email }}" name="email"  ></td>
                                     </tr>
                                    
                                 

@@ -78,6 +78,10 @@ Route::group(['prefix' => 'lop','as'=>'lop.'], function() {
 Route::group(['prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
     Route::get('','Sinh_VienController@get_all')->name('get_all');
     Route::get('insert','Sinh_VienController@insert')->name('insert');
+    //form excel
+    Route::get('insert_excel','Sinh_VienController@insert_excel')->name('insert_excel');
+    Route::post('process_insert_excel','Sinh_VienController@process_insert_excel')->name('process_insert_excel');
+    //
     Route::post('process_insert','Sinh_VienController@process_insert')->name('process_insert');
     Route::get('update/{ma}','Sinh_VienController@update')->name('update');
     Route::post('process_update/{ma}','Sinh_VienController@process_update')->name('process_update');

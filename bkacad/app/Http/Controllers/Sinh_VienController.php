@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Imports\SinhVienImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\Lop;
 use App\Models\SinhVien;
@@ -20,6 +21,16 @@ class Sinh_VienController
 		$ma_moi=$max_ma+1;
 		$array_lop=Lop::get();
 		return view('sinh_vien.view_insert',compact('array_lop','ma_moi'));
+	}
+	public function insert_excel(){
+	
+		return view('sinh_vien.view_insert_excel');
+	}
+	public function process_insert_excel(Request $rq){
+		$sinh_vien=new SinhVienImport;
+		Excel::import($sinh_vien, $rq->file_excel);
+		dd('Row count: ' . $sinh_vien->getRowCount()); 
+		//return redirect()->route('sinh_vien.get_all');
 	}
 	 public function process_insert(Request $rq){
 		

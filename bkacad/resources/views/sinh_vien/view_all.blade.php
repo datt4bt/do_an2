@@ -1,6 +1,8 @@
 @extends('giao_dien.index')
 @section('content')
+<button class="button"><a  href="{{ route('sinh_vien.insert_excel') }}">Thêm Sinh viên bằng file Excel</a></button>
 <button class="button"><a  href="{{ route('sinh_vien.insert') }}">Thêm</a></button>
+
 <table class="table table-striped">
 	<tr>
 		<td>Mã </td>

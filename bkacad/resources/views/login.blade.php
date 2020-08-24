@@ -35,10 +35,7 @@
                             <div class="col-lg-5 col-md-8">
                                 <div class="card">
                                     <div class="card-body">
-                                        @if (Session::has('error'))
-                                        {{Session::get('error')}}
-                                            
-                                        @endif
+                                       
                                       
                 
                                         <h4 class="text-muted text-center font-18"><b>Đăng nhập</b></h4>
@@ -64,9 +61,13 @@
                                                     <div class="col-12">
                                                         <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Log In</button>
                                                     </div>
+                                                    
                                                 </div>
                 
-                                               
+                                                @if (Session::has('error'))
+                                                <p  style="color: red;text-align: center"> {{Session::get('error')}}</p>
+                                                     
+                                                 @endif
                                             </form>
                                         </div>
                 

@@ -101,7 +101,7 @@ foreach($array_diem as $array)
 
 }
  
-	return $diem_chi_tiet;
+	//return $diem_chi_tiet;
 	
 	
 	

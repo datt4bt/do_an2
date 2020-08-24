@@ -24,55 +24,37 @@ class AccountController
 		return view('account.view_update_info',compact('info_detail'));
 	}
 	public function process_update_info(Request $rq){
-		if(Session::get('ten')==$rq->ten)
-		{	
-			if($rq->email==''){
-				$check_email=0;
-			}
-			else
-			{$check_email=Admin::where('email',$rq->email)->count();}
-			if($check_email==1){
-				
-				return redirect()->route('account.view_update_info')->with('error','Tên tài khoản đã tồn tại');
-			}
-			else {
-			Admin::where('ma',Session::get('ma'))
-			->update([
-			'email'=>$rq->email
-			]);
-			return redirect()->route('account.info_user');}}
-		else {
-			$check_ten=Admin::where('ten',$rq->ten)->count();
-		
-		if($rq->email==''){
-			$check_email=0;
-		}
-		else
-		{$check_email=Admin::where('email',$rq->email)->count();}
-	
-		if($check_ten==1){
+		if(Session::get('ten')==$rq->ten){
+			$check=Admin::where('ma',Session::get('ma'))->first();
 			
-			return redirect()->route('account.view_update_info')->with('error','Tên tài khoản đã tồn tại');
+			if($check->email==$rq->email)
+			{
+				Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin]);
+			}
+			else{
+				Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
+			}
+		}
+		else{
+			$check=Admin::where('ma',Session::get('ma'))->first();
+			
+			if($check->email==$rq->email)
+			{
+				Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin]);
+			}
+			else{
+				Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
+			}
 		}
 		
-		else{
-			if($check_email==1){
+			
 				
-				return redirect()->route('account.view_update_info')->with('error','Tên tài khoản đã tồn tại');
-			}
-			else {
 				
-				Admin::where('ma',Session::get('ma'))
-				->update(['ten'=>$rq->ten,
-				'email'=>$rq->email
-				]);
-				Sesion::put('ten',$rq->ten);
 				return redirect()->route('account.info_user');
-			}
+			
 	
 		
-  }
-		}
+  
 		
 }
   

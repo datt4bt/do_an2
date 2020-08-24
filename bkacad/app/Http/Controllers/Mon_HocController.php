@@ -23,8 +23,13 @@ class Mon_HocController
 	}
 	 public function process_insert(Request $rq){
 		
-		MonHoc::create($rq->all());
-		return redirect()->route('mon_hoc.get_all');
+		$check=MonHoc::where('ten',$rq->ten)->count();
+		
+		if($check==1){
+			return redirect()->route('mon_hoc.insert')->with('loi_mon_hoc','Tên  bị trùng.Vui lòng thử lại');
+		}else{
+			MonHoc::create($rq->all());
+		return redirect()->route('mon_hoc.get_all');}
 	}
 	 public function update($ma){
 		//$mon_hoc=Mon_Hoc::where('ma','=',$ma)->first();

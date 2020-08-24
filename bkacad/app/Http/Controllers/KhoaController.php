@@ -21,9 +21,13 @@ class KhoaController
 		return view('khoa.view_insert',compact('ma_moi'));
 	}
 	 public function process_insert(Request $rq){
+		$check=Khoa::where('ten',$rq->ten)->count();
 		
+		if($check==1){
+			return redirect()->route('khoa.insert')->with('loi_khoa','Tên  bị trùng.Vui lòng thử lại');
+		}else{
 		Khoa::create($rq->all());
-		return redirect()->route('khoa.get_all');
+		return redirect()->route('khoa.get_all');}
 	}
 	 public function update($ma){
 		//$khoa=Khoa::where('ma','=',$ma)->first();

@@ -1,11 +1,12 @@
 @extends('giao_dien.index')
 @section('content')
-<form class="form" action=" {{ route('account.process_insert_anh') }} " method="post" enctype="multipart/form-data">
+<form class="was-validated" action=" {{ route('account.process_insert_anh') }} " method="post" enctype="multipart/form-data">
 	{{csrf_field()}}
 	
-	Chọn ảnh
-	<input type="file" name="anh"><br>
-	<button>Thêm</button>
+	<h5>Chọn ảnh đại diện:</h5>
+	<input type="file"  id="validatedInputGroupCustomFile" name="anh" required><br>
+	<hr>
+	<button type="submit" class="btn btn-primary">Thêm</button>
 </form>
 
 @endsection

@@ -21,8 +21,13 @@ class Nganh_HocController
 	}
 	 public function process_insert(Request $rq){
 		
-		NganhHoc::create($rq->all());
-		return redirect()->route('nganh_hoc.get_all');
+		$check=NganhHoc::where('ten',$rq->ten)->count();
+		
+		if($check==1){
+			return redirect()->route('nganh_hoc.insert')->with('loi_nganh_hoc','Tên  bị trùng.Vui lòng thử lại');
+		}else{
+			NganhHoc::create($rq->all());
+		return redirect()->route('nganh_hoc.get_all');}
 	}
 	 public function update($ma){
 		//$nganh_hoc=Nganh_Hoc::where('ma','=',$ma)->first();

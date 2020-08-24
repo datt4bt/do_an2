@@ -20,6 +20,16 @@ method="POST">
         <select class="custom-select" name="ma_mon" id="chon_mon">
             <option disabled selected >Mời bạn chọn Môn</option>
         </select>
+       
+        @if ($ma==1)
+
+        <label for="">Lần thi:</label>
+        <select class="custom-select" name="so_lan" >
+            <option  value="1"  selected >lần1</option>
+            <option  value="2" >lần2</option>
+        </select>
+
+        @endif
         <br>
         <button type="submit" class="btn btn-primary">Chọn</button>
      

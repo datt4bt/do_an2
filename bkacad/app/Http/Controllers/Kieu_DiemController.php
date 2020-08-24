@@ -22,8 +22,13 @@ class Kieu_DiemController
 	}
 	 public function process_insert(Request $rq){
 		
-		KieuDiem::create($rq->all());
-		return redirect()->route('kieu_diem.get_all');
+		$check=KieuDiem::where('ten',$rq->ten)->count();
+		
+		if($check==1){
+			return redirect()->route('kieu_diem.insert')->with('loi_kieu_diem','Tên  bị trùng.Vui lòng thử lại');
+		}else{
+			KieuDiem::create($rq->all());
+		return redirect()->route('kieu_diem.get_all');}
 	}
 	 public function update($ma){
 		//$kieu_diem=KieuDiem::where('ma','=',$ma)->first();

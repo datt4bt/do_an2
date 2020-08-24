@@ -1,6 +1,9 @@
 @extends('giao_dien.index')
 @section('content')
-<h2 style="text-align: center">Thêm môn học</h2>
+@if (Session::has('loi_mon_hoc'))
+	<h3 style="color: red">{{ Session::get('loi_mon_hoc') }}</h3>
+@endif
+<h1 style="text-align: center"> Thêm Môn học</h1>
 <form action=" {{ route('mon_hoc.process_insert') }} " method="post">
 	{{csrf_field()}}
 	<input type="hidden" name="ma" value="{{$ma_moi}}">

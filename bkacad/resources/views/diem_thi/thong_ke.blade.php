@@ -58,8 +58,9 @@
         <td>{{$sinh_vien->ngay_sinh}}</td>
       @foreach($array_diem as $diem)
     <td>{{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_kieu_diem][$diem->so_lan][$diem->hinh_thuc]}}</td>
-</tr>
-      @endforeach  
+
+      @endforeach
+    </tr>  
     @endforeach
 
     

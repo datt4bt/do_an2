@@ -2,7 +2,7 @@
 @section('content')
 <div id="main-content" class=" ">
     
-    @if (Session::has('error'))
+    @if (Session::has('loi_ten'))
   
    <script>
        alert("Tên đăng nhập hoặc email đã tồn tại. Vui lòng thử lại");

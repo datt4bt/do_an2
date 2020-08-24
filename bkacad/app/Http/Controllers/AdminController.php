@@ -21,9 +21,19 @@ class AdminController
 		return view('admin.view_insert',compact('ma_moi'));
 	}
 	 public function process_insert(Request $rq){
+		$check=Admin::where('ten',$rq->ten)->count();
 		
-		Admin::create($rq->all());
-		return redirect()->route('admin.get_all');
+		if($check==1){
+			return redirect()->route('admin.insert')->with('loi','Tên đăng nhập bị trùng.Vui lòng thử lại');
+		}else{
+			$check_email=Admin::where('email',$rq->email)->count();
+			if($check_email==1){
+				return redirect()->route('admin.insert')->with('email','Email bị trùng.Vui lòng thử lại');
+			}else{
+			Admin::create($rq->all());
+			return redirect()->route('admin.get_all');
+		}}
+		
 	}
 	 public function update($ma){
 		//$admin=Admin::where('ma','=',$ma)->first();

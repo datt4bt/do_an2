@@ -75,6 +75,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Sinh viên</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('sinh_vien.insert') }}">Thêm Sinh viên</a></li>
+                                    <li><a href="{{ route('sinh_vien.insert_excel') }}">Thêm Sinh viên bằng Excel</a></li>
                                     <li><a href="{{ route('sinh_vien.get_all') }}">Quản lí Sinh viên</a></li>
                                    
                                 </ul>
@@ -83,9 +84,9 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Điểm</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
-                                    <li><a href="{{ route('diem_thi.insert', ['ma'=>1]) }}">Nhập điểm Điểm</a></li>
+                                    <li><a href="{{ route('diem_thi.insert', ['ma'=>1]) }}">Nhập  Điểm</a></li>
                                     <li><a href="{{ route('diem_thi.thong_ke', ['ma'=>2]) }}">Xem Điểm</a></li>
-                                    <li><a href="">Quản lí Điểm</a></li>
+                                    
                                   
                                 </ul>
                             </li>  

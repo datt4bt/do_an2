@@ -8,7 +8,7 @@ class Lop extends Model
 {
     protected $table = 'lop';
     protected $fillable=[
-        'ma',
+        
         'ten',
         'ma_nganh_hoc',
         'ma_khoa_hoc'

@@ -25,10 +25,10 @@ class LopController
 	 public function process_insert(Request $rq){
 		$so_lop=$rq->so_lop;
 		for ($i=1; $i <=$so_lop ; $i++) { 
-			$max_ma=Lop::max('ma');
+			
 		
 			$lop = new Lop();
-			$lop->ma = $max_ma + 1 ;
+		
 			if ($rq->ma_khoa_hoc==1) {
 				$lop->ten = "LT$i";
 			}

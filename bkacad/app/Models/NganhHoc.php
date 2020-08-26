@@ -8,7 +8,7 @@ class NganhHoc extends Model
 {
     protected $table = 'nganh_hoc';
     protected $fillable=[
-        'ma',
+        
     	'ten'
     ];
     public $timestamps=false;

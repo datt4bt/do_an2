@@ -113,6 +113,29 @@ public function luu_diem(Request $rq){
 			
 			$diem_lan2->save();
 		}
+		elseif($rq->diem>=5){
+			DiemThi::where('ma_sinh_vien',$rq->ma_sinh_vien)
+		->where('ma_mon_hoc',$rq->ma_mon_hoc)
+		->where('ma_kieu_diem',$rq->ma_kieu_diem)
+		->where('so_lan',2)
+		->where('hinh_thuc',$rq->hinh_thuc)
+		->delete();
+		}
+		
+
+	}
+	elseif($rq->so_lan==2)
+	{
+		
+		DiemThi::where('ma_sinh_vien',$rq->ma_sinh_vien)
+		->where('ma_mon_hoc',$rq->ma_mon_hoc)
+		->where('ma_kieu_diem',$rq->ma_kieu_diem)
+		->where('so_lan',2)
+		->where('hinh_thuc',$rq->hinh_thuc)
+		->update('diem',$rq->diem);
+			
+		
+		
 	}
 
 	
@@ -126,8 +149,15 @@ public function process_thong_ke(Request $rq){
 	$ma_mon=$rq->ma_mon;
 	$mon = MonHoc::where("ma",$ma_mon)->value('ten');
 	
-	$array_diem = DiemThi::with('kieu_diem')->with('mon_hoc')->where("ma_mon_hoc",$ma_mon)->get();
+	$array_diem = DiemThi::where("ma_mon_hoc",$ma_mon)->get();
+	
+	
+	
+	
+
+	//
 	$array_sinh_vien= SinhVien::where("ma_lop",$ma_lop)->get();
+	
 	
 	$diem_chi_tiet=[];
 	
@@ -135,17 +165,18 @@ public function process_thong_ke(Request $rq){
 foreach($array_diem as $array)
 {
 
-	
+	$diem_chi_tiet['ma_sinh_vien']=$array->ma_sinh_vien;
 	$diem_chi_tiet[$array->ma_sinh_vien][$array->ma_kieu_diem][$array->so_lan][$array->hinh_thuc]=$array->diem;
 
 
 }
+
  
-	//return $diem_chi_tiet;
 	
 	
 	
-	return view('diem_thi.thong_ke',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
+	
+	return view('diem_thi.thong_ke',compact('array_khoa','array_diem','array_sinh_vien','khoa_hoc','lop','mon','diem_chi_tiet'));
 	//return view('diem_thi.test',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
 
 }

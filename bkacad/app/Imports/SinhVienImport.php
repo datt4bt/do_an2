@@ -3,17 +3,15 @@
 namespace App\Imports;
 
 use App\Models\SinhVien;
+use App\Models\Khoa;
+use App\Models\NganhHoc;
 use App\Models\Lop;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class SinhVienImport implements ToModel, WithHeadingRow
 {
-    private $rows = 0;
 
-   
-    
-   
     /**
     * @param array $row
     *
@@ -21,10 +19,9 @@ class SinhVienImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        if($row['nganh_hoc']=='Lập trình viên')
-        { 
-            ++$this->rows;
-        }
+       
+
+       
       
         
       
@@ -39,23 +36,31 @@ class SinhVienImport implements ToModel, WithHeadingRow
         
        
         $ten   = $row['ho_ten'];
-        $ngay_sinh = $this->convertToDate($row['ngay_sinh']);
         $gioi_tinh = $this->getGioiTinh($row['gioi_tinh']);
+        $ngay_sinh = $this->convertToDate($row['ngay_sinh']);
         $sdt    = $row['sdt'];
         $dia_chi    = $row['dia_chi'];
-        $nganh_hoc    = $row['nganh_hoc'];
-        $max=SinhVien::max('ma');
-		$ma_sv=$max+1;
-       // return new SinhVien([
-          //  'ma'       => $ma_sv,
-          // 'ten'       => $ten,
-          // 'gioi_tinh' => $gioi_tinh,
-          // 'ngay_sinh' => $ngay_sinh,
-           // 'sdt' => $sdt,
-          // 'dia_chi' => $dia_chi,
-           // 'email'     => $row['email'] ?? '',
-            //'ma_lop'    => 1,
-       // ]);
+        $email    = $row['email'];
+       
+        $ma_sv=SinhVien::max('ma');
+        $max_ma_sv=$ma_sv+1;
+        //
+        $ma_khoa    = Khoa::firstOrCreate(['ten' => $row['khoa']])->ma;
+        $ma_nganh    = NganhHoc::firstOrCreate(['ten' => $row['nganh_hoc']])->ma;
+        $ma_lop   = Lop::firstOrCreate(['ten' => $row['lop'],'ma_nganh_hoc' => $ma_nganh,'ma_khoa_hoc' => $ma_khoa])->ma;
+        
+        //
+       
+       return new SinhVien([
+       'ma'       => $max_ma_sv,
+        'ten'       => $ten,
+        'gioi_tinh' => $gioi_tinh,
+        'ngay_sinh' => $ngay_sinh,
+        'sdt' => '0'.$sdt,
+        'dia_chi' => $dia_chi,
+        'email'     => $row['email'],
+        'ma_lop'    => $ma_lop,
+        ]);
         
     }
     
@@ -66,32 +71,10 @@ class SinhVienImport implements ToModel, WithHeadingRow
         return ($gioi_tinh=='Nam') ? 1 : 0;
 
     }
-    public function getRowCount(): int
-    {
-        $so_sv=$this->rows;
-        $so_lop=($so_sv/20)+1;
-        $max_ma=Lop::max('ma');
-        for ($i=1; $i <= $so_lop ; $i++) { 
-          
-		
-            $lop = new Lop();
-            $stt=$max_ma + 1;
-			$lop->ma = $stt ;
-			
-				$lop->ten = "LT$stt";
-			
-			
-			
-			
-            $lop->ma_nganh_hoc = 1;
-            $lop->ma_khoa_hoc = 1;
-			
-			$lop->save();
-        }
-        return $stt;
+    
        
         
-    }
+    
     
 
 }

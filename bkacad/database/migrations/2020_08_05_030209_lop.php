@@ -15,7 +15,7 @@ class Lop extends Migration
     {
         
         Schema::create('lop', function (Blueprint $table) {
-            $table->integer('ma')->unsigned();
+            $table->increments('ma');
             $table->string('ten',100);
             $table->integer('ma_nganh_hoc')->unsigned();
             $table->foreign('ma_nganh_hoc')
@@ -25,7 +25,7 @@ class Lop extends Migration
            $table->foreign('ma_khoa_hoc')
           ->references('ma')->on('khoa')
           ->onDelete('cascade');
-          $table->primary(['ma']);
+          
             //
         });
         

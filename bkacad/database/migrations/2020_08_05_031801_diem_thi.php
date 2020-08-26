@@ -20,7 +20,7 @@ class DiemThi extends Migration
             $table->integer('ma_kieu_diem')->unsigned();
             $table->integer('so_lan');
             $table->integer('hinh_thuc');
-            $table->float('diem');
+            $table->float('diem')->nullable();
             //
             $table->foreign('ma_mon_hoc')
            ->references('ma')->on('mon_hoc')

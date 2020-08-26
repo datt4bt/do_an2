@@ -14,10 +14,9 @@ class Nganh_HocController
 		return view('nganh_hoc.view_all',compact('array_nganh_hoc'));
 	}
 	 public function insert(){
-		$max_ma=NganhHoc::max('ma');
-		$ma_moi=$max_ma+1;
+	
 		
-		return view('nganh_hoc.view_insert',compact('ma_moi'));
+		return view('nganh_hoc.view_insert');
 	}
 	 public function process_insert(Request $rq){
 		

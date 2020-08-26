@@ -5,6 +5,7 @@ use App\Imports\SinhVienImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\Lop;
+use App\Models\Khoa;
 use App\Models\SinhVien;
 
 
@@ -12,13 +13,25 @@ class Sinh_VienController
 {
 	
 	 public function get_all(){
-		$array_sinh_vien=SinhVien::with('lop')->get();
+	
+		$array_khoa=Khoa::get();
+			  
 		
-		return view('sinh_vien.view_all',compact('array_sinh_vien'));
+		return view('sinh_vien.view_all',compact('array_khoa'));
+	} 
+	public function get_one(Request $rq){
+		$array_sinh_vien=SinhVien::where('ma_lop',$rq->ma_lop)->get();
+		
+			  $info=Lop::with('khoa')->with('nganh_hoc')->where('ma',$rq->ma_lop)->first();
+			  $array_khoa=Khoa::get();
+		
+		
+		return view('sinh_vien.view_one',compact('array_khoa','info','array_sinh_vien'));
 	}
 	 public function insert(){
 		$max_ma=SinhVien::max('ma');
 		$ma_moi=$max_ma+1;
+		
 		$array_lop=Lop::get();
 		return view('sinh_vien.view_insert',compact('array_lop','ma_moi'));
 	}
@@ -29,8 +42,8 @@ class Sinh_VienController
 	public function process_insert_excel(Request $rq){
 		$sinh_vien=new SinhVienImport;
 		Excel::import($sinh_vien, $rq->file_excel);
-		dd('Row count: ' . $sinh_vien->getRowCount()); 
-		//return redirect()->route('sinh_vien.get_all');
+		
+		return redirect()->route('sinh_vien.get_all');
 	}
 	 public function process_insert(Request $rq){
 		

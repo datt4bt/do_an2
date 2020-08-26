@@ -15,10 +15,9 @@ class KhoaController
 	}
 	 public function insert(){
 		
-		$max_ma=Khoa::max('ma');
-		$ma_moi=$max_ma+1;
+	
 		
-		return view('khoa.view_insert',compact('ma_moi'));
+		return view('khoa.view_insert');
 	}
 	 public function process_insert(Request $rq){
 		$check=Khoa::where('ten',$rq->ten)->count();

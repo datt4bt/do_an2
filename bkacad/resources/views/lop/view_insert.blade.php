@@ -1,5 +1,8 @@
 @extends('giao_dien.index')
 @section('content')
+@if (Session::has('loi_lop'))
+	<h3 style="color: red">{{ Session::get('loi_lop') }}</h3>
+@endif
 <h2 style="text-align: center">Thêm môn học</h2>
 <form action=" {{ route('lop.process_insert') }} " method="post">
 	{{csrf_field()}}
@@ -15,14 +18,8 @@
 			<option value="{{ $nganh_hoc->ma }}">{{ $nganh_hoc->ten }}</option>
 		@endforeach
 	  </select>
-	 	 <label for="exampleInputEmail1">Bạn muốn tạo bao nhiêu lớp:</label>
-		<input type="number" name="so_lop">
-	
-
-	
-	
-	 
-
+	 	 <label for="exampleInputEmail1">Tên</label>
+		<input type="text" class="form-control" name="ten">
 	<br>
 	<button type="submit" class="btn btn-primary">Thêm</button>
   </form>

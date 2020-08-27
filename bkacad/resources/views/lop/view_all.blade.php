@@ -1,25 +1,20 @@
 @extends('giao_dien.index')
 @section('content')
 <button class="button"><a  href="{{ route('lop.insert') }}">Thêm</a></button>
-<table class="table table-striped">
-	<tr>
-		<td>Mã </td>
-		<td>Tên </td>
-		<td>Ngành Học</td>
-		<td>Khóa</td>
-		<td></td>
-	</tr>
-
-		@foreach ($array_lop as $lop)
-			<tr>
-				<td>{{$lop->ma}}</td>
-				<td>{{$lop->ten}}</td>
-				<td>{{$lop->nganh_hoc->ten}}</td>
-				<td>{{$lop->khoa->ten}}</td>
-				<td><a href="{{ route('lop.update',['ma'=>$lop->ma]) }}">Sửa</a></td>
-				<td><a href="{{ route('lop.delete',['ma'=>$lop->ma]) }}">Xóa</a></td>
-			</tr>
-		@endforeach
-	
-</table>
+<form action="{{ route('lop.get_one') }}" method="post">
+	{{ csrf_field() }}
+	<label for="exampleInputEmail1">Ngành học</label>
+	<select class="form-control" name="ma_nganh_hoc">
+	@foreach ($array_nganh_hoc as $nganh_hoc)
+		<option value="{{ $nganh_hoc->ma }}">{{ $nganh_hoc->ten }}</option>
+	@endforeach
+	  </select>
+	  <label for="exampleInputEmail1">Ngành học</label>
+	<select class="form-control" name="ma_khoa_hoc">
+	@foreach ($array_khoa_hoc as $khoa_hoc)
+		<option value="{{ $khoa_hoc->ma }}">{{ $khoa_hoc->ten }}</option>
+	@endforeach
+	  </select>
+	  <button type="submit" class="btn btn-primary">Chọn</button>
+</form>
 @endsection

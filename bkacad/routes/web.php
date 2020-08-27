@@ -68,6 +68,7 @@ Route::group(['prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], fun
 //Lớp
 Route::group(['prefix' => 'lop','as'=>'lop.'], function() {
     Route::get('','LopController@get_all')->name('get_all');
+    Route::post('get_one','LopController@get_one')->name('get_one');
     Route::get('insert','LopController@insert')->name('insert');
     Route::post('process_insert','LopController@process_insert')->name('process_insert');
     Route::get('update/{ma}','LopController@update')->name('update');
@@ -91,6 +92,7 @@ Route::group(['prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
 //Điểm
 Route::group(['prefix' => 'diem_thi','as'=>'diem_thi.'], function() {
     Route::get('','Diem_ThiController@get_all')->name('get_all');
+    Route::get('get_one','Diem_ThiController@get_one')->name('get_one');
     Route::get('get_lop','Diem_ThiController@get_lop')->name('get_lop');
     Route::get('get_mon','Diem_ThiController@get_mon')->name('get_mon');
     Route::get('luu_diem','Diem_ThiController@luu_diem')->name('luu_diem');

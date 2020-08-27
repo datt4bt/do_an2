@@ -12,10 +12,17 @@ class LopController
 {
 	
 	 public function get_all(){
-		$array_lop=Lop::with('nganh_hoc')->get();
-		$array_khoa=Lop::with('khoa')->get();
+		$array_nganh_hoc=NganhHoc::get();
+		$array_khoa_hoc=Khoa::get();
+		return view('lop.view_all',compact('array_nganh_hoc','array_khoa_hoc'));
+	}
+	public function get_one(Request $rq){
+		$array_nganh_hoc=NganhHoc::get();
+		$array_khoa_hoc=Khoa::get();
+		$array_lop=Lop::with('nganh_hoc')->with('khoa')->where('ma_nganh_hoc',$rq->ma_nganh_hoc)->where('ma_khoa_hoc',$rq->ma_khoa_hoc)->get();
 		
-		return view('lop.view_all',compact('array_lop','array_khoa'));
+		
+		return view('lop.view_one',compact('array_lop','array_nganh_hoc','array_khoa_hoc'));
 	}
 	 public function insert(){
 		$array_nganh_hoc=NganhHoc::get();
@@ -23,26 +30,15 @@ class LopController
 		return view('lop.view_insert',compact('array_nganh_hoc','array_khoa_hoc'));
 	}
 	 public function process_insert(Request $rq){
-		$so_lop=$rq->so_lop;
-		for ($i=1; $i <=$so_lop ; $i++) { 
-			
+		$check=Lop::where('ten',$rq->ten)->count();
 		
-			$lop = new Lop();
-		
-			if ($rq->ma_khoa_hoc==1) {
-				$lop->ten = "LT$i";
-			}
-			else{
-				$lop->ten = "QT$i";
-			}
-			
-			$lop->ma_nganh_hoc = $rq->ma_nganh_hoc;
-			$lop->ma_khoa_hoc = $rq->ma_khoa_hoc;
-			$lop->save();
-			
-		}
+		if($check==1){
+			return redirect()->route('lop.insert')->with('loi_lop','Tên  bị trùng.Vui lòng thử lại');
+		}else{
+		Lop::create($rq->all());
 		
 		return redirect()->route('lop.get_all');
+		}
 	}
 	 public function update($ma){
 		//$lop=Lop::where('ma','=',$ma)->first();

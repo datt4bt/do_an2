@@ -41,25 +41,45 @@
     {{ csrf_field() }}
     <h1 style="text-align: center">Danh sách Sinh viên thi lại lần 2</h1>
     <table class="table table-striped">
-      
+      <tr>
+        <th scope="row"></th>
+        <th scope="row"></th>
+        <th scope="row"></th>
+        
+        @foreach($array_mon_hoc as $mon_hoc )
+                @if ($mon_hoc->ma_kieu_diem==1)
+                
+                    <th colspan="2">Lý thuyết</th>   
+                
+                @elseif($mon_hoc->ma_kieu_diem==2)
+                
+                    <th colspan="2">Thực hành</th>    
+                
+                @elseif($mon_hoc->ma_kieu_diem==3)
+                
+                    <th colspan="2">Lý thuyết</th> 
+                    <th colspan="2">Thực hành</th>    
+                
+                @endif
+                @endforeach
+        <td></td>
+       
+    </tr>
              <tr>
                 <th scope="col">Mã</th>
                 <th scope="col">Tên</th>
                 <th scope="col">Ngày Sinh</th>
                 @foreach($array_mon_hoc as $mon_hoc )
-                @if ($mon_hoc->ma_kieu_diem==1)
+                @if ($mon_hoc->ma_kieu_diem==3)
                 
-                    <th scope="col">Lý thuyết</th>   
+                    <th scope="col">Lần1</th>
+                    <th scope="col">Lần 2</th> 
+                    <th scope="col">Lần1</th>
+                    <th scope="col">Lần 2</th>    
                 
-                @elseif($mon_hoc->ma_kieu_diem==2)
-                
-                    <th scope="col">Thực hành</th>    
-                
-                @elseif($mon_hoc->ma_kieu_diem==3)
-                
-                    <th scope="col">Lý thuyết</th> 
-                    <th scope="col">Thực hành</th>    
-                
+                @else
+                <th scope="col">Lần1</th>
+                <th scope="col">Lần 2</th>
                 @endif
                 @endforeach
 

@@ -33,32 +33,53 @@
 </form>
 <form action="{{ route('diem_thi.luu_diem')}}" method="POST">
     {{ csrf_field() }}
-    <h1 style="text-align: center">Danh sách lớp</h1>
+    <h1 style="text-align: center">Nhập điểm</h1>
     <table class="table table-striped">
       
              <tr>
-                <th scope="col">Mã</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Ngày Sinh</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
                 @foreach($array_mon_hoc as $mon_hoc )
                 @if ($mon_hoc->ma_kieu_diem==1)
                 
-                    <th scope="col">Lý thuyết</th>   
+                    <th colspan="2">Lý thuyết</th>   
                 
                 @elseif($mon_hoc->ma_kieu_diem==2)
                 
-                    <th scope="col">Thực hành</th>    
+                    <th colspan="2">Thực hành</th>    
                 
                 @elseif($mon_hoc->ma_kieu_diem==3)
                 
-                    <th scope="col">Lý thuyết</th> 
-                    <th scope="col">Thực hành</th>    
+                    <th colspan="2">Lý thuyết</th> 
+                    <th colspan="2">Thực hành</th>    
                 
                 @endif
                 @endforeach
 
                 
              </tr>
+             <tr>
+              <th scope="col">Mã</th>
+              <th scope="col">Tên</th>
+              <th scope="col">Ngày Sinh</th>
+              @foreach($array_mon_hoc as $mon_hoc )
+              @if ($mon_hoc->ma_kieu_diem==3)
+              
+                  <th scope="col">Lần1</th>
+                  <th scope="col">Lần 2</th> 
+                  <th scope="col">Lần1</th>
+                  <th scope="col">Lần 2</th>    
+              
+              @else
+              <th scope="col">Lần1</th>
+              <th scope="col">Lần 2</th>
+              @endif
+              @endforeach
+
+
+              
+           </tr>
              <tr>
               @foreach($array_sinh_vien as $sinh_vien )
              
@@ -78,17 +99,38 @@
                          data-hinh_thuc="1" style="width:70px"  
                          type="number" class="diem"  
                          @foreach($array_diem as $diem ) 
-                         @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien )
+                         @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==1)
                              value="{{$diem->diem}}"
                         
                          @endif
                          @endforeach
                          class="form-control" id="validationCustom05"  required>
+                         
                         <div class="invalid-feedback">
                           Vui lòng không để trống
                         </div>
                       </div>
                     </td>   
+                    <td scope=""> <div class="col-md-3 mb-3">
+                      <input data-sinh_vien="{{$sinh_vien->ma}}"
+                       data-mon_hoc="{{$mon_hoc->ma}}" 
+                       data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
+                       data-so_lan="2"
+                       data-hinh_thuc="1" style="width:70px"  
+                       type="number" class="diem"  
+                       @foreach($array_diem as $diem ) 
+                       @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
+                           value="{{$diem->diem}}"
+                      
+                       @endif
+                       @endforeach
+                       class="form-control" id="validationCustom05"  required>
+                       
+                      <div class="invalid-feedback">
+                        Vui lòng không để trống
+                      </div>
+                    </div>
+                  </td>  
                 
                 @elseif($mon_hoc->ma_kieu_diem==2)
                 
@@ -99,7 +141,7 @@
                    data-so_lan="1" 
                    data-hinh_thuc="2" style="width:70px" 
                    @foreach($array_diem as $diem ) 
-                   @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==2 && $sinh_vien->ma==$diem->ma_sinh_vien )
+                   @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==2 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==1)
                        value="{{$diem->diem}}"
                   
                    @endif

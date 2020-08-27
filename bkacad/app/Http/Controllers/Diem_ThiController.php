@@ -40,6 +40,37 @@ class Diem_ThiController
 	   
 	
 }
+public function get_one(Request $rq){
+	$array_khoa=Khoa::get();
+	$ma_khoa_hoc=1;
+	$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
+	$ma_lop=1;
+	$lop = Lop::where("ma",$ma_lop)->value('ten');
+	
+	$array_diem = DiemThi::with('mon_hoc')->where("ma_sinh_vien",1)->get();
+	
+	//return $array_diem;
+	return view('diem_thi.view_one',compact('array_diem'));
+	
+
+	//
+	//$array_sinh_vien= SinhVien::where("ma_lop",$ma_lop)->get();
+	
+	
+
+	
+
+
+
+ 
+	
+	
+	
+	
+	//return view('diem_thi.thong_ke',compact('array_khoa','array_diem','array_sinh_vien','khoa_hoc','lop','mon','diem_chi_tiet'));
+	//return view('diem_thi.test',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
+
+}
 public function process_insert(Request $rq){
 	$so_lan=$rq->so_lan;
 	if($so_lan==1)

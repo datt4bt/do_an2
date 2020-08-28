@@ -48,8 +48,18 @@ public function get_one(Request $rq){
 	$lop = Lop::where("ma",$ma_lop)->value('ten');
 	
 	$array_diem = DiemThi::with('mon_hoc')->where("ma_sinh_vien",1)->get();
+	$diem_chi_tiet=[];
 	
-	//return $array_diem;
+
+	foreach($array_diem as $array)
+	{
+	
+		
+		$diem_chi_tiet[$array->ma_sinh_vien][$array->ma_kieu_diem][$array->so_lan][$array->hinh_thuc]=$array->diem;
+	
+	
+	}
+	return $diem_chi_tiet;
 	return view('diem_thi.view_one',compact('array_diem'));
 	
 
@@ -87,30 +97,54 @@ public function process_insert(Request $rq){
 		$array_sinh_vien = SinhVien::where("ma_lop",$ma_lop)->get();
 		$array_mon_hoc = MonHoc::where("ma",$ma_mon)->get();
 		
-		$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->get();
 		
-		return view('diem_thi.view_nhap_diem',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
+	
+		
+			$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->where('so_lan',1)->get();
+			return view('diem_thi.view_nhap_diem',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
+		
+		
+		
 	}
 	else if($so_lan==2)
 	{
-	$array_khoa=Khoa::get();
+		$array_khoa=Khoa::get();
 
-	$ma_khoa_hoc=$rq->ma_khoa_hoc;
-	$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
-	$ma_lop=$rq->ma_lop;
-	$lop = Lop::where("ma",$ma_lop)->value('ten');
-	$ma_mon=$rq->ma_mon;
-	$array_mon_hoc = MonHoc::where("ma",$ma_mon)->get();
-	$mon = MonHoc::where("ma",$ma_mon)->value('ten');
-	$array_diem=DiemThi::
-	join('sinh_vien', 'sinh_vien.ma', '=', 'diem_thi.ma_sinh_vien')
-	->where('sinh_vien.ma_lop', $ma_lop)
-	->where('diem_thi.so_lan', $so_lan)
-	->where('diem_thi.ma_mon_hoc', $ma_mon)
-	->get();
+		$ma_khoa_hoc=$rq->ma_khoa_hoc;
+		$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
+		$ma_lop=$rq->ma_lop;
+		$lop = Lop::where("ma",$ma_lop)->value('ten');
+		$ma_mon=$rq->ma_mon;
+		$mon = MonHoc::where("ma",$ma_mon)->value('ten');
+		
+		
 
-	//return $array_diem;
-	return view('diem_thi.view_nhap_diem_thi_lai',compact('array_khoa','khoa_hoc','lop','mon','array_diem','array_mon_hoc'));
+		$array_mon_hoc = MonHoc::where("ma",$ma_mon)->get();
+		$check=DiemThi::where("ma_mon_hoc",$ma_mon)->where('so_lan',2)->count();
+		
+		if($check==0)
+		{
+			return redirect()->route('diem_thi.insert',['ma'=>1])->with('loi_lan2','Lớp '. $lop . ' -Khóa ' . $khoa_hoc . ' Môn ' . $mon . ' không có học sinh thi lần 2');
+		}
+		else{
+			$array_sinh_vien = SinhVien::join('diem_thi','diem_thi.ma_sinh_vien','sinh_vien.ma')
+		->where('diem_thi.so_lan',2)
+		->where('diem_thi.ma_mon_hoc',$ma_mon)
+        ->select('sinh_vien.ma','sinh_vien.ten','sinh_vien.ngay_sinh')
+        ->distinct()
+		->get();
+		
+			$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->where('so_lan',2)->get();
+			
+			return view('diem_thi.view_nhap_diem_thi_lai',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
+		}
+		
+		
+	
+			
+	
+	
+	
    
 	}
 }
@@ -141,7 +175,7 @@ public function luu_diem(Request $rq){
 			$diem_lan2->ma_kieu_diem = $rq->ma_kieu_diem;
 			$diem_lan2->so_lan = 2;
 			$diem_lan2->hinh_thuc = $rq->hinh_thuc;
-			
+		
 			$diem_lan2->save();
 		}
 		elseif($rq->diem>=5){
@@ -173,6 +207,7 @@ public function luu_diem(Request $rq){
 }
 public function process_thong_ke(Request $rq){
 	$array_khoa=Khoa::get();
+
 	$ma_khoa_hoc=$rq->ma_khoa_hoc;
 	$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
 	$ma_lop=$rq->ma_lop;
@@ -180,34 +215,14 @@ public function process_thong_ke(Request $rq){
 	$ma_mon=$rq->ma_mon;
 	$mon = MonHoc::where("ma",$ma_mon)->value('ten');
 	
-	$array_diem = DiemThi::where("ma_mon_hoc",$ma_mon)->get();
+	$array_sinh_vien = SinhVien::where("ma_lop",$ma_lop)->get();
+	$array_mon_hoc = MonHoc::where("ma",$ma_mon)->get();
+	
+	$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->get();
 	
 	
 	
-	
-
-	//
-	$array_sinh_vien= SinhVien::where("ma_lop",$ma_lop)->get();
-	
-	
-	$diem_chi_tiet=[];
-	
-
-foreach($array_diem as $array)
-{
-
-	$diem_chi_tiet['ma_sinh_vien']=$array->ma_sinh_vien;
-	$diem_chi_tiet[$array->ma_sinh_vien][$array->ma_kieu_diem][$array->so_lan][$array->hinh_thuc]=$array->diem;
-
-
-}
-
- 
-	
-	
-	
-	
-	return view('diem_thi.thong_ke',compact('array_khoa','array_diem','array_sinh_vien','khoa_hoc','lop','mon','diem_chi_tiet'));
+	return view('diem_thi.thong_ke',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
 	//return view('diem_thi.test',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
 
 }

@@ -100,6 +100,7 @@ Route::group(['prefix' => 'diem_thi','as'=>'diem_thi.'], function() {
     Route::post('process_insert','Diem_ThiController@process_insert')->name('process_insert');
     Route::get('thong_ke/{ma}','Diem_ThiController@get_all')->name('thong_ke');
     Route::post('process_thong_ke','Diem_ThiController@process_thong_ke')->name('process_thong_ke');
+    Route::post('thong_ke_diem_thi','Diem_ThiController@thong_ke_diem_thi')->name('thong_ke_diem_thi');
    // Route::get('update/{ma}','Diem_ThiController@update')->name('update');
     //Route::post('process_update/{ma}','Diem_ThiController@process_update')->name('process_update');
    // Route::get('delete/{ma}','Diem_ThiController@delete')->name('delete');  

@@ -5,6 +5,12 @@
 @if (Session::has('loi_lan2'))
 	<h3 style="color: red">{{ Session::get('loi_lan2') }}</h3>
 @endif
+@if (Session::has('loi_thong_ke'))
+	<h3 style="color: red">{{ Session::get('loi_thong_ke') }}</h3>
+@endif
+@if (Session::has('loi_thong_ke_hoc_lai'))
+	<h3 style="color: red">{{ Session::get('loi_thong_ke_hoc_lai') }}</h3>
+@endif
 @include('diem_thi.ajax')
 @endsection
 @push('js')

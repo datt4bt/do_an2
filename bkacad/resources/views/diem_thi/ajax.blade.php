@@ -2,6 +2,8 @@
 action="{{ route('diem_thi.process_insert')}}" 
 @elseif($ma==2)
 action="{{ route('diem_thi.process_thong_ke')}}" 
+@elseif($ma==3)
+action="{{ route('diem_thi.thong_ke_diem_thi')}}"
 @endif
 
 method="POST">
@@ -27,6 +29,16 @@ method="POST">
         <select class="custom-select" name="so_lan" >
             <option  value="1"  selected >lần1</option>
             <option  value="2" >lần2</option>
+        </select>
+
+        @endif
+        @if ($ma==3)
+
+        <label for="">Thống kê theo:</label>
+        <select class="custom-select" name="kieu_thong_ke" >
+            <option  value="1"  selected >Tất cả</option>
+            <option  value="2" >Sinh viên thi lại lần 2</option>
+            <option  value="3" >Sinh viên học lại</option>
         </select>
 
         @endif

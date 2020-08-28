@@ -86,6 +86,8 @@
                                     
                                     <li><a href="{{ route('diem_thi.insert', ['ma'=>1]) }}">Nhập  Điểm</a></li>
                                     <li><a href="{{ route('diem_thi.thong_ke', ['ma'=>2]) }}">Xem Điểm</a></li>
+                                    <li><a href="{{ route('diem_thi.thong_ke', ['ma'=>3]) }}">Thống kê</a></li>
+                                    
                                     
                                   
                                 </ul>

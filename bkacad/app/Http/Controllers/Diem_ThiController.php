@@ -136,7 +136,7 @@ public function process_insert(Request $rq){
 		
 			$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->where('so_lan',2)->get();
 			
-			//return view('diem_thi.view_nhap_diem_thi_lai',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
+			return view('diem_thi.view_nhap_diem_thi_lai',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
 		}
 		
 		
@@ -237,18 +237,21 @@ public function thong_ke_diem_thi(Request $rq){
 		$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
 		$ma_lop=$rq->ma_lop;
 		$lop = Lop::where("ma",$ma_lop)->value('ten');
-		$ma_mon=$rq->ma_mon;
-		$mon = MonHoc::where("ma",$ma_mon)->value('ten');
-		
 		$array_sinh_vien = SinhVien::where("ma_lop",$ma_lop)->get();
-		$array_mon_hoc = MonHoc::where("ma",$ma_mon)->get();
 		
-		$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->get();
+		$array_mon_hoc = MonHoc::get();
 		
+		$check=DiemThi::count();
+		if($check==0)
+		{
+			return redirect()->route('diem_thi.thong_ke', ['ma'=>3])->with('loi_thong_ke','Lớp '. $lop . ' -Khóa ' . $khoa_hoc . ' không có Sinh viên nào được nhập điểm');
+		}
+		else{
+			$array_diem=DiemThi::with('mon_hoc')->get();
+			//return $array_diem;
+		return view('diem_thi.thong_ke_tat_ca',compact('array_khoa','array_sinh_vien','khoa_hoc','lop','array_diem','kieu','array_mon_hoc'));
 		
-		
-		return view('diem_thi.thong_ke',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
-		//return view('diem_thi.test',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
+		}
 	
 	}
 	else if($kieu==2)

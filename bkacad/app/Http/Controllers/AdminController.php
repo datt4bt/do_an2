@@ -26,12 +26,20 @@ class AdminController
 		if($check==1){
 			return redirect()->route('admin.insert')->with('loi','Tên đăng nhập bị trùng.Vui lòng thử lại');
 		}else{
-			$check_email=Admin::where('email',$rq->email)->count();
-			if($check_email==1){
-				return redirect()->route('admin.insert')->with('email','Email bị trùng.Vui lòng thử lại');
-			}else{
-			Admin::create($rq->all());
+			if($rq->email=="")
+			{
+				Admin::create($rq->all());
 			return redirect()->route('admin.get_all');
+			}
+			else{
+				$check_email=Admin::where('email',$rq->email)->count();
+				if($check_email==1){
+					return redirect()->route('admin.insert')->with('email','Email bị trùng.Vui lòng thử lại');
+				}else{
+				Admin::create($rq->all());
+				return redirect()->route('admin.get_all');
+			}
+			
 		}}
 		
 	}

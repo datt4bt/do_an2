@@ -86,165 +86,101 @@
                
                
                
-                @if ($mon_hoc->ma_kieu_diem==1)
+                @if ($sinh_vien->ma_kieu_diem==1)
                 
-                    <td scope=""> <div class="col-md-3 mb-3">
-                        <input data-sinh_vien="{{$sinh_vien->ma}}"
-                         data-mon_hoc="{{$mon_hoc->ma}}" 
-                         data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
-                         data-so_lan="1"
-                         data-hinh_thuc="1" style="width:70px"  
-                         type="number" class="diem"  
+                    
                          @foreach($array_diem as $diem ) 
                          @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==1)
-                             value="{{$diem->diem}}"
+                            {{$diem->diem}}
                         
                          @endif
                          @endforeach
-                         class="form-control" id="validationCustom05" readonly  required>
-                         
-                        <div class="invalid-feedback">
-                          Vui lòng không để trống
-                        </div>
+                       
                       </div>
                     </td>   
                     <td scope=""> <div class="col-md-3 mb-3">
-                      <input data-sinh_vien="{{$sinh_vien->ma}}"
-                       data-mon_hoc="{{$mon_hoc->ma}}" 
-                       data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
-                       data-so_lan="2"
-                       data-hinh_thuc="1" style="width:70px"  
-                       type="number" class="diem"  
+                      
                        @foreach($array_diem as $diem ) 
                        @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
-                           value="{{$diem->diem}}"
+                          {{$diem->diem}}
                       
                        @endif
                        @endforeach
-                       class="form-control" id="validationCustom05"readonly  required>
+                      
                        
-                      <div class="invalid-feedback">
-                        Vui lòng không để trống
-                      </div>
+                     
                     </div>
                   </td>  
                 
-                @elseif($mon_hoc->ma_kieu_diem==2)
+                @elseif($sinh_vien->ma_kieu_diem==2)
                 
                 <td scope=""> <div class="col-md-3 mb-3">
-                  <input data-sinh_vien="{{$sinh_vien->ma}}"
-                   data-mon_hoc="{{$mon_hoc->ma}}" 
-                   data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
-                   data-so_lan="1" 
-                   data-hinh_thuc="2" style="width:70px" 
+                 
                    @foreach($array_diem as $diem ) 
                    @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==2 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==1)
-                       value="{{$diem->diem}}"
+                      {{$diem->diem}}
                   
                    @endif
-                   @endforeach
-                   type="number" class="diem"  class="form-control" id="validationCustom05" readonly required>
-                  <div class="invalid-feedback">
-                    Vui lòng không để trống
-                  </div>
+                  
                 </div>
               </td>      
               <td scope=""> <div class="col-md-3 mb-3">
-                <input data-sinh_vien="{{$sinh_vien->ma}}"
-                 data-mon_hoc="{{$mon_hoc->ma}}" 
-                 data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
-                 data-so_lan="2" 
-                 data-hinh_thuc="2" style="width:70px" 
+              
                  @foreach($array_diem as $diem ) 
                  @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==2 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
-                     value="{{$diem->diem}}"
+                    {{$diem->diem}}
                 
                  @endif
                  @endforeach
-                 type="number" class="diem"  class="form-control" id="validationCustom05" readonly required>
-                <div class="invalid-feedback">
-                  Vui lòng không để trống
-                </div>
+               
               </div>
             </td>      
                 
-                @elseif($mon_hoc->ma_kieu_diem==3)
+                @elseif($sinh_vien->ma_kieu_diem==3)
                 
                  
                 <td scope=""> <div class="col-md-3 mb-3">
-                    <input type="number" 
-                    data-sinh_vien="{{$sinh_vien->ma}}"
-                   data-mon_hoc="{{$mon_hoc->ma}}" 
-                   data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
-                   data-so_lan="1" 
-                   data-hinh_thuc="1"
+                   
                    @foreach($array_diem as $diem ) 
                    @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==1 && $diem->so_lan==1 )
-                       value="{{$diem->diem}}"
+                     {{$diem->diem}}
                   
                    @endif
                    @endforeach
-                    style="width:70px" class="diem"  class="form-control" id="validationCustom05"readonly required>
-                    <div class="invalid-feedback">
-                      Vui lòng không để trống
-                    </div>
+                   
                   </div>
                 </td>   
                 <td> <div class="col-md-3 mb-3">
-                  <input type="number" 
-                  data-sinh_vien="{{$sinh_vien->ma}}"
-                 data-mon_hoc="{{$mon_hoc->ma}}" 
-                 data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
-                 data-so_lan="2" 
-                 data-hinh_thuc="1"
+                 
                  @foreach($array_diem as $diem ) 
                  @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==1 && $diem->so_lan==2 )
-                     value="{{$diem->diem}}"
+                    {{$diem->diem}}
                 
                  @endif
                  @endforeach
-                  style="width:70px" class="diem"  class="form-control" id="validationCustom05"readonly required>
-                  <div class="invalid-feedback">
-                    Vui lòng không để trống
-                  </div>
+                
                 </div>
               </td>      
               <td scope=""> <div class="col-md-3 mb-3">
-                <input type="number" 
-                data-sinh_vien="{{$sinh_vien->ma}}"
-               data-mon_hoc="{{$mon_hoc->ma}}" 
-               data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
-               data-so_lan="1" 
-               data-hinh_thuc="2"
+             
                @foreach($array_diem as $diem ) 
                @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==2 && $diem->so_lan==1 )
-                   value="{{$diem->diem}}"
+                  {{$diem->diem}}
               
                @endif
                @endforeach
-                style="width:70px" class="diem"  class="form-control" id="validationCustom05"readonly required>
-                <div class="invalid-feedback">
-                  Vui lòng không để trống
-                </div>
+               
               </div>
             </td>   
             <td> <div class="col-md-3 mb-3">
-              <input type="number" 
-              data-sinh_vien="{{$sinh_vien->ma}}"
-             data-mon_hoc="{{$mon_hoc->ma}}" 
-             data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
-             data-so_lan="2" 
-             data-hinh_thuc="2"
+            
              @foreach($array_diem as $diem ) 
              @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==2 && $diem->so_lan==2 )
-                 value="{{$diem->diem}}"
+               {{$diem->diem}}
             
              @endif
              @endforeach
-              style="width:70px" class="diem"  class="form-control" id="validationCustom05"readonly required>
-              <div class="invalid-feedback">
-                Vui lòng không để trống
-              </div>
+             
             </div>
           </td>      
                 

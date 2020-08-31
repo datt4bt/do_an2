@@ -23,8 +23,8 @@
         </select>
         <label for="">Lần thi:</label>
         <select class="custom-select" name="so_lan" >
-            <option  value="1"  selected >lần1</option>
-            <option  value="2" >lần2</option>
+            <option  value="1"  selected >Lần 1</option>
+            <option  value="2" >Lần 2</option>
         </select>
         <br>
         <button type="submit" class="btn btn-primary">Chọn</button>
@@ -33,7 +33,7 @@
 </form>
 <form action="{{ route('diem_thi.luu_diem')}}" method="POST">
     {{ csrf_field() }}
-    <h1 style="text-align: center">Nhập điểm thi lần 2</h1>
+    <h1 style="text-align: center">Nhập điểm thi lần 1</h1>
     
     <table class="table table-striped">
       

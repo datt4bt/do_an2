@@ -23,8 +23,8 @@
         </select>
         <label for="">Lần thi:</label>
         <select class="custom-select" name="so_lan" >
-            <option  value="1"  selected >lần1</option>
-            <option  value="2" >lần2</option>
+            <option  value="1"  selected >Lần 1</option>
+            <option  value="2" >Lần 2</option>
         </select>
         <br>
         <button type="submit" class="btn btn-primary">Chọn</button>

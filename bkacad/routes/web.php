@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Middleware\CheckGiaoVien;
 use Illuminate\Routing\RouteGroup;
 
 
@@ -18,7 +19,7 @@ use Illuminate\Routing\RouteGroup;
 Route::group(['middleware' => ['CheckLogin']], function () {
     Route::get('/','Controller@index')->name('home');
     //Khoa
-Route::group(['prefix' => 'khoa','as'=>'khoa.'], function() {
+Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'khoa','as'=>'khoa.'], function() {
     Route::get('','KhoaController@get_all')->name('get_all');
     Route::get('insert','KhoaController@insert')->name('insert');
     Route::post('process_insert','KhoaController@process_insert')->name('process_insert');
@@ -26,10 +27,19 @@ Route::group(['prefix' => 'khoa','as'=>'khoa.'], function() {
     Route::post('process_update/{ma}','KhoaController@process_update')->name('process_update');
     Route::get('delete/{ma}','KhoaController@delete')->name('delete');   //
 });
+    //Phân công
+    Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'phan_cong','as'=>'phan_cong.'], function() {
+        Route::get('','PhanCongController@get_all')->name('get_all');
+        Route::get('insert','PhanCongController@insert')->name('insert');
+        Route::post('process_insert','PhanCongController@process_insert')->name('process_insert');
+        Route::get('update/{ma}','PhanCongController@update')->name('update');
+        Route::post('process_update/{ma}','PhanCongController@process_update')->name('process_update');
+        Route::get('delete/{ma}','PhanCongController@delete')->name('delete');   //
+    });
 
 
 //Ngành học
-Route::group(['prefix' => 'nganh_hoc','as'=>'nganh_hoc.'], function() {
+Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'nganh_hoc','as'=>'nganh_hoc.'], function() {
     Route::get('','Nganh_HocController@get_all')->name('get_all');
     Route::get('insert','Nganh_HocController@insert')->name('insert');
     Route::post('process_insert','Nganh_HocController@process_insert')->name('process_insert');
@@ -38,7 +48,7 @@ Route::group(['prefix' => 'nganh_hoc','as'=>'nganh_hoc.'], function() {
     Route::get('delete/{ma}','Nganh_HocController@delete')->name('delete');   //
 });
 //Kiểu điểm
-Route::group(['prefix' => 'kieu_diem','as'=>'kieu_diem.'], function() {
+Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'kieu_diem','as'=>'kieu_diem.'], function() {
     Route::get('','Kieu_DiemController@get_all')->name('get_all');
     Route::get('insert','Kieu_DiemController@insert')->name('insert');
     Route::post('process_insert','Kieu_DiemController@process_insert')->name('process_insert');
@@ -47,7 +57,7 @@ Route::group(['prefix' => 'kieu_diem','as'=>'kieu_diem.'], function() {
     Route::get('delete/{ma}','Kieu_DiemController@delete')->name('delete');   //
 });
 //Môn học
-Route::group(['prefix' => 'mon_hoc','as'=>'mon_hoc.'], function() {
+Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'mon_hoc','as'=>'mon_hoc.'], function() {
     Route::get('','Mon_HocController@get_all')->name('get_all');
     Route::get('insert','Mon_HocController@insert')->name('insert');
     Route::post('process_insert','Mon_HocController@process_insert')->name('process_insert');
@@ -56,7 +66,7 @@ Route::group(['prefix' => 'mon_hoc','as'=>'mon_hoc.'], function() {
     Route::get('delete/{ma}','Mon_HocController@delete')->name('delete');   //
 });
 //Ngành học chi tiết
-Route::group(['prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], function() {
+Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], function() {
     Route::get('','Nganh_Hoc_Chi_TietController@get_all')->name('get_all');
     Route::get('insert','Nganh_Hoc_Chi_TietController@insert')->name('insert');
     Route::post('process_insert','Nganh_Hoc_Chi_TietController@process_insert')->name('process_insert');
@@ -66,7 +76,7 @@ Route::group(['prefix' => 'nganh_hoc_chi_tiet','as'=>'nganh_hoc_chi_tiet.'], fun
    
 });
 //Lớp
-Route::group(['prefix' => 'lop','as'=>'lop.'], function() {
+Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'lop','as'=>'lop.'], function() {
     Route::get('','LopController@get_all')->name('get_all');
     Route::post('get_one','LopController@get_one')->name('get_one');
     Route::get('insert','LopController@insert')->name('insert');
@@ -76,7 +86,7 @@ Route::group(['prefix' => 'lop','as'=>'lop.'], function() {
     Route::get('delete/{ma}','LopController@delete')->name('delete');   
 });
 //Sinh viên
-Route::group(['prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
+Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
     Route::get('','Sinh_VienController@get_all')->name('get_all');
     Route::post('get_one','Sinh_VienController@get_one')->name('get_one');
     Route::get('insert','Sinh_VienController@insert')->name('insert');
@@ -96,7 +106,7 @@ Route::group(['prefix' => 'diem_thi','as'=>'diem_thi.'], function() {
     Route::get('get_lop','Diem_ThiController@get_lop')->name('get_lop');
     Route::get('get_mon','Diem_ThiController@get_mon')->name('get_mon');
     Route::get('luu_diem','Diem_ThiController@luu_diem')->name('luu_diem');
-    Route::get('insert/{ma}','Diem_ThiController@get_all')->name('insert');
+    Route::get('insert/{ma}','Diem_ThiController@get_all')->name('insert')->middleware(CheckGiaoVien::class);
     Route::post('process_insert','Diem_ThiController@process_insert')->name('process_insert');
     Route::get('thong_ke/{ma}','Diem_ThiController@get_all')->name('thong_ke');
     Route::post('process_thong_ke','Diem_ThiController@process_thong_ke')->name('process_thong_ke');

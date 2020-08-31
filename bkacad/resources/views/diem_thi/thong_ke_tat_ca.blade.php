@@ -101,79 +101,138 @@
          @endforeach   
          </tr>
              <tr>
-              @foreach($array_sinh_vien as $sinh_vien )
-             
-                <td >{{$sinh_vien->ma}}</td>
+
+                @foreach($array_sinh_vien as $sinh_vien )
+                <td>{{$sinh_vien->ma}}</td>
                 <td>{{$sinh_vien->ten}}</td>
                 <td>{{$sinh_vien->ngay_sinh}}</td>
+                <td>
+                @foreach($array_diem as $diem )
                
+                @foreach($array_mon_hoc as $mon_hoc )
                
-               
-               
+                   @if($diem->ma_sinh_vien==$sinh_vien->ma && $diem->ma_mon_hoc==$mon_hoc->ma && $diem->ma_kieu_diem==1 &&  $diem->hinh_thuc==1 && $diem->so_lan==1) 
+                   {{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_mon_hoc][$diem->ma_kieu_diem][$diem->hinh_thuc][$diem->so_lan]}} 
                 
-                    
-                    <td scope=""> 
-                        @foreach($array_mon_hoc as $mon_hoc)
-                        @foreach($array_diem as $diem ) 
-                        @if (isset($diem->ma_kieu_diem) && $mon_hoc->ten== $diem->mon_hoc->ten &&  $diem->hinh_thuc==1  && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==1)
-                       {{$diem->diem}}
-                       
-                        @endif
-                        @endforeach
-               
-                        @endforeach
-                      
-                       
-                      
-                  </td>  
-                  <td scope=""> 
-                    @foreach($array_diem as $diem ) 
-                    @if (isset($diem->ma_kieu_diem)&&  $diem->hinh_thuc==1  && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
                    
-                   
-                    @endif
+                   @endif
+                
                     @endforeach
+                    @endforeach
+                </td> 
+                <td>
+                    @foreach($array_diem as $diem )
                    
+                    @foreach($array_mon_hoc as $mon_hoc )
+                   
+                       @if($diem->ma_sinh_vien==$sinh_vien->ma && $diem->ma_mon_hoc==$mon_hoc->ma && $diem->ma_kieu_diem==1 &&  $diem->hinh_thuc==1 && $diem->so_lan==2) 
+                       {{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_mon_hoc][$diem->ma_kieu_diem][$diem->hinh_thuc][$diem->so_lan]}} 
                     
+                       
+                       @endif
+                    
+                        @endforeach
+                        @endforeach
+                    </td> 
+                  //
+                  <td>
+                    @foreach($array_diem as $diem )
                    
-               </td>  
-               <td scope=""> 
-                @foreach($array_diem as $diem ) 
-                @if (isset($diem->ma_kieu_diem) &&  $diem->hinh_thuc==2  && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==1)
-               
-               
-                @endif
-                @endforeach
-               
+                    @foreach($array_mon_hoc as $mon_hoc )
+                   
+                       @if($diem->ma_sinh_vien==$sinh_vien->ma && $diem->ma_mon_hoc==$mon_hoc->ma && $diem->ma_kieu_diem==2 &&  $diem->hinh_thuc==2 && $diem->so_lan==1) 
+                       {{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_mon_hoc][$diem->ma_kieu_diem][$diem->hinh_thuc][$diem->so_lan]}} 
+                    
+                       
+                       @endif
+                    
+                        @endforeach
+                        @endforeach
+                    </td> 
+                    <td>
+                        @foreach($array_diem as $diem )
+                       
+                        @foreach($array_mon_hoc as $mon_hoc )
+                       
+                           @if($diem->ma_sinh_vien==$sinh_vien->ma && $diem->ma_mon_hoc==$mon_hoc->ma && $diem->ma_kieu_diem==2 &&  $diem->hinh_thuc==2 && $diem->so_lan==2) 
+                           {{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_mon_hoc][$diem->ma_kieu_diem][$diem->hinh_thuc][$diem->so_lan]}} 
+                        
+                           
+                           @endif
+                        
+                            @endforeach
+                            @endforeach
+                        </td> 
+                  //
+                    
                 
+             //
+             <td>
+                @foreach($array_diem as $diem )
                
-           </td>  
-           <td scope=""> 
-             @foreach($array_diem as $diem ) 
-             @if (isset($diem->ma_kieu_diem)&&  $diem->hinh_thuc==2  && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
-            
-            
-             @endif
+                @foreach($array_mon_hoc as $mon_hoc )
+               
+                   @if($diem->ma_sinh_vien==$sinh_vien->ma && $diem->ma_mon_hoc==$mon_hoc->ma && $diem->ma_kieu_diem==3 &&  $diem->hinh_thuc==1 && $diem->so_lan==1) 
+                   {{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_mon_hoc][$diem->ma_kieu_diem][$diem->hinh_thuc][$diem->so_lan]}} 
+                
+                   
+                   @endif
+                
+                    @endforeach
+                    @endforeach
+                </td> 
+                <td>
+                    @foreach($array_diem as $diem )
+                   
+                    @foreach($array_mon_hoc as $mon_hoc )
+                   
+                       @if($diem->ma_sinh_vien==$sinh_vien->ma && $diem->ma_mon_hoc==$mon_hoc->ma && $diem->ma_kieu_diem==3 &&  $diem->hinh_thuc==1 && $diem->so_lan==2) 
+                       {{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_mon_hoc][$diem->ma_kieu_diem][$diem->hinh_thuc][$diem->so_lan]}} 
+                    
+                       
+                       @endif
+                    
+                        @endforeach
+                        @endforeach
+                    </td> 
+                    <td>
+                        @foreach($array_diem as $diem )
+                       
+                        @foreach($array_mon_hoc as $mon_hoc )
+                       
+                           @if($diem->ma_sinh_vien==$sinh_vien->ma && $diem->ma_mon_hoc==$mon_hoc->ma && $diem->ma_kieu_diem==3 &&  $diem->hinh_thuc==2 && $diem->so_lan==1) 
+                           {{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_mon_hoc][$diem->ma_kieu_diem][$diem->hinh_thuc][$diem->so_lan]}} 
+                        
+                           
+                           @endif
+                        
+                            @endforeach
+                            @endforeach
+                        </td> 
+                        <td>
+                            @foreach($array_diem as $diem )
+                           
+                            @foreach($array_mon_hoc as $mon_hoc )
+                           
+                               @if($diem->ma_sinh_vien==$sinh_vien->ma && $diem->ma_mon_hoc==$mon_hoc->ma && $diem->ma_kieu_diem==3 &&  $diem->hinh_thuc==2 && $diem->so_lan==2) 
+                               {{$diem_chi_tiet[$sinh_vien->ma][$diem->ma_mon_hoc][$diem->ma_kieu_diem][$diem->hinh_thuc][$diem->so_lan]}} 
+                            
+                               
+                               @endif
+                            
+                                @endforeach
+                                @endforeach
+                            </td> 
+             //
+                </tr>
              @endforeach
-            
-             
-            
-        </td> 
-                
-         
-                
-              
-              
-               
-          
-            </tr>
-              @endforeach
-            
+
            
-             
+            
+            
           
       
-        
+         
               
       </table>
     

@@ -86,23 +86,27 @@
                
                
                
-                @if ($sinh_vien->ma_kieu_diem==1)
+                @if ($mon_hoc->ma_kieu_diem==1)
                 
-                    
+                    <td scope=""> <div class="col-md-3 mb-3">
+                       
                          @foreach($array_diem as $diem ) 
                          @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==1)
                             {{$diem->diem}}
                         
                          @endif
                          @endforeach
-                       
+                         
+                         
+                        
                       </div>
                     </td>   
                     <td scope=""> <div class="col-md-3 mb-3">
-                      
+                     
+                    
                        @foreach($array_diem as $diem ) 
                        @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
-                          {{$diem->diem}}
+                         {{$diem->diem}}
                       
                        @endif
                        @endforeach
@@ -112,20 +116,21 @@
                     </div>
                   </td>  
                 
-                @elseif($sinh_vien->ma_kieu_diem==2)
+                @elseif($mon_hoc->ma_kieu_diem==2)
                 
                 <td scope=""> <div class="col-md-3 mb-3">
                  
                    @foreach($array_diem as $diem ) 
                    @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==2 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==1)
-                      {{$diem->diem}}
+                     {{$diem->diem}}
                   
                    @endif
+                   @endforeach
                   
                 </div>
               </td>      
               <td scope=""> <div class="col-md-3 mb-3">
-              
+               
                  @foreach($array_diem as $diem ) 
                  @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==2 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
                     {{$diem->diem}}
@@ -136,7 +141,7 @@
               </div>
             </td>      
                 
-                @elseif($sinh_vien->ma_kieu_diem==3)
+                @elseif($mon_hoc->ma_kieu_diem==3)
                 
                  
                 <td scope=""> <div class="col-md-3 mb-3">
@@ -147,14 +152,15 @@
                   
                    @endif
                    @endforeach
+                  
                    
                   </div>
                 </td>   
                 <td> <div class="col-md-3 mb-3">
-                 
+                  
                  @foreach($array_diem as $diem ) 
                  @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==1 && $diem->so_lan==2 )
-                    {{$diem->diem}}
+                   {{$diem->diem}}
                 
                  @endif
                  @endforeach
@@ -162,22 +168,22 @@
                 </div>
               </td>      
               <td scope=""> <div class="col-md-3 mb-3">
-             
+                
                @foreach($array_diem as $diem ) 
                @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==2 && $diem->so_lan==1 )
-                  {{$diem->diem}}
+               {{$diem->diem}}
               
                @endif
                @endforeach
-               
+              
               </div>
             </td>   
             <td> <div class="col-md-3 mb-3">
-            
+             
              @foreach($array_diem as $diem ) 
              @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==2 && $diem->so_lan==2 )
-               {{$diem->diem}}
-            
+                {{$diem->diem}}
+          
              @endif
              @endforeach
              

@@ -240,6 +240,9 @@ public function thong_ke_diem_thi(Request $rq){
 		$array_sinh_vien = SinhVien::where("ma_lop",$ma_lop)->get();
 		
 		$array_mon_hoc = MonHoc::get();
+		$diem_chi_tiet=[];
+	
+
 		
 		$check=DiemThi::count();
 		if($check==0)
@@ -248,8 +251,16 @@ public function thong_ke_diem_thi(Request $rq){
 		}
 		else{
 			$array_diem=DiemThi::with('mon_hoc')->get();
-			//return $array_diem;
-		return view('diem_thi.thong_ke_tat_ca',compact('array_khoa','array_sinh_vien','khoa_hoc','lop','array_diem','kieu','array_mon_hoc'));
+			foreach($array_diem as $array)
+			{
+			
+				
+				$diem_chi_tiet[$array->ma_sinh_vien][$array->ma_mon_hoc][$array->ma_kieu_diem][$array->hinh_thuc][$array->so_lan]=$array->diem;
+			
+			
+			}
+		
+		return view('diem_thi.thong_ke_tat_ca',compact('array_khoa','array_sinh_vien','khoa_hoc','lop','array_diem','kieu','array_mon_hoc','diem_chi_tiet'));
 		
 		}
 	

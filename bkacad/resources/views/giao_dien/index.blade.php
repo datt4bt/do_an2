@@ -39,7 +39,12 @@
         <div id="wrapper">
 
             <!-- ========== Left Sidebar Start ========== -->
-            @include('giao_dien.sitebar')
+            @if (Session::get('cap_do')==0)
+            @include('giao_dien.sitebar_giao_vu')
+            @else
+            @include('giao_dien.sitebar_giao_vien')  
+            @endif
+           
             <!-- Left Sidebar End -->
 
             <!-- Start right Content here -->

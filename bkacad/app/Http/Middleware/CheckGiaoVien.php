@@ -4,8 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
-
-class CheckAdmin
+class CheckGiaoVien
 {
     /**
      * Handle an incoming request.
@@ -16,13 +15,12 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Session::get('cap_do')==0)
+        if(Session::get('cap_do')==1)
         {
                 return $next($request);
         }
         else{
                 return redirect()->route('home')->with('error','Bạn không có quyền truy cập');
         }
-      
     }
 }

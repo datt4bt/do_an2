@@ -72,12 +72,12 @@
             <th scope="col"></th>
             @foreach($array_mon_hoc as $mon_hoc)
             @if ($mon_hoc->ma_kieu_diem==3)
-            <th colspan="2">LT</th>
-            <th colspan="2">TH</th>
+            <th colspan="2">Lý thuyết</th>
+            <th colspan="2">Thực hành</th>
             @elseif($mon_hoc->ma_kieu_diem==1)
-            <th colspan="2">LT</th>
+            <th colspan="2">Lý thuyết</th>
             @elseif($mon_hoc->ma_kieu_diem==2)
-            <th colspan="2">TH</th>
+            <th colspan="2">Thực hành</th>
             @endif
          @endforeach   
          </tr>

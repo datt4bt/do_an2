@@ -27,19 +27,28 @@ class AccountController
 		if(Session::get('ten')==$rq->ten){
 			$check=Admin::where('ma',Session::get('ma'))->first();
 			
-			if($check->email==$rq->email)
+			if(isset($check->email))
+			{
+				if($check->email==$rq->email)
 			{
 				Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin]);
 			}
+			elseif($rq->email==""){
+				Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
+			}
 			else{
-				$check_email=Admin::where('email',$rq->email)->first();
-				if($check_email->email==$rq->email)
+				$check_email=Admin::where('email',$rq->email)->count();
+				if($check_email==1)
 			{
-				return redirect()->route('account.view_update_info')->with('loi_ten','Tên đăng nhập bị trùng');
+				return redirect()->route('account.view_update_info')->with('loi_ten','Tên email bị trùng');
 			}
 			else{
 				Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
 			}}
+			}
+			else{
+				return redirect()->route('home');
+			}
 		}
 		else{
 			$check=Admin::where('ma',Session::get('ma'))->first();
@@ -48,10 +57,14 @@ class AccountController
 			{
 				return redirect()->route('account.view_update_info')->with('loi_ten','Tên đăng nhập bị trùng');
 			}
+			
 			else{
 				if($check->email==$rq->email)
 				{
 					Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin]);
+				}
+				elseif($rq->email==""){
+					Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
 				}
 				else{
 					Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);

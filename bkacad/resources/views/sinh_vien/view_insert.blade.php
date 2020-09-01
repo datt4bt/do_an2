@@ -33,7 +33,7 @@
 	  </div>
 	  <div class="form-group">
 		<label for="col-sm-2 col-form-label">Email</label>
-		<input type="email" class="form-control is-invalid"  name="email" required>
+		<input type="email" class="form-control is-invalid"  name="email" >
 	  </div>
 	<label for="col-sm-2 col-form-label">Lớp</label>
 	<select class="form-control" name="ma_lop">

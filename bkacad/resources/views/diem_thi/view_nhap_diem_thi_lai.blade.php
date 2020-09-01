@@ -31,7 +31,7 @@
      
 	  
 </form>
-<form action="{{ route('diem_thi.luu_diem')}}" method="POST">
+<form class="was-validated"  action="{{ route('diem_thi.luu_diem')}}" method="POST">
     {{ csrf_field() }}
     <h1 style="text-align: center">Nhập điểm thi lần 2</h1>
     
@@ -75,37 +75,35 @@
                 @if ($mon_hoc->ma_kieu_diem==1)
                 
                     
-                    <td scope=""> <div class="col-md-3 mb-3">
+                    <td scope="">  <div class="form-row">
                       <input data-sinh_vien="{{$sinh_vien->ma}}"
                        data-mon_hoc="{{$mon_hoc->ma}}" 
                        data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
                        data-so_lan="2"
-                       data-hinh_thuc="1" style="width:70px"  
-                       type="number" class="diem"  
+                       data-hinh_thuc="1" style="width:90px"  
+                       type="number" class="form-control is-invalid diem"    
                        @foreach($array_diem as $diem ) 
                        @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==1 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
                            value="{{$diem->diem}}"
                       
                        @endif
                        @endforeach
-                       class="form-control" id="validationCustom05"  required>
+                        required>
                        
-                      <div class="invalid-feedback">
-                        Vui lòng không để trống
-                      </div>
+                      
                     </div>
                   </td>  
                 
                 @elseif($mon_hoc->ma_kieu_diem==2)
                 
                
-              <td scope=""> <div class="col-md-3 mb-3">
+              <td scope="">  <div class="form-row">
                 <input data-sinh_vien="{{$sinh_vien->ma}}"
                 type="number"
                  data-mon_hoc="{{$mon_hoc->ma}}" 
                  data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
                  data-so_lan="2" 
-                 data-hinh_thuc="2" style="width:70px" 
+                 data-hinh_thuc="2" style="width:90px" class="form-control is-invalid diem"  
                  @foreach($array_diem as $diem ) 
                  @if (isset($diem->ma_kieu_diem) &&  $diem->ma_kieu_diem==2 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->so_lan==2)
                      value="{{$diem->diem}}"
@@ -117,10 +115,8 @@
                  @endforeach
                  
                
-                 class="diem"  class="form-control" id="validationCustom05"  required>
-                <div class="invalid-feedback">
-                  Vui lòng không để trống
-                </div>
+                  required>
+               
               </div>
 
             </td>      
@@ -135,16 +131,16 @@
            @if (isset($diem->diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==1 && $diem->so_lan==2  )
            
            @if($diem->diem==0)
-           <td> <div class="col-md-3 mb-3">
+           <td>  <div class="form-row">
             <input 
             data-sinh_vien="{{$sinh_vien->ma}}"
            data-mon_hoc="{{$mon_hoc->ma}}" 
            data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
            data-so_lan="2" 
            data-hinh_thuc="1"
-           type="number"
+           type="number" class="form-control is-invalid diem"  
           value="{{$diem->diem}}"
-          style="width:70px" class="diem"  class="form-control" id="validationCustom05"  required>
+          style="width:90px"   required>
    
         </div>
       </td>   
@@ -167,16 +163,16 @@
            @if (isset($diem->diem) &&  $diem->ma_kieu_diem==3 && $sinh_vien->ma==$diem->ma_sinh_vien && $diem->hinh_thuc==2 && $diem->so_lan==2  )
            
            @if($diem->diem==0)
-           <td> <div class="col-md-3 mb-3">
+           <td>  <div class="form-row">
             <input 
             data-sinh_vien="{{$sinh_vien->ma}}"
            data-mon_hoc="{{$mon_hoc->ma}}" 
            data-kieu_diem="{{$mon_hoc->ma_kieu_diem}}"  
            data-so_lan="2" 
            data-hinh_thuc="2"
-           type="number"
+           type="number" class="form-control is-invalid diem" 
           value="{{$diem->diem}}"
-          style="width:70px" class="diem"  class="form-control" id="validationCustom05"  required>
+          style="width:90px"  required>
    
         </div>
       </td>   

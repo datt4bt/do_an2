@@ -17,34 +17,33 @@ class PhanCongController
 	}
 	 public function insert(){
 		
-	$array_admin=Admin::where('ma',1)->get();
-	$array_mon_hoc=MonHoc::get();
-	$array_lop=Lop::get();
+	$array_admin=Admin::where('cap_do',1)->get();
+	$array_mon=MonHoc::get();
+	$array_lop=Lop::with('khoa')->get();
 		
-		return view('phan_cong.view_insert',compact('array_admin','array_mon_hoc','array_lop'));
+		return view('phan_cong.view_insert',compact('array_admin','array_mon','array_lop'));
 	}
-	 public function process_insert(Request $rq){
-		$check=PhanCong::where('ten',$rq->ten)->count();
-		
-		if($check==1){
-			return redirect()->route('phan_cong.insert')->with('loi_phan_cong','Tên  bị trùng.Vui lòng thử lại');
-		}else{
-			PhanCong::create($rq->all());
-		return redirect()->route('phan_cong.get_all');}
-	}
-	 public function update($ma){
-		//$phan_cong=Khoa::where('ma','=',$ma)->first();
-		$phan_cong=PhanCong::find($ma);
-		return view('phan_cong.view_update',compact('phan_cong'));
-	}
-	 public function process_update($ma,Request $rq){
-		PhanCong::find($ma)->update($rq->all());
-		
-		return redirect()->route('phan_cong.get_all');
-	}
-	 public function delete($ma){
-		
-		PhanCong::destroy($ma);
-		return redirect()->route('phan_cong.get_all');
-	}
+	 public function process_phan_cong(Request $rq){
+		$check_phan_cong=PhanCong::where('ma_mon_hoc' , $rq->ma_mon)->where('ma_lop_hoc' , $rq->ma_lop)->where('ma_admin' , $rq->ma_admin)->count();
+		if($check_phan_cong==1){
+			return redirect()->route('phan_cong.insert')->with('loi_phan_cong','Thông tin phân công đã tồn tại,vui lòng thử lại');
+		}
+		else
+		{
+		$check=PhanCong::where('ma_mon_hoc' , $rq->ma_mon)->where('ma_lop_hoc' , $rq->ma_lop)->count();
+		if($check<3)
+		{
+			PhanCong::insert([
+            'ma_lop_hoc' => $rq->ma_lop,
+            'ma_mon_hoc' => $rq->ma_mon,
+        
+            'ma_admin' => $rq->ma_admin
+		]);
+		}
+		else{
+			return redirect()->route('phan_cong.insert')->with('loi_phan_cong','Không thể thêm phân công.Do đã đủ số lượng,vui lòng xóa phân công và thử lại');
+		}
+
+	}}
+	
 }

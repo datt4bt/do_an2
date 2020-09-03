@@ -31,7 +31,7 @@ Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'khoa','as'=>'khoa.'], 
     Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'phan_cong','as'=>'phan_cong.'], function() {
         Route::get('','PhanCongController@get_all')->name('get_all');
         Route::get('insert','PhanCongController@insert')->name('insert');
-        Route::post('process_insert','PhanCongController@process_insert')->name('process_insert');
+        Route::post('process_phan_cong','PhanCongController@process_phan_cong')->name('process_phan_cong');
         Route::get('update/{ma}','PhanCongController@update')->name('update');
         Route::post('process_update/{ma}','PhanCongController@process_update')->name('process_update');
         Route::get('delete/{ma}','PhanCongController@delete')->name('delete');   //
@@ -106,7 +106,7 @@ Route::group(['prefix' => 'diem_thi','as'=>'diem_thi.'], function() {
     Route::get('get_lop','Diem_ThiController@get_lop')->name('get_lop');
     Route::get('get_mon','Diem_ThiController@get_mon')->name('get_mon');
     Route::get('luu_diem','Diem_ThiController@luu_diem')->name('luu_diem');
-    Route::get('insert/{ma}','Diem_ThiController@get_all')->name('insert')->middleware(CheckGiaoVien::class);
+    Route::get('insert','Diem_ThiController@insert')->name('insert')->middleware(CheckGiaoVien::class);
     Route::post('process_insert','Diem_ThiController@process_insert')->name('process_insert');
     Route::get('thong_ke/{ma}','Diem_ThiController@get_all')->name('thong_ke');
     Route::post('process_thong_ke','Diem_ThiController@process_thong_ke')->name('process_thong_ke');

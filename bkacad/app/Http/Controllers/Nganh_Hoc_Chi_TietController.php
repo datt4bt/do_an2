@@ -16,9 +16,14 @@ class Nganh_Hoc_Chi_TietController
 			
 			$mon_hoc=NganhHoc::with('array_mon_hoc')
 			->find($ma);
+			if($mon_hoc=="")
+			{
+				return redirect()->route('home')->with('loi_get_all_nganh_hoc','scs');
+			}
 			$mon=$mon_hoc->array_mon_hoc;
+			
 		return view('nganh_hoc_chi_tiet.view_all',compact('mon','ma','array'));
-		return $mon;
+		
 	   
 		
 		//return $nganh_hoc_chi_tiet;
@@ -33,7 +38,12 @@ class Nganh_Hoc_Chi_TietController
 	
 	
 	$mon_hoc=NganhHoc::with('array_mon_hoc')
+	
 	->find($ma);
+	if($mon_hoc=="")
+			{
+				return redirect()->route('home')->with('loi_insert_nganh_hoc','scs');
+			}
 	$mon=$mon_hoc->array_mon_hoc;
 	return view('nganh_hoc_chi_tiet.view_insert',compact('array_nganh_hoc_chi_tiet','array_mon_hoc_chi_tiet','ma','mon'));
 }

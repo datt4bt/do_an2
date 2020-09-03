@@ -24,65 +24,78 @@ class AccountController
 		return view('account.view_update_info',compact('info_detail'));
 	}
 	public function process_update_info(Request $rq){
-		if(Session::get('ten')==$rq->ten){
-			$check=Admin::where('ma',Session::get('ma'))->first();
+		
+		if(Session::get('ten')==$rq->ten &&  Session::get('email')==$rq->email )
+		{
 			
-			if(isset($check->email))
-			{
-				if($check->email==$rq->email)
-			{
-				Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin]);
-			}
-			elseif($rq->email==""){
-				Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
-			}
-			else{
-				$check_email=Admin::where('email',$rq->email)->count();
-				if($check_email==1)
+			Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin]);
+			return redirect()->route('account.info_user');
+		}
+		elseif(Session::get('ten')==$rq->ten &&  Session::get('email')!=$rq->email ){
+			$check_email=Admin::where('email',$rq->email)->count();
+			if($check_email==1)
 			{
 				return redirect()->route('account.view_update_info')->with('loi_ten','Tên email bị trùng');
 			}
 			else{
 				Admin::where('ma',Session::get('ma'))->update(['ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
-			}}
-			}
-			else{
-				return redirect()->route('home');
-			}
-		}
-		else{
-			$check=Admin::where('ma',Session::get('ma'))->first();
-			$check_ten=Admin::where('ten',$rq->ten)->first();
-			if($check_ten->ten==$rq->ten)
-			{
-				return redirect()->route('account.view_update_info')->with('loi_ten','Tên đăng nhập bị trùng');
+				Session::put('email',$rq->email);
 			}
 			
+		}
+		elseif(Session::get('ten')!=$rq->ten &&  Session::get('email')==$rq->email ){
+			$check_ten=Admin::where('ten',$rq->ten)->count();
+			if($check_ten==1)
+			{
+				return redirect()->route('account.view_update_info')->with('loi_ten','Tên email bị trùng');
+			}
 			else{
-				if($check->email==$rq->email)
+				Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin]);
+				Session::put('ten',$rq->ten);
+			}
+			
+		}
+		elseif(Session::get('ten')!=$rq->ten &&  Session::get('email')!=$rq->email ){
+			$check_ten=Admin::where('ten',$rq->ten)->count();
+			$check_email=Admin::where('email',$rq->email)->count();
+			if($check_ten==1)
+			{
+				return redirect()->route('account.view_update_info')->with('loi_ten','Tên email bị trùng');
+			}
+			else{
+				if($check_email==1)
 				{
-					Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin]);
-				}
-				elseif($rq->email==""){
-					Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
+					return redirect()->route('account.view_update_info')->with('loi_ten','Tên email bị trùng');
 				}
 				else{
 					Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
+					Session::put('ten',$rq->ten);
+					Session::put('email',$rq->email);
 				}
 			}
-		
+			
+		}
+		return redirect()->route('account.info_user');
+			//Admin::where('ma',Session::get('ma'))->update(['ten'=>$rq->ten,'ten_admin'=>$rq->ten_admin,'email'=>$rq->email]);
 		}
 		
+
+		
+
+
+		//
+		
+		
 			
 				
 				
-				return redirect()->route('account.info_user');
-			
+				
+		
 	
 		
   
 		
-}
+
   
    
 	 public function insert_anh(){	

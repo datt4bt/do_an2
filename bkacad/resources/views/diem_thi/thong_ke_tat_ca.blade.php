@@ -45,7 +45,7 @@
 </form>
 <form action="{{ route('diem_thi.luu_diem')}}" method="POST">
     {{ csrf_field() }}
-    <h1 style="text-align: center">Thống kê</h1>
+    <h1 style="text-align: center">Thống kê điểm tất cả sinh viên</h1>
     
     <table class="table table-bordered">
       
@@ -134,7 +134,7 @@
                         @endforeach
                         @endforeach
                     </td> 
-                  //
+                  
                   <td>
                     @foreach($array_diem as $diem )
                    
@@ -163,10 +163,10 @@
                             @endforeach
                             @endforeach
                         </td> 
-                  //
+                  
                     
                 
-             //
+             
              <td>
                 @foreach($array_diem as $diem )
                
@@ -223,7 +223,7 @@
                                 @endforeach
                                 @endforeach
                             </td> 
-             //
+             
                 </tr>
              @endforeach
 

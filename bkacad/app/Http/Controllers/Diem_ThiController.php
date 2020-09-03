@@ -9,6 +9,8 @@ use App\Models\Lop;
 use App\Models\MonHoc;
 use App\Models\NganhHoc;
 use App\Models\SinhVien;
+use App\Models\PhanCong;
+use Session;
 
 
 class Diem_ThiController
@@ -20,6 +22,26 @@ class Diem_ThiController
 	
 		return view('diem_thi.view_all',compact('array_khoa','ma'));
 	}
+	public function insert(){
+		$array_lop = PhanCong::where('ma_admin',Session::get('ma'))
+			
+		->join('lop','lop.ma','phan_cong.ma_lop_hoc')
+		
+        ->select('lop.ma','lop.ten')
+        ->distinct()
+		->get();
+		$array_mon = PhanCong::where('ma_admin',Session::get('ma'))
+        ->join('mon_hoc','mon_hoc.ma','phan_cong.ma_mon_hoc')
+        ->select('mon_hoc.ma','mon_hoc.ten')
+        ->distinct()
+        ->get();
+
+	
+		return view('diem_thi.view_insert',compact('array_lop','array_mon'));
+
+	   
+	
+}
 	public function get_lop(Request $rq){
 			$ma_khoa_hoc=$rq->get('ma_khoa_hoc');
             $lops = Lop:: where("ma_khoa_hoc",$ma_khoa_hoc)->get();
@@ -82,17 +104,29 @@ public function get_one(Request $rq){
 
 }
 public function process_insert(Request $rq){
+	$array_lop = PhanCong::where('ma_admin',Session::get('ma'))
+			
+		->join('lop','lop.ma','phan_cong.ma_lop_hoc')
+		
+        ->select('lop.ma','lop.ten')
+        ->distinct()
+		->get();
+		$array_mon = PhanCong::where('ma_admin',Session::get('ma'))
+        ->join('mon_hoc','mon_hoc.ma','phan_cong.ma_mon_hoc')
+        ->select('mon_hoc.ma','mon_hoc.ten')
+        ->distinct()
+        ->get();
+
 	$so_lan=$rq->so_lan;
 	if($so_lan==1)
 	{
-		$array_khoa=Khoa::get();
+		
 
-		$ma_khoa_hoc=$rq->ma_khoa_hoc;
-		$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
+		
 		$ma_lop=$rq->ma_lop;
-		$lop = Lop::where("ma",$ma_lop)->value('ten');
+		$lop_hoc = Lop::where("ma",$ma_lop)->value('ten');
 		$ma_mon=$rq->ma_mon;
-		$mon = MonHoc::where("ma",$ma_mon)->value('ten');
+		$mon_hoc = MonHoc::where("ma",$ma_mon)->value('ten');
 		
 		$array_sinh_vien = SinhVien::where("ma_lop",$ma_lop)->get();
 		$array_mon_hoc = MonHoc::where("ma",$ma_mon)->get();
@@ -101,21 +135,20 @@ public function process_insert(Request $rq){
 	
 		
 			$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->where('so_lan',1)->get();
-			return view('diem_thi.view_nhap_diem',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
+			return view('diem_thi.view_nhap_diem',compact('array_sinh_vien','array_mon_hoc','lop_hoc','mon_hoc','array_diem','array_lop','array_mon'));
 		
 		
 		
 	}
 	else if($so_lan==2)
 	{
-		$array_khoa=Khoa::get();
+	
 
-		$ma_khoa_hoc=$rq->ma_khoa_hoc;
-		$khoa_hoc = Khoa::where("ma",$ma_khoa_hoc)->value('ten');
+		
 		$ma_lop=$rq->ma_lop;
-		$lop = Lop::where("ma",$ma_lop)->value('ten');
+		$lop_hoc = Lop::where("ma",$ma_lop)->value('ten');
 		$ma_mon=$rq->ma_mon;
-		$mon = MonHoc::where("ma",$ma_mon)->value('ten');
+		$mon_hoc = MonHoc::where("ma",$ma_mon)->value('ten');
 		
 		
 
@@ -124,7 +157,7 @@ public function process_insert(Request $rq){
 		
 		if($check==0)
 		{
-			return redirect()->route('diem_thi.insert',['ma'=>1])->with('loi_lan2','Lớp '. $lop . ' -Khóa ' . $khoa_hoc . ' Môn ' . $mon . ' không có học sinh thi lần 2');
+			return redirect()->route('diem_thi.insert')->with('loi_lan2','Lớp '. $lop_hoc .  ' Môn ' . $mon_hoc . ' không có học sinh thi lần 2');
 		}
 		else{
 			$array_sinh_vien = SinhVien::join('diem_thi','diem_thi.ma_sinh_vien','sinh_vien.ma')
@@ -136,7 +169,7 @@ public function process_insert(Request $rq){
 		
 			$array_diem=DiemThi::where("ma_mon_hoc",$ma_mon)->where('so_lan',2)->get();
 			
-			return view('diem_thi.view_nhap_diem_thi_lai',compact('array_khoa','array_sinh_vien','array_mon_hoc','khoa_hoc','lop','mon','array_diem'));
+			return view('diem_thi.view_nhap_diem_thi_lai',compact('array_sinh_vien','array_mon_hoc','lop_hoc','mon_hoc','array_diem','array_lop','array_mon'));
 		}
 		
 		

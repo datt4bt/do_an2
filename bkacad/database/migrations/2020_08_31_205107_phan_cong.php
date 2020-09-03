@@ -14,19 +14,21 @@ class PhanCong extends Migration
     public function up()
     {
         Schema::create('phan_cong', function (Blueprint $table) {
-            $table->integer('ma_admin')->unsigned();
-            $table->foreign('ma_admin')
-            ->references('ma')->on('admin')
+            
+           
+            $table->integer('ma_lop_hoc')->unsigned();
+            $table->foreign('ma_lop_hoc')
+            ->references('ma')->on('lop')
             ->onDelete('cascade');
             $table->integer('ma_mon_hoc')->unsigned();
             $table->foreign('ma_mon_hoc')
             ->references('ma')->on('mon_hoc')
             ->onDelete('cascade');
-            $table->integer('ma_lop_hoc')->unsigned();
-            $table->foreign('ma_lop_hoc')
-            ->references('ma')->on('lop')
+            $table->integer('ma_admin')->unsigned();
+            $table->foreign('ma_admin')
+            ->references('ma')->on('admin')
             ->onDelete('cascade');
-            $table->primary(['ma_admin','ma_mon_hoc','ma_lop_hoc']);
+            $table->primary(['ma_mon_hoc','ma_lop_hoc','ma_admin']);
 
             //
         });

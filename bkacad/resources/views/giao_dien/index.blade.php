@@ -30,6 +30,18 @@
     </script>
         
     @endif
+    @if (Session::has('loi_get_all_nganh_hoc'))
+    <script>
+        alert("Chưa có Ngành học chi tiết nào được thêm vào");
+    </script>
+        
+    @endif
+    @if (Session::has('loi_insert_nganh_hoc'))
+    <script>
+        alert("Chưa có Ngành học hoặc môn học được thêm vào nào được thêm vào");
+    </script>
+        
+    @endif
     <body class="fixed-left">
 
         <!-- Loader -->

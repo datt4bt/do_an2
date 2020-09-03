@@ -34,7 +34,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Điểm</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
-                                    <li><a href="{{ route('diem_thi.insert', ['ma'=>1]) }}">Nhập  Điểm</a></li>
+                                    <li><a href="{{ route('diem_thi.insert') }}">Nhập  Điểm</a></li>
                                     
                                     
                                     

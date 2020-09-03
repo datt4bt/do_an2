@@ -1,6 +1,4 @@
-<form @if ($ma==1)
-action="{{ route('diem_thi.process_insert')}}" 
-@elseif($ma==2)
+<form @if($ma==2)
 action="{{ route('diem_thi.process_thong_ke')}}" 
 @elseif($ma==3)
 action="{{ route('diem_thi.thong_ke_diem_thi')}}"

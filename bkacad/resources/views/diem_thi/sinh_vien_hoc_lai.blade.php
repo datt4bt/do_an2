@@ -41,7 +41,7 @@
 </form>
 <form action="{{ route('diem_thi.luu_diem')}}" method="POST">
     {{ csrf_field() }}
-    <h1 style="text-align: center">Thống kê</h1>
+    <h1 style="text-align: center"></h1>
     
     <table class="table table-striped">
       
@@ -73,9 +73,16 @@
              <tr>
               @foreach($array_sinh_vien as $sinh_vien )
              
-                <td >{{$sinh_vien->ma}}</td>
-                <td>{{$sinh_vien->ten}}</td>
-                <td>{{$sinh_vien->ngay_sinh}}</td>
+              
+               
+                    @foreach($array_diem as $diem ) 
+                    @if  ($sinh_vien->ma==$diem->ma_sinh_vien)
+                    <td >{{$sinh_vien->ma}}</td>
+                    <td >{{$sinh_vien->ten}}</td>
+                    <td>{{$sinh_vien->ngay_sinh}}</td>
+                    @endif
+                    @endforeach
+             
                
                
                

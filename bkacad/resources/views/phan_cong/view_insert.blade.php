@@ -1,16 +1,44 @@
 @extends('giao_dien.index')
 @section('content')
-@if (Session::has('loi_khoa'))
-	<h3 style="color: red">{{ Session::get('loi_khoa') }}</h3>
+@if (Session::has('loi_phan_cong'))
+	<h3 style="color: red">{{ Session::get('loi_phan_cong') }}</h3>
 @endif
-<h1 style="text-align: center"> Thêm Khóa</h1>
-<form class="needs-validation" action=" {{ route('khoa.process_insert') }} " method="post">
-	{{csrf_field()}}
-	<div class="col-md-6 mb-3">
-		<label for="validationDefault01">Tên </label>
-		<input type="text" class="form-control" id="validationDefault01" name="ten"  required>
-	</div>
-	<button>Thêm</button>
+<form action="{{ route('phan_cong.process_phan_cong') }}" method="post">
+	{{ csrf_field() }}
+	Chọn môn
+	<select name="ma_mon">
+		@foreach ($array_mon as $mon)
+			<option value="{{ $mon->ma }}">
+				{{ $mon->ten }}
+			</option>
+		@endforeach
+	</select>
+	<br>
+	Chọn giáo viên
+	<select name="ma_admin">
+		@foreach ($array_admin as $admin)
+			<option value="{{ $admin->ma }}">
+			@if($admin->ten_admin=="")
+			{{ $admin->ten }}
+			@else
+			{{ $admin->ten_admin }}({{ $admin->ten }})
+			@endif
+
+			</option>
+		@endforeach
+	</select>
+	<br>
+	Chọn lớp
+	<select name="ma_lop">
+		@foreach ($array_lop as $lop)
+			<option value="{{ $lop->ma }}">
+				{{ $lop->ten }}({{ $lop->khoa->ten }})
+			</option>
+		@endforeach
+	</select>
+	<br>
+	<button>Phân công</button>
 </form>
+
 
 @endsection

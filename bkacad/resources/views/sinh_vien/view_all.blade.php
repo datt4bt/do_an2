@@ -3,17 +3,18 @@
 <button class="button"><a  href="{{ route('sinh_vien.insert_excel') }}">Thêm Sinh viên bằng file Excel</a></button>
 <button class="button"><a  href="{{ route('sinh_vien.insert') }}">Thêm</a></button>
 
-<form action="{{ route('sinh_vien.get_one')}}" method="POST">
+<form  class="need-validated" action="{{ route('sinh_vien.get_one')}}" method="POST">
     {{ csrf_field() }}
-	<select class="custom-select" name="ma_khoa_hoc" id="chon_khoa_hoc" >
+    <label  for="validationTextarea">Chọn Khóa</label>
+	<select class="custom-select is-invalid" name="ma_khoa_hoc" id="chon_khoa_hoc"  required>
 		<option disabled selected >Mời bạn chọn Khóa</option>
 		@foreach ($array_khoa as $khoa)
 	<option value="{{$khoa->ma}}">{{$khoa->ten}}</option>
         @endforeach
        
         </select>
-       
-        <select class="custom-select" name="ma_lop" id="chon_lop">
+        <label  for="validationTextarea">Lớp</label>
+        <select class="custom-select is-invalid" name="ma_lop" id="chon_lop"  required>
             <option disabled selected >Mời bạn chọn Lớp</option>
         </select>
         <br>

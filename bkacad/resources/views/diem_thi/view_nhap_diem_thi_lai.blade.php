@@ -1,35 +1,41 @@
 @extends('giao_dien.index')
 @section('content')
 
-<form action="" method="POST">
-    {{ csrf_field() }}
-	<select class="custom-select" name="ma_khoa_hoc" id="chon_khoa_hoc" >
-        
-    <option disabled selected >{{$khoa_hoc}}</option>
-		@foreach ($array_khoa as $khoa)
-    <option value="{{$khoa->ma}}" @if($khoa_hoc==$khoa->ma)
+<form action="{{ route('diem_thi.process_insert')}}" method="POST">
+  {{ csrf_field() }}
+<select class="custom-select" name="ma_lop"  >
+ 
+  @foreach ($array_lop as $lop)
+<option value="{{$lop->ma}}"
+  @if($lop->ten==$lop_hoc)
         selected
-        
-    @endif >{{$khoa->ten}}</option>
-        @endforeach
-       
-        </select>
-       
-        <select class="custom-select" name="ma_lop" id="chon_lop">
-            <option selected >{{$lop}}</option>
-        </select>
-        <select class="custom-select" name="ma_mon" id="chon_mon">
-            <option selected >{{$mon}}</option>
-        </select>
-        <label for="">Lần thi:</label>
-        <select class="custom-select" name="so_lan" >
-            <option  value="1"  selected >Lần 1</option>
-            <option  value="2" >Lần 2</option>
-        </select>
-        <br>
-        <button type="submit" class="btn btn-primary">Chọn</button>
+      @endif
+      >{{$lop->ten}}</option>
+      @endforeach
      
-	  
+      </select>
+      <select class="custom-select" name="ma_mon"  >
+          
+          @foreach ($array_mon as $mon)
+      <option value="{{$mon->ma}}" 
+        @if($mon->ten==$mon_hoc)
+        selected
+      @endif>
+      {{$mon->ten}}</option>
+          @endforeach
+         
+          </select>
+          <label for="">Lần thi:</label>
+      <select class="custom-select" name="so_lan" >
+          <option  value="1"  selected >lần1</option>
+          <option  value="2" >lần2</option>
+      </select>
+     
+     
+      <br>
+      <button type="submit" class="btn btn-primary">Chọn</button>
+   
+  
 </form>
 <form class="was-validated"  action="{{ route('diem_thi.luu_diem')}}" method="POST">
     {{ csrf_field() }}
@@ -215,59 +221,8 @@
 <script type="text/javascript">
 //Chọn Lớp
  $(document).ready(function () {
-     $("#chon_khoa_hoc").change(function () {
-         
-           var ma_khoa_hoc=$(this).val();
-          $('#chon_lop').html('');
-           $.ajax({
-               type: "GET",
-               url: "{{route('diem_thi.get_lop')}}",
-               data: {ma_khoa_hoc:ma_khoa_hoc},
-               dataType: "json",
-              
-           })
-           .done(function(response){
-               $(response).each(function () {
-                $('#chon_lop').append(
-                    `<option value='${this.ma}'>
-                        ${this.ten}
-                    </option>`
-                );
-               });
-               $('#chon_lop').trigger('change');
-              
-               })
-            .fail(function() {
-             alert("lỗi rồi");
-             });
-         
-     });
-     $("#chon_lop").change(function () {
-         
-           var ma_lop=$(this).val();
-          $('#chon_mon').html('');
-           $.ajax({
-               type: "GET",
-               url: "{{route('diem_thi.get_mon')}}",
-               data: {ma_lop:ma_lop},
-               dataType: "json",
-              
-           })
-           .done(function(response){
-               $(response).each(function () {
-                $('#chon_mon').append(
-                    `<option value='${this.ma}'>
-                        ${this.ten}
-                    </option>`
-                );
-               })
-              
-           })
-           .fail(function() {
-             alert("lỗi rồi");
-             });
-         
-     });
+    
+    
      //nhập điểm
      $(".diem").change(function () {
       

@@ -39,6 +39,7 @@ class Controller extends BaseController
 		}
 		Session::put('ma',$admin->ma);
 		Session::put('ten',$admin->ten);
+		Session::put('email',$admin->email);
 		Session::put('anh',$admin->anh);
 		Session::put('cap_do',$admin->cap_do);
 		return redirect()->route('home');

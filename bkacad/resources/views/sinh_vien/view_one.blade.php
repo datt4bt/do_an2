@@ -48,7 +48,7 @@
 				
 				
 				<td><a href="{{ route('sinh_vien.update',['ma'=>$sinh_vien->ma]) }}">Sửa</a></td>
-				<td><a href="{{ route('sinh_vien.delete',['ma'=>$sinh_vien->ma]) }}">Xóa</a></td>
+				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('sinh_vien.delete',['ma'=>$sinh_vien->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
 	

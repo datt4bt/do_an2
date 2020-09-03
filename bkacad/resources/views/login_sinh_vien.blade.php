@@ -38,28 +38,31 @@
                                        
                                       
                 
-                                        <h4 class="text-muted text-center font-18"><b>Đăng nhập</b></h4>
-                                        <h5 class="text-muted text-center font-13" ><b>(chỉ giáo vụ và giáo viên)</b></h5>
+                                        <h4 class="text-muted text-center font-18"><b>Sinh viên</b></h4>
+                                        <h5 class="text-muted text-center font-13" ><b></b></h5>
                 
                                         <div class="p-2">
-                                            <form class="form-horizontal m-t-20" action="{{ route('process_login') }}" method="POST">
+                                            <form class="form-horizontal m-t-20" action="{{ route('process_login_sinh_vien') }}" method="POST">
                                                {{ csrf_field() }}
                                                   
     
                                                 <div class="form-group row">
                                                     <div class="col-12">
-                                                        <input class="form-control" name="ten_admin" type="text" required="" placeholder="Tên đăng nhập">
+                                                        <input class="form-control" name="ma_sinh_vien" type="number" required="" placeholder="Mã Sinh viên">
+                                                        <p style="text-align: center">Mã Sinh viên được giáo vụ cấp</p>
                                                     </div>
                                                 </div>
                 
                                                 <div class="form-group row">
+                                                   
                                                     <div class="col-12">
-                                                        <input class="form-control" name="mat_khau" type="password" required="" placeholder="Mật khẩu">
+                                                        <p style="text-align: left">Ngày sinh</p>
+                                                        <input class="form-control" name="ngay_sinh" type="date" required="" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group text-center row m-t-20">
                                                     <div class="col-12">
-                                                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Log In</button>
+                                                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Đăng nhập</button>
                                                     </div>
                                                     
                                                 </div>
@@ -68,7 +71,6 @@
                                                 <p  style="color: red;text-align: center"> {{Session::get('error')}}</p>
                                                      
                                                  @endif
-                                                 <h4 style="text-align: center;color: red;"><a href="{{ route('login_sinh_vien') }}"><u>Sinh viên đăng nhập tại đây</u></a></h4>
                                             </form>
                                         </div>
                 

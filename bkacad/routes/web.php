@@ -30,11 +30,12 @@ Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'khoa','as'=>'khoa.'], 
     //Phân công
     Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'phan_cong','as'=>'phan_cong.'], function() {
         Route::get('','PhanCongController@get_all')->name('get_all');
+        Route::post('process_get_all','PhanCongController@process_get_all')->name('process_get_all');
         Route::get('insert','PhanCongController@insert')->name('insert');
         Route::post('process_phan_cong','PhanCongController@process_phan_cong')->name('process_phan_cong');
-        Route::get('update/{ma}','PhanCongController@update')->name('update');
-        Route::post('process_update/{ma}','PhanCongController@process_update')->name('process_update');
-        Route::get('delete/{ma}','PhanCongController@delete')->name('delete');   //
+        Route::get('update/{ma_lop}/{ma_mon}/{ma_admin}','PhanCongController@update')->name('update');
+        Route::post('process_update','PhanCongController@process_update')->name('process_update');
+        Route::get('delete/{ma_lop}/{ma_mon}/{ma_admin}','PhanCongController@delete')->name('delete');   //
     });
 
 
@@ -136,7 +137,16 @@ Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'admin','as'=>'admin.']
   
 }); 
 });
+//middleware
+
+Route::group(['middleware' => ['CheckSinhVien'],'prefix' => 'sv','as'=>'sv.'], function() {
+    Route::get('home_sinh_vien','Controller@index_sinh_vien')->name('home_sinh_vien');
+    Route::get('view_diem_tung_sinh_vien','Diem_ThiController@view_diem_tung_sinh_vien')->name('view_diem_tung_sinh_vien');
+});
+  
 
 Route::get('login','Controller@login')->name('login');
+Route::get('login_sinh_vien','Controller@login_sinh_vien')->name('login_sinh_vien');
+Route::post('process_login_sinh_vien','Controller@process_login_sinh_vien')->name('process_login_sinh_vien');
 Route::post('process_login','Controller@process_login')->name('process_login');
 Route::get('logout','Controller@logout')->name('logout');

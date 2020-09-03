@@ -34,11 +34,29 @@ class Diem_ThiController
         ->join('mon_hoc','mon_hoc.ma','phan_cong.ma_mon_hoc')
         ->select('mon_hoc.ma','mon_hoc.ten')
         ->distinct()
-        ->get();
+		->get();
+		$check_mon = PhanCong::where('ma_admin',Session::get('ma'))
+        ->join('mon_hoc','mon_hoc.ma','phan_cong.ma_mon_hoc')
+        ->select('mon_hoc.ma','mon_hoc.ten')
+        ->distinct()
+		->count();
+		$check_lop = PhanCong::where('ma_admin',Session::get('ma'))
+			
+		->join('lop','lop.ma','phan_cong.ma_lop_hoc')
+		
+        ->select('lop.ma','lop.ten')
+        ->distinct()
+		->count();
 
-	
+		if($check_lop==0 || $check_mon==0)
+	 {
+		return redirect()->route('home')->with('loi_insert','Thông tin phân công đã tồn tại,vui lòng thử lại');
+	 }
+	 else{
 		return view('diem_thi.view_insert',compact('array_lop','array_mon'));
 
+	 }
+		
 	   
 	
 }
@@ -366,6 +384,26 @@ public function thong_ke_diem_thi(Request $rq){
 		//return view('diem_thi.test',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
 		}
 	}
+}
+public function view_diem_tung_sinh_vien(){
+
+	$array_mon=MonHoc::get();
+	$array_diem=DiemThi::where("ma_sinh_vien",Session::get('ma_sinh_vien'))->with('sinh_vien')->get();
+	
+	$diem_chi_tiet=[];
+	foreach($array_diem as $array)
+			{
+			
+				
+				$diem_chi_tiet[$array->ma_mon_hoc][$array->ma_kieu_diem][$array->hinh_thuc][$array->so_lan]=$array->diem;
+			
+			
+			}
+	
+	return view('page_sinh_vien.view_all',compact('diem_chi_tiet','array_diem','array_mon'));
+	//return view('diem_thi.test',compact('array_khoa','array_sinh_vien','array_diem','khoa_hoc','lop','mon','diem_chi_tiet'));
+
+
 }
 	
 }

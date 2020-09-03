@@ -28,7 +28,7 @@
 				
 				<td>
 					@if ($admin->cap_do==1)
-					<a href="{{ route('admin.delete',['ma'=>$admin->ma]) }}">Xóa</a>
+					<a  onclick="return confirm('Bạn có chắc muốn xóa ?')"href="{{ route('admin.delete',['ma'=>$admin->ma]) }}">Xóa</a>
 						@else
 					
 					@endif</td>

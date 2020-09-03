@@ -14,7 +14,7 @@
 				<td>{{$nganh_hoc->ma}}</td>
 				<td>{{$nganh_hoc->ten}}</td>
 				<td><a href="{{ route('nganh_hoc.update',['ma'=>$nganh_hoc->ma]) }}">Sửa</a></td>
-				<td><a href="{{ route('nganh_hoc.delete',['ma'=>$nganh_hoc->ma]) }}">Xóa</a></td>
+				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('nganh_hoc.delete',['ma'=>$nganh_hoc->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
 	

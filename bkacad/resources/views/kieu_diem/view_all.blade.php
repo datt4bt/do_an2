@@ -14,7 +14,7 @@
 				<td>{{$kieu_diem->ma}}</td>
 				<td>{{$kieu_diem->ten}}</td>
 				<td><a href="{{ route('kieu_diem.update',['ma'=>$kieu_diem->ma]) }}">Sửa</a></td>
-				<td><a href="{{ route('kieu_diem.delete',['ma'=>$kieu_diem->ma]) }}">Xóa</a></td>
+				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('kieu_diem.delete',['ma'=>$kieu_diem->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
 	

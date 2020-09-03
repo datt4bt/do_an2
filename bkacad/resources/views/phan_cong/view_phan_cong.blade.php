@@ -4,7 +4,7 @@
 @section('content')
 
 
-<form action="{{ route('phan_cong.process_get_all')}}" method="POST">
+<form action="" method="POST">
     {{ csrf_field() }}
 	<select class="custom-select" name="ma_khoa" id="chon_khoa_hoc" >
 		<option disabled selected >Mời bạn chọn Khóa</option>
@@ -15,7 +15,7 @@
         </select>
        
         <select class="custom-select" name="ma_lop" id="chon_lop">
-            <option disabled selected >Mời bạn chọn Lớp</option>
+        <option disabled selected >Mời bạn chọn Lớp </option>
         </select>
        
        
@@ -25,6 +25,27 @@
      
 	  
 </form>
+<h2 style="text-align: center">Danh sách Phân công lớp :{{$lop->ten}}-Khóa:{{$lop->khoa->ten}}</h2>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>Tên Giáo viên</th>
+        <th>Môn học</th>
+        <th></th>
+        <th></th>
+    </tr>
+  
+       @foreach($array_lop as $lop )
+       <tr>
+        <th>{{$lop->admin->ten}}</th>
+    <th>{{$lop->admin->ten_admin}}</th>
+    <td>{{$lop->mon_hoc->ten}}</td>
+    <td><a href="{{ route('phan_cong.update',['ma_lop'=>$lop->ma_lop_hoc,'ma_mon'=>$lop->ma_mon_hoc,'ma_admin'=>$lop->ma_admin]) }}">Sửa</a></td>
+    <td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('phan_cong.delete',['ma_lop'=>$lop->ma_lop_hoc,'ma_mon'=>$lop->ma_mon_hoc,'ma_admin'=>$lop->ma_admin]) }}">Xóa</a></td>
+</tr>
+       @endforeach
+    
+</table>
 @endsection
 @push('js')
     

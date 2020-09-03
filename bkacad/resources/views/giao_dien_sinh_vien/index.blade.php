@@ -23,29 +23,15 @@
 
         
     </head>
-    @if (Session::has('loi_insert'))
-	<script>
-		alert("Bạn chưa được phân công.Vui lòng đợi giáo vụ phân công công việc")
-	</script>
-@endif
+    
     @if (Session::has('error'))
     <script>
         alert("Bạn không có quyền truy cập");
     </script>
         
     @endif
-    @if (Session::has('loi_get_all_nganh_hoc'))
-    <script>
-        alert("Chưa có Ngành học chi tiết nào được thêm vào");
-    </script>
-        
-    @endif
-    @if (Session::has('loi_insert_nganh_hoc'))
-    <script>
-        alert("Chưa có Ngành học hoặc môn học được thêm vào nào được thêm vào");
-    </script>
-        
-    @endif
+    
+    
     <body class="fixed-left">
 
         <!-- Loader -->
@@ -55,11 +41,9 @@
         <div id="wrapper">
 
             <!-- ========== Left Sidebar Start ========== -->
-            @if (Session::get('cap_do')==0)
-            @include('giao_dien.sitebar_giao_vu')
-            @else
-            @include('giao_dien.sitebar_giao_vien')  
-            @endif
+          
+            @include('giao_dien_sinh_vien.sitebar')
+           
            
             <!-- Left Sidebar End -->
 
@@ -70,7 +54,7 @@
                 <div class="content">
 
                     <!-- Top Bar Start -->
-                    @include('giao_dien.topbar')
+                    @include('giao_dien_sinh_vien.topbar')
                     <!-- Top Bar End -->
 
                     <div class="page-content-wrapper ">
@@ -81,7 +65,7 @@
 
                 </div> <!-- content -->
 
-                @include('giao_dien.footer')
+                @include('giao_dien_sinh_vien.footer')
 
             </div>
             <!-- End Right content here -->

@@ -15,7 +15,7 @@
 				<td>{{$mon_hoc->ten}}</td>
 				<td>{{$mon_hoc->kieu_diem->ten}}</td>
 				<td><a href="{{ route('mon_hoc.update',['ma'=>$mon_hoc->ma]) }}">Sửa</a></td>
-				<td><a href="{{ route('mon_hoc.delete',['ma'=>$mon_hoc->ma]) }}">Xóa</a></td>
+				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')"  href="{{ route('mon_hoc.delete',['ma'=>$mon_hoc->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
 	

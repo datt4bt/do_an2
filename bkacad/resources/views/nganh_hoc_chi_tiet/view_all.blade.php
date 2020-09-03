@@ -31,7 +31,7 @@
 		<tr>
 			<td>{{ $sv->ma}}</td>
 			<td>{{ $sv->ten}}</td>
-			<td><a href="{{ route('nganh_hoc_chi_tiet.delete_nganh', ['ma_nganh'=>$ma,'ma_mon'=>$sv->ma]) }}">Xóa</a></td>
+			<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('nganh_hoc_chi_tiet.delete_nganh', ['ma_nganh'=>$ma,'ma_mon'=>$sv->ma]) }}">Xóa</a></td>
 			
 		</tr>
 				

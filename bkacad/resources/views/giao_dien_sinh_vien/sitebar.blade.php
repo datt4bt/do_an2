@@ -6,7 +6,7 @@
                 <div class="left-side-logo d-block d-lg-none">
                     <div class="text-center">
                         
-                        <a href="{{ route('sv.home_sinh_vien') }}" class="logo"><img src="{{ asset('images/logo-dark.png') }}" height="20" alt="logo"></a>
+                        <a href="{{ route('sv.home_sinh_vien') }}" class="logo"><img src="{{ asset('images/bkacad.jpg') }}" height="20" alt="logo"></a>
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-minus"></i> <span>Điểm</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
-                                    <li><a href="{{ route('sv.view_diem_tung_sinh_vien') }}">Xem Điểm/a></li>
+                                    <li><a href="{{ route('sv.view_diem_tung_sinh_vien') }}">Xem Điểm</a></li>
                                     
                                     
                                     

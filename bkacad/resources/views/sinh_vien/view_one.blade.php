@@ -39,7 +39,7 @@
 		@foreach ($array_sinh_vien as $sinh_vien)
 			<tr>
 				<td>{{$sinh_vien->ma}}</td>
-				<td>{{$sinh_vien->ten}}</td>
+            <td><a href="{{ route('sinh_vien.view_diem',['ma'=>$sinh_vien->ma]) }}">{{$sinh_vien->ten}}</a></td>
 				<td>{{$sinh_vien->ten_gioi_tinh}}</td>
 				<td>{{$sinh_vien->ngay_sinh}}</td>
 				<td>{{$sinh_vien->dia_chi}}</td>
@@ -51,8 +51,9 @@
 				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('sinh_vien.delete',['ma'=>$sinh_vien->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
-	
+        
 </table>
+{{$array_sinh_vien->links()}}
 @endsection
 @push('js')
     

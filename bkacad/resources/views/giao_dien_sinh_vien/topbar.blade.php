@@ -3,21 +3,14 @@
                         <div class="topbar-left	d-none d-lg-block">
                             <div class="text-center">
                                 
-                               
+                             <a href="{{ route('sv.view_diem_tung_sinh_vien') }}"> <img src="{{ asset('images/bkacad.jpg') }}" class="logo" width="255px"  height="70px" alt="logo"></a>
                             </div>
                         </div>
 
                         <nav class="navbar-custom">
 
                             <ul class="list-inline float-right mb-0">
-                                <li class="list-inline-item notification-list dropdown d-none d-sm-inline-block">
-                                    <form role="search" class="app-search">
-                                        <div class="form-group mb-0"> 
-                                            <input type="text" class="form-control" placeholder="Search..">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </form> 
-                                </li>
+                                
                                
                                
 
@@ -45,21 +38,15 @@
                                         
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
-                                        <a class="dropdown-item" href="{{ route('account.info_user') }}"><i class="mdi mdi-account-circle m-r-5 text-muted"></i>Thông tin tài khoản</a>
+                                        <a class="dropdown-item" href="{{ route('sv.info_user_sinh_vien') }}"><i class="mdi mdi-account-circle m-r-5 text-muted"></i>Thông tin tài khoản</a>
                                         
-                                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="mdi mdi-logout m-r-5 text-muted"></i>Đăng xuất</a>
+                                        <a class="dropdown-item" href="{{ route('logout_sinh_vien') }}"><i class="mdi mdi-logout m-r-5 text-muted"></i>Đăng xuất</a>
                                     </div>
                                 </li>
 
                             </ul>
 
-                            <ul class="list-inline menu-left mb-0">
-                                <li class="list-inline-item">
-                                    <button type="button" class="button-menu-mobile open-left waves-effect">
-                                        <i class="ion-navicon"></i>
-                                    </button>
-                                </li>
-                            </ul>
+                           
 
                             <div class="clearfix"></div>
 

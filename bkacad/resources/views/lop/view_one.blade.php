@@ -60,7 +60,9 @@
 				<td><a href="{{ route('lop.update',['ma'=>$lop->ma]) }}">Sửa</a></td>
 				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('lop.delete',['ma'=>$lop->ma]) }}">Xóa</a></td>
 			</tr>
-		@endforeach
+    @endforeach
+   
 	
 </table>
+{{$array_lop->links()}}
 @endsection

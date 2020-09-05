@@ -95,6 +95,7 @@ Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'sinh_vien','as'=>'sinh
     Route::get('insert_excel','Sinh_VienController@insert_excel')->name('insert_excel');
     Route::post('process_insert_excel','Sinh_VienController@process_insert_excel')->name('process_insert_excel');
     //
+    Route::get('view_diem/{ma}','Sinh_VienController@view_diem')->name('view_diem');
     Route::post('process_insert','Sinh_VienController@process_insert')->name('process_insert');
     Route::get('update/{ma}','Sinh_VienController@update')->name('update');
     Route::post('process_update/{ma}','Sinh_VienController@process_update')->name('process_update');
@@ -140,8 +141,10 @@ Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'admin','as'=>'admin.']
 //middleware
 
 Route::group(['middleware' => ['CheckSinhVien'],'prefix' => 'sv','as'=>'sv.'], function() {
-    Route::get('home_sinh_vien','Controller@index_sinh_vien')->name('home_sinh_vien');
     Route::get('view_diem_tung_sinh_vien','Diem_ThiController@view_diem_tung_sinh_vien')->name('view_diem_tung_sinh_vien');
+    Route::get('info_user_sinh_vien','AccountController@info_user_sinh_vien')->name('info_user_sinh_vien');
+    Route::get('view_update_info_sinh_vien','AccountController@view_update_info_sinh_vien')->name('view_update_info_sinh_vien');
+    Route::post('process_update_info_sinh_vien','AccountController@process_update_info_sinh_vien')->name('process_update_info_sinh_vien');
 });
   
 
@@ -150,3 +153,4 @@ Route::get('login_sinh_vien','Controller@login_sinh_vien')->name('login_sinh_vie
 Route::post('process_login_sinh_vien','Controller@process_login_sinh_vien')->name('process_login_sinh_vien');
 Route::post('process_login','Controller@process_login')->name('process_login');
 Route::get('logout','Controller@logout')->name('logout');
+Route::get('logout_sinh_vien','Controller@logout_sinh_vien')->name('logout_sinh_vien');

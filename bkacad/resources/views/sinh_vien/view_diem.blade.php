@@ -1,7 +1,12 @@
-@extends('giao_dien_sinh_vien.index')
+@extends('giao_dien.index')
 @section('content')
+<form action="{{ route('sinh_vien.get_one') }}" method="POST">
+    {{ csrf_field() }}
+    <input type="hidden" name="ma_lop" value="{{$sinh_vien->lop->ma}}">
+    <button type="submit" class="btn btn-info">Trở về</button>
+</form>
 <br>
-<h3 style="text-align: center" >Bảng điểm sinh viên :{{Session::get('ten_sinh_vien')}}</h3>
+<h3 style="text-align: center" >Bảng điểm sinh viên :{{$sinh_vien->ten}}.Lớp :{{$sinh_vien->lop->ten}}</h3>
 <table class="table table-bordered">
 <tr>
 	<th>Môn học</th>

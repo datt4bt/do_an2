@@ -17,6 +17,7 @@
 				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('kieu_diem.delete',['ma'=>$kieu_diem->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
-	
+		
 </table>
+{{$array_kieu_diem->links()}}
 @endsection

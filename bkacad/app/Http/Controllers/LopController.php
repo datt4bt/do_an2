@@ -19,7 +19,7 @@ class LopController
 	public function get_one(Request $rq){
 		$array_nganh_hoc=NganhHoc::get();
 		$array_khoa_hoc=Khoa::get();
-		$array_lop=Lop::with('nganh_hoc')->with('khoa')->where('ma_nganh_hoc',$rq->ma_nganh_hoc)->where('ma_khoa_hoc',$rq->ma_khoa_hoc)->get();
+		$array_lop=Lop::with('nganh_hoc')->with('khoa')->where('ma_nganh_hoc',$rq->ma_nganh_hoc)->where('ma_khoa_hoc',$rq->ma_khoa_hoc)->paginate(10);
 		
 		
 		return view('lop.view_one',compact('array_lop','array_nganh_hoc','array_khoa_hoc'));

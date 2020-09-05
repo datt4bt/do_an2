@@ -42,8 +42,7 @@
 
             <!-- ========== Left Sidebar Start ========== -->
           
-            @include('giao_dien_sinh_vien.sitebar')
-           
+         
            
             <!-- Left Sidebar End -->
 

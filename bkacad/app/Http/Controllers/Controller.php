@@ -59,6 +59,7 @@ class Controller extends BaseController
 		Session::flush();
 		return redirect()->route('login')->with('error','Đăng xuất thành công');
 	}
+	
 	public function process_login_sinh_vien(Request $rq){
 		try {
 			$sinh_vien=SinhVien::where('ma',$rq->ma_sinh_vien)->where('ngay_sinh',$rq->ngay_sinh)->firstOrFail();
@@ -67,9 +68,14 @@ class Controller extends BaseController
 		}
 		Session::put('ma_sinh_vien',$sinh_vien->ma);
 		Session::put('ten_sinh_vien',$sinh_vien->ten);
+		Session::put('sdt',$sinh_vien->sdt);
 		Session::put('email_sinh_vien',$sinh_vien->email);
 		
 	
-		return redirect()->route('sv.home_sinh_vien');
+		return redirect()->route('sv.view_diem_tung_sinh_vien');
+	}
+	public function logout_sinh_vien(){
+		Session::flush();
+		return redirect()->route('login_sinh_vien')->with('error','Đăng xuất thành công');
 	}
 }

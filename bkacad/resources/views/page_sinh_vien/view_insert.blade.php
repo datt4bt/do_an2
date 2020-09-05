@@ -1,4 +1,4 @@
-@extends('giao_dien.index')
+@extends('giao_dien_sinh_vien.index')
 @section('content')
 @if (Session::has('loi_khoa'))
 	<h3 style="color: red">{{ Session::get('loi_khoa') }}</h3>

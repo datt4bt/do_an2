@@ -387,7 +387,7 @@ public function thong_ke_diem_thi(Request $rq){
 }
 public function view_diem_tung_sinh_vien(){
 
-	$array_mon=MonHoc::get();
+	$array_mon=MonHoc::with('kieu_diem')->get();
 	$array_diem=DiemThi::where("ma_sinh_vien",Session::get('ma_sinh_vien'))->with('sinh_vien')->get();
 	
 	$diem_chi_tiet=[];

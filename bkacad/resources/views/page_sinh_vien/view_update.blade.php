@@ -1,5 +1,5 @@
 
-@extends('giao_dien.index')
+@extends('giao_dien_sinh_vien.index')
 @section('content')
 <form action="{{ route('khoa.process_update',['ma'=>$khoa->ma]) }}" method="post">
 	{{csrf_field()}}

@@ -10,7 +10,7 @@ class Kieu_DiemController
 {
 	
 	 public function get_all(){
-		$array_kieu_diem=KieuDiem::get();
+		$array_kieu_diem=KieuDiem::paginate(10);
 		return view('kieu_diem.view_all',compact('array_kieu_diem'));
 	}
 	 public function insert(){

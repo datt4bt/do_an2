@@ -10,7 +10,7 @@ class KhoaController
 {
 	
 	 public function get_all(){
-		$array_khoa=Khoa::get();
+		$array_khoa=Khoa::paginate(10);
 		return view('khoa.view_all',compact('array_khoa'));
 	}
 	 public function insert(){

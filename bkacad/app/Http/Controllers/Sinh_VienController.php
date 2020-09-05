@@ -6,6 +6,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\Lop;
 use App\Models\Khoa;
+use App\Models\MonHoc;
+use App\Models\DiemThi;
 use App\Models\SinhVien;
 
 
@@ -20,7 +22,7 @@ class Sinh_VienController
 		return view('sinh_vien.view_all',compact('array_khoa'));
 	} 
 	public function get_one(Request $rq){
-		$array_sinh_vien=SinhVien::where('ma_lop',$rq->ma_lop)->get();
+		$array_sinh_vien=SinhVien::where('ma_lop',$rq->ma_lop)->paginate(10);
 		
 			  $info=Lop::with('khoa')->with('nganh_hoc')->where('ma',$rq->ma_lop)->first();
 			  $array_khoa=Khoa::get();
@@ -65,5 +67,22 @@ class Sinh_VienController
 		
 		SinhVien::destroy($ma);
 		return redirect()->route('sinh_vien.get_all');
+	}
+	public function view_diem($ma){
+		$array_mon=MonHoc::with('kieu_diem')->get();
+	$array_diem=DiemThi::where("ma_sinh_vien",$ma)->with('sinh_vien')->get();
+	$sinh_vien=SinhVien::where("ma",$ma)->with('lop')->first();
+	$diem_chi_tiet=[];
+	foreach($array_diem as $array)
+			{
+			
+				
+				$diem_chi_tiet[$array->ma_mon_hoc][$array->ma_kieu_diem][$array->hinh_thuc][$array->so_lan]=$array->diem;
+			
+			
+			}
+	
+	
+		return view('sinh_vien.view_diem',compact('diem_chi_tiet','array_diem','array_mon','sinh_vien'));
 	}
 }

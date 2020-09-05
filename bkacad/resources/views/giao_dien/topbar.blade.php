@@ -3,7 +3,7 @@
                         <div class="topbar-left	d-none d-lg-block">
                             <div class="text-center">
                                 
-                               
+                                <img src="{{ asset('images/bkacad.jpg') }}" class="logo" width="255px"  height="70px" alt="logo">
                             </div>
                         </div>
 

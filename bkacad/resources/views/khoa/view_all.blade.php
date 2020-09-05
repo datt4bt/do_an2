@@ -17,6 +17,8 @@
 				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('khoa.delete',['ma'=>$khoa->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
+		
 	
 </table>
+{{$array_khoa->links()}}
 @endsection

@@ -10,7 +10,7 @@ class Nganh_HocController
 {
 	
 	 public function get_all(){
-		$array_nganh_hoc=NganhHoc::get();
+		$array_nganh_hoc=NganhHoc::paginate(10);
 		return view('nganh_hoc.view_all',compact('array_nganh_hoc'));
 	}
 	 public function insert(){

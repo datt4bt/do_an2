@@ -17,6 +17,7 @@
 				<td><a onclick="return confirm('Bạn có chắc muốn xóa ?')" href="{{ route('nganh_hoc.delete',['ma'=>$nganh_hoc->ma]) }}">Xóa</a></td>
 			</tr>
 		@endforeach
-	
+		
 </table>
+{{$array_nganh_hoc->links()}}
 @endsection

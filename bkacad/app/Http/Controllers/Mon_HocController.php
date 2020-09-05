@@ -11,7 +11,7 @@ class Mon_HocController
 {
 	
 	 public function get_all(){
-		$array_mon_hoc=MonHoc::with('kieu_diem')->get();
+		$array_mon_hoc=MonHoc::with('kieu_diem')->paginate(10);
 		
 		return view('mon_hoc.view_all',compact('array_mon_hoc'));
 	}

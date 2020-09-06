@@ -11,10 +11,14 @@ use App\Models\Admin;
 use Exception;
 use Session;
 use App\Models\SinhVien;
+
 use App\Models\Khoa;
 use App\Models\Lop;
 use App\Models\MonHoc;
 use App\Models\KieuDiem;
+
+
+
 
 class Controller extends BaseController
 {
@@ -31,6 +35,15 @@ class Controller extends BaseController
 		$giao_vien=Admin::where('cap_do',1)->count();
 		
 		return view('giao_dien.home',compact('khoa_hoc','lop_hoc','nganh_hoc','mon_hoc','sinh_vien','hinh_thuc','giao_vu','giao_vien'));
+	}
+	public function tim_kiem(Request $rq){
+		$tim_kiem = $rq->tim_kiem;
+		$array_lop = Lop::where('ten','like',"%$tim_kiem%")->with('khoa')->with('nganh_hoc')->paginate(10);
+		$array_sinh_vien = SinhVien::where('ten','like',"%$tim_kiem%")->with('lop')->paginate(10);
+
+
+		return view('tim_kiem',compact('tim_kiem','array_lop','array_sinh_vien'));
+		
 	}
 	public function index_sinh_vien(){
 		

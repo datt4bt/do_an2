@@ -11,9 +11,9 @@
 
                             <ul class="list-inline float-right mb-0">
                                 <li class="list-inline-item notification-list dropdown d-none d-sm-inline-block">
-                                    <form role="search" class="app-search">
+                                    <form action="{{ route('tim_kiem') }}" role="search" class="app-search" method="GET">
                                         <div class="form-group mb-0"> 
-                                            <input type="text" class="form-control" placeholder="Search..">
+                                        <input type="text" name="tim_kiem" class="form-control"  placeholder="Bạn muốn tìm gì?">
                                             <button type="submit"><i class="fa fa-search"></i></button>
                                         </div>
                                     </form> 

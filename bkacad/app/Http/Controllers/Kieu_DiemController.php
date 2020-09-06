@@ -36,9 +36,29 @@ class Kieu_DiemController
 		return view('kieu_diem.view_update',compact('kieu_diem'));
 	}
 	 public function process_update($ma,Request $rq){
-		KieuDiem::find($ma)->update($rq->all());
+		$check=KieuDiem::where('ma',$ma)->first();
 		
-		return redirect()->route('kieu_diem.get_all');
+		if($check->ten==$rq->ten)
+		{
+			return redirect()->route('kieu_diem.get_all');
+		}
+		else{
+			$check_ten=KieuDiem::where('ten',$rq->ten)->count();
+			
+		if($check_ten==1)
+		{	
+			$kieu_diem=KieuDiem::find($ma);
+			$a=0;
+		return view('kieu_diem.view_update',compact('kieu_diem','ma','a'));
+			
+
+		}
+		else{
+			KieuDiem::find($ma)->update($rq->all());
+			return redirect()->route('kieu_diem.get_all');
+		}
+	
+	}
 	}
 	 public function delete($ma){
 		

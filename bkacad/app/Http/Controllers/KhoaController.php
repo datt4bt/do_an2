@@ -34,9 +34,31 @@ class KhoaController
 		return view('khoa.view_update',compact('khoa'));
 	}
 	 public function process_update($ma,Request $rq){
-		Khoa::find($ma)->update($rq->all());
+		$check=Khoa::where('ma',$ma)->first();
 		
-		return redirect()->route('khoa.get_all');
+		if($check->ten==$rq->ten)
+		{
+			return redirect()->route('khoa.get_all');
+		}
+		else{
+			$check_ten=Khoa::where('ten',$rq->ten)->count();
+			
+		if($check_ten==1)
+		{	
+			$khoa=Khoa::find($ma);
+			$a=0;
+		return view('khoa.view_update',compact('khoa','ma','a'));
+			
+
+		}
+		else{
+			Khoa::find($ma)->update($rq->all());
+			return redirect()->route('khoa.get_all');
+		}
+	
+	}
+		
+	
 	}
 	 public function delete($ma){
 		

@@ -38,9 +38,30 @@ class Mon_HocController
 		return view('mon_hoc.view_update',compact('mon_hoc','array_kieu_diem'));
 	}
 	 public function process_update($ma,Request $rq){
-		MonHoc::find($ma)->update($rq->all());
+		$check=MonHoc::where('ma',$ma)->first();
 		
-		return redirect()->route('mon_hoc.get_all');
+		if($check->ten==$rq->ten)
+		{
+			return redirect()->route('mon_hoc.get_all');
+		}
+		else{
+			$check_ten=MonHoc::where('ten',$rq->ten)->count();
+			
+		if($check_ten==1)
+		{	
+			$mon_hoc=MonHoc::find($ma);
+			$array_kieu_diem=KieuDiem::get();
+			$a=0;
+		return view('mon_hoc.view_update',compact('mon_hoc','ma','a','array_kieu_diem'));
+			
+
+		}
+		else{
+			MonHoc::find($ma)->update($rq->all());
+			return redirect()->route('mon_hoc.get_all');
+		}
+	
+	}
 	}
 	 public function delete($ma){
 		

@@ -34,9 +34,29 @@ class Nganh_HocController
 		return view('nganh_hoc.view_update',compact('nganh_hoc'));
 	}
 	 public function process_update($ma,Request $rq){
-		NganhHoc::find($ma)->update($rq->all());
+		$check=NganhHoc::where('ma',$ma)->first();
 		
-		return redirect()->route('nganh_hoc.get_all');
+		if($check->ten==$rq->ten)
+		{
+			return redirect()->route('nganh_hoc.get_all');
+		}
+		else{
+			$check_ten=NganhHoc::where('ten',$rq->ten)->count();
+			
+		if($check_ten==1)
+		{	
+			$nganh_hoc=NganhHoc::find($ma);
+			$a=0;
+		return view('nganh_hoc.view_update',compact('nganh_hoc','ma','a'));
+			
+
+		}
+		else{
+			NganhHoc::find($ma)->update($rq->all());
+			return redirect()->route('nganh_hoc.get_all');
+		}
+	
+	}
 	}
 	 public function delete($ma){
 		

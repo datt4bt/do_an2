@@ -11,6 +11,7 @@ use App\Models\Admin;
 use Exception;
 use Session;
 use App\Models\SinhVien;
+use App\Models\Lop;
 
 class Controller extends BaseController
 {
@@ -19,6 +20,15 @@ class Controller extends BaseController
     public function index(){
 		
 		return view('giao_dien.index');
+	}
+	public function tim_kiem(Request $rq){
+		$tim_kiem = $rq->tim_kiem;
+		$array_lop = Lop::where('ten','like',"%$tim_kiem%")->with('khoa')->with('nganh_hoc')->paginate(10);
+		$array_sinh_vien = SinhVien::where('ten','like',"%$tim_kiem%")->with('lop')->paginate(10);
+
+
+		return view('tim_kiem',compact('tim_kiem','array_lop','array_sinh_vien'));
+		
 	}
 	public function index_sinh_vien(){
 		

@@ -30,6 +30,15 @@ class Sinh_VienController
 		
 		return view('sinh_vien.view_one',compact('array_khoa','info','array_sinh_vien'));
 	}
+	public function view_tim_kiem($ma){
+		$array_sinh_vien=SinhVien::where('ma_lop',$ma)->paginate(10);
+		
+			  $info=Lop::with('khoa')->with('nganh_hoc')->where('ma',$ma)->first();
+			  $array_khoa=Khoa::get();
+		
+		
+		return view('sinh_vien.view_one',compact('array_khoa','info','array_sinh_vien'));
+	}
 	 public function insert(){
 		$max_ma=SinhVien::max('ma');
 		$ma_moi=$max_ma+1;

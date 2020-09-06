@@ -16,6 +16,7 @@ class LopController
 		$array_khoa_hoc=Khoa::get();
 		return view('lop.view_all',compact('array_nganh_hoc','array_khoa_hoc'));
 	}
+	
 	public function get_one(Request $rq){
 		$array_nganh_hoc=NganhHoc::get();
 		$array_khoa_hoc=Khoa::get();

@@ -40,7 +40,7 @@ class SinhVienImport implements ToModel, WithHeadingRow
         $ngay_sinh = $this->convertToDate($row['ngay_sinh']);
         $sdt    = $row['sdt'];
         $dia_chi    = $row['dia_chi'];
-        $email    = $row['email'];
+       
        
         $ma_sv=SinhVien::max('ma');
         $max_ma_sv=$ma_sv+1;
@@ -58,7 +58,7 @@ class SinhVienImport implements ToModel, WithHeadingRow
         'ngay_sinh' => $ngay_sinh,
         'sdt' => '0'.$sdt,
         'dia_chi' => $dia_chi,
-        'email'     => $row['email'],
+        'email'     => $row['email']?? null,
         'ma_lop'    => $ma_lop,
         ]);
         

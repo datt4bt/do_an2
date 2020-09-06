@@ -43,6 +43,8 @@
 		
 		
 		</table>
+		
+		
 		<a href="{{ route('nganh_hoc_chi_tiet.insert') }}"><button type="button" class="btn btn-primary">Sửa</button></a>
 	</form>
 

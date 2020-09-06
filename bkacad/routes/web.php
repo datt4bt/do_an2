@@ -79,7 +79,7 @@ Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'nganh_hoc_chi_tiet','a
 //Lớp
 Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'lop','as'=>'lop.'], function() {
     Route::get('','LopController@get_all')->name('get_all');
-    Route::post('get_one','LopController@get_one')->name('get_one');
+    Route::get('get_one','LopController@get_one')->name('get_one');
     Route::get('insert','LopController@insert')->name('insert');
     Route::post('process_insert','LopController@process_insert')->name('process_insert');
     Route::get('update/{ma}','LopController@update')->name('update');
@@ -89,7 +89,7 @@ Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'lop','as'=>'lop.'], fu
 //Sinh viên
 Route::group(['middleware' => ['CheckAdmin'],'prefix' => 'sinh_vien','as'=>'sinh_vien.'], function() {
     Route::get('','Sinh_VienController@get_all')->name('get_all');
-    Route::post('get_one','Sinh_VienController@get_one')->name('get_one');
+    Route::get('get_one','Sinh_VienController@get_one')->name('get_one');
     Route::get('insert','Sinh_VienController@insert')->name('insert');
     //form excel
     Route::get('insert_excel','Sinh_VienController@insert_excel')->name('insert_excel');

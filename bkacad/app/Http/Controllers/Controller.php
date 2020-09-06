@@ -11,14 +11,26 @@ use App\Models\Admin;
 use Exception;
 use Session;
 use App\Models\SinhVien;
+use App\Models\Khoa;
+use App\Models\Lop;
+use App\Models\MonHoc;
+use App\Models\KieuDiem;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 	
     public function index(){
+		$hinh_thuc=KieuDiem::count();
+		$khoa_hoc=Khoa::count();
+		$lop_hoc=Lop::count();
+		$nganh_hoc=NganhHoc::count();
+		$mon_hoc=MonHoc::count();
+		$sinh_vien=SinhVien::count();
+		$giao_vu=Admin::where('cap_do',0)->count();
+		$giao_vien=Admin::where('cap_do',1)->count();
 		
-		return view('giao_dien.index');
+		return view('giao_dien.home',compact('khoa_hoc','lop_hoc','nganh_hoc','mon_hoc','sinh_vien','hinh_thuc','giao_vu','giao_vien'));
 	}
 	public function index_sinh_vien(){
 		

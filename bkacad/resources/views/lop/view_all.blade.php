@@ -1,8 +1,8 @@
 @extends('giao_dien.index')
 @section('content')
 <button class="button"><a  href="{{ route('lop.insert') }}">Thêm</a></button>
-<form action="{{ route('lop.get_one') }}" method="post">
-	{{ csrf_field() }}
+<form action="{{ route('lop.get_one') }}" method="get">
+	
 	<label for="exampleInputEmail1">Ngành học</label>
 	<select class="form-control" name="ma_nganh_hoc">
 	@foreach ($array_nganh_hoc as $nganh_hoc)

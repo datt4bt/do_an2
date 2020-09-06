@@ -19,5 +19,5 @@
 		@endforeach
 		
 </table>
-{{$array_kieu_diem->links()}}
+{{ $array_kieu_diem->render("pagination::bootstrap-4") }}
 @endsection

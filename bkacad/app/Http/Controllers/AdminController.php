@@ -10,7 +10,7 @@ class AdminController
 {
 	
 	 public function get_all(){
-		$array_admin=Admin::get();
+		$array_admin=Admin::paginate(10);
 		return view('admin.view_all',compact('array_admin'));
 	}
 	 public function insert(){

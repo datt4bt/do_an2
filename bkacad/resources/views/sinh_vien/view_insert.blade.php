@@ -1,5 +1,8 @@
 @extends('giao_dien.index')
 @section('content')
+@if (Session::has('loi_sinh_vien'))
+	<script>alert("Số điện thoại hoặc Email bị trùng.Vui lòng thử lại")</script>
+@endif
 <h2 style="text-align: center">Thêm Sinh Viên</h2>
 <form  class="was-validated" action=" {{ route('sinh_vien.process_insert') }} " method="post">
 	{{csrf_field()}}

@@ -13,6 +13,10 @@
 	
 	 
 	<br>
+	<div class="form-group">
+		<label for="col-sm-2 col-form-label">Để tránh sai sót.Bạn có thể tải File Excel mẫu về và điền vào nó.</label>
+		<a href="https://drive.google.com/file/d/1OHByRHfCzW870A4CLsb60sTTD_OHNsuh/view?usp=sharing" target="_blank"><u>Tải File tại đây</u></a>
+	  </div>
 	<button type="submit" class="btn btn-primary">Thêm</button>
   </form>
 @endsection

@@ -1,8 +1,8 @@
 @extends('giao_dien.index')
 @section('content')
 <button class="button"><a  href="{{ route('lop.insert') }}">Thêm</a></button>
-<form action="" method="post">
-	{{ csrf_field() }}
+<form action="" method="GET">
+	
 	<label for="exampleInputEmail1">Ngành học</label>
 	<select class="form-control" name="ma_nganh_hoc">
 	@foreach ($array_nganh_hoc as $nganh_hoc)
@@ -64,5 +64,6 @@
    
 	
 </table>
-{{$array_lop->links()}}
+
+{{ $array_lop->appends(['ma_nganh_hoc' =>$lop->ma_nganh_hoc,'ma_khoa_hoc' =>$khoa_hoc->ma ])->render("pagination::bootstrap-4") }}
 @endsection

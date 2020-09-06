@@ -2,8 +2,8 @@
 @section('content')
 <button class="button"><a  href="{{ route('sinh_vien.insert') }}">Thêm Sinh viên</a></button>
 <hr>
-<form action="{{ route('sinh_vien.get_one')}}" method="POST">
-    {{ csrf_field() }}
+<form action="{{ route('sinh_vien.get_one')}}" method="GET">
+    
 	<select class="custom-select" name="ma_khoa_hoc" id="chon_khoa_hoc" >
 		<option disabled selected >Mời bạn chọn Khóa</option>
 		@foreach ($array_khoa as $khoa)
@@ -53,7 +53,8 @@
 		@endforeach
         
 </table>
-{{$array_sinh_vien->links()}}
+{{ $array_sinh_vien->appends(['ma_khoa' =>$info->ma_khoa_hoc,'ma_lop' =>$info->ma ])->render("pagination::bootstrap-4") }}
+
 @endsection
 @push('js')
     

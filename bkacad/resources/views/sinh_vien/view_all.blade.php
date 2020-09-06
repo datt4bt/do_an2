@@ -3,8 +3,8 @@
 <button class="button"><a  href="{{ route('sinh_vien.insert_excel') }}">Thêm Sinh viên bằng file Excel</a></button>
 <button class="button"><a  href="{{ route('sinh_vien.insert') }}">Thêm</a></button>
 
-<form  class="need-validated" action="{{ route('sinh_vien.get_one')}}" method="POST">
-    {{ csrf_field() }}
+<form  class="need-validated" action="{{ route('sinh_vien.get_one')}}" method="GET">
+    
     <label  for="validationTextarea">Chọn Khóa</label>
 	<select class="custom-select is-invalid" name="ma_khoa_hoc" id="chon_khoa_hoc"  required>
 		<option disabled selected >Mời bạn chọn Khóa</option>

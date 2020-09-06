@@ -20,5 +20,5 @@
 		
 	
 </table>
-{{$array_khoa->links()}}
+{{ $array_khoa->render("pagination::bootstrap-4") }}
 @endsection

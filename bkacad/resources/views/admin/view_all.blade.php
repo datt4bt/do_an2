@@ -36,4 +36,5 @@
 		@endforeach
 	
 </table>
+{{ $array_admin->render("pagination::bootstrap-4") }}
 @endsection

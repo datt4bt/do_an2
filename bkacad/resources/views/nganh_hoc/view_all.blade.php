@@ -19,5 +19,5 @@
 		@endforeach
 		
 </table>
-{{$array_nganh_hoc->links()}}
+{{ $array_nganh_hoc->render("pagination::bootstrap-4") }}
 @endsection

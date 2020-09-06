@@ -21,5 +21,5 @@
 		
 	
 </table>
-{{$array_mon_hoc->links()}}
+{{ $array_mon_hoc->render("pagination::bootstrap-4") }}
 @endsection

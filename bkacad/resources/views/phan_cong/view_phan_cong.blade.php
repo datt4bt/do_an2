@@ -46,6 +46,7 @@
        @endforeach
     
 </table>
+
 @endsection
 @push('js')
     
